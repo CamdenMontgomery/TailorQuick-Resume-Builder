@@ -1,8 +1,8 @@
 export default function SideBarSectionLink({ title, color, section, children }: { title: string, color: string, section: React.RefObject<HTMLDivElement | null>, children: React.ReactNode }) {
     return (
         <button style={styles.container} onClick={() => { if (section != null) section.current?.scrollIntoView({ behavior: "smooth" }); }}>
-            <div style={styles.icon}>{children}</div>
-            <h3 style={styles.label}>{title}{color}</h3>
+            <div style={{...styles.icon, background:color}}>{children}</div>
+            <h3 style={styles.label}>{title}</h3>
         </button>
     )
 }
@@ -17,7 +17,7 @@ const styles = {
         background: "white"
     },
     icon: {
-        background: "#ff6c0087",
+        background: "white",
         borderRadius: "62px",
         width: "-webkit-fill-available",
         aspectRatio: "1",

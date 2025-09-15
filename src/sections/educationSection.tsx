@@ -6,12 +6,11 @@ import { forwardRef } from "react";
 
 
 
-const EducationSection =  forwardRef<HTMLDivElement, {}>(({}, ref) => {
-
+const EducationSection = forwardRef<HTMLDivElement, {}>(({ }, ref) => {
     return (
         <div style={styles.sectionContainer}>
             <h2 ref={ref} style={styles.title}>EDUCATION</h2>
-            <p>List your relevant education.</p>
+            <p style={styles.subtitle}>List your relevant education.</p>
             <BlockList blockName="Education" BlockComponent={EducationBlock} emptyData={{ school: "", degree: "", startYear: "", endYear: "" }}></BlockList>
         </div>
     );
@@ -32,6 +31,12 @@ const styles = {
         fontWeight: "900",
         color: "#ff6c00",
         fontSize: "x-large"
-    },
+    }, subtitle: {
+        fontSize: "larger",
+        letterSpacing: "1px",
+        textTransform: "capitalize" as const,
+        color: "gray",
+        fontWeight: 200
+    }
 
 }
