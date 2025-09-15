@@ -1,45 +1,45 @@
 //import { useState } from "react";
 import EducationSection from "../sections/educationSection";
+import SideBarSectionLink from "../components/SidebarSectionLink";
+import { useRef } from "react";
 
-function SideBarSectionLink({title, color} : {title: string, color: string}){
-return (
-    <div>
-        <div style={{"backgroundColor": color}}></div>
-        <h3>{title}</h3>
-    </div>
-)
-}
 
 export default function Webpage() {
-  //const [jd, setJd] = useState("");
+    //const [jd, setJd] = useState("");
+    const educationSectionRef = useRef<HTMLDivElement>(null)
 
-  return (    
-    <div style={styles.optionsContainer}>
-        <div style={styles.optionsSidebar}>
-            <SideBarSectionLink title="Education" color="#egegeg"></SideBarSectionLink>
+    return (
+        <div style={styles.optionsContainer}>
+            <div style={styles.optionsSidebar}>
+                <SideBarSectionLink title="Education" color="#egegeg" section={educationSectionRef}>1</SideBarSectionLink>
+            </div>
+            <div style={styles.optionsContent}>
+                <EducationSection ref={educationSectionRef}></EducationSection>
+            </div>
         </div>
-        <div style={styles.optionsContent}>
-            <EducationSection></EducationSection>
-        </div>
-    </div>
-  );
+    );
 }
 
 
 const styles = {
     optionsContainer: {
-        boxShadow: "#0000001c 0 0 12px 3px",
-        padding: "50px",
-        width: "MIN(500px, calc(100% - 100px))",
-        margin: "auto",
+        boxShadow: "rgba(0, 0, 0, 0.11) 0px 0px 12px 3px",
+        width: "min(1000px, 100% - 100px)",
         borderRadius: "10px",
         background: "white",
+        display: "flex",
+        flexDirection: "row" as const,
+        paddingLeft: "0",
+        maxHeight: "800px",
+        overflow: "hidden"
     },
     optionsContent: {
-
+        width: "-webkit-fill-available",
+        padding: "50px",
+        overflowY: "scroll" as const
     },
     optionsSidebar: {
-
+        width: "100px", boxShadow: "#0000000d 2px 0 4px 0"
     },
 
 }
