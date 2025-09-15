@@ -1,0 +1,42 @@
+
+import BlockList from "../components/blocklist";
+import [name]Block from "../blocks/[name]Block";
+import { forwardRef } from "react";
+
+
+
+
+const [name]Section = forwardRef<HTMLDivElement, {}>(({ }, ref) => {
+    return (
+        <div style={styles.sectionContainer}>
+            <h2 ref={ref} style={styles.title}>[name]</h2>
+            <p style={styles.subtitle}>List your relevant [name].</p>
+            <BlockList blockName="[name]" BlockComponent={[name]Block} emptyData={{[data]}}></BlockList>
+        </div>
+    );
+})
+
+export default [name]Section;
+
+
+
+const styles = {
+    sectionContainer: {
+
+    },
+    blockContainer: {
+
+    },
+    title: {
+        fontWeight: "900",
+        color: "#ff6c00",
+        fontSize: "x-large"
+    }, subtitle: {
+        fontSize: "larger",
+        letterSpacing: "1px",
+        textTransform: "capitalize" as const,
+        color: "gray",
+        fontWeight: 200
+    }
+
+}

@@ -1,0 +1,57 @@
+import { useState } from "react";
+export default function [name]Block({ data, onChange }: any) {
+
+    const [header, setHeader] = useState("Some [name]")
+
+    //Both update the [name] header and update blocklist data
+    const onChangeTitle = (e: any) => {
+        setHeader(e.target.value)
+        onChange({ ...data, company: e.target.value })
+    }
+
+    return (
+        <form style={styles.form}>
+
+            <h2 style={styles.blockHeader}>{header}</h2>
+
+            [inputs]
+
+
+
+        </form>
+    );
+}
+
+
+const styles = {
+    button: {
+        borderRadius: "5px",
+        borderWidth: "0",
+        padding: "10px",
+        borderStyle: "solid",
+        background: "#ff6c00",
+        color: "white",
+        fontWeight: 900,
+        marginTop: "10px"
+    },
+    input: {
+        borderRadius: "5px",
+        borderWidth: "0.5px",
+        padding: "14px",
+        borderColor: "rgb(255 255 255)",
+        borderStyle: "solid",
+        background: "#f9f9f9"
+    },
+    blockHeader: {
+        textTransform: "uppercase" as const,
+        letterSpacing: "1px",
+        fontWeight: 200,
+        color: "rgb(0 137 18)"
+    },
+    form: {
+        display: "flex",
+        flexDirection: "column" as const,
+        gap: "0.5rem",
+        padding: "1rem",
+    }
+}

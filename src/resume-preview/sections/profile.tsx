@@ -1,0 +1,1 @@
+//export default function ResumeProfileSection({fullName, phoneNumber, email, linkedin, github}){}
