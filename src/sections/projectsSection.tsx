@@ -11,7 +11,7 @@ const ProjectsSection = forwardRef<HTMLDivElement, {}>(({ }, ref) => {
         <div style={styles.sectionContainer}>
             <h2 ref={ref} style={styles.title}>Projects</h2>
             <p style={styles.subtitle}>List your relevant Projects.</p>
-            <BlockList blockName="Projects" BlockComponent={ProjectsBlock} emptyData={{title:"",description:"",startDate:"",endDate:""}}></BlockList>
+            <BlockList storageLabel="Projects" blockName="Projects" BlockComponent={ProjectsBlock} emptyData={{title:"",description:"",startDate:"",endDate:""}}></BlockList>
         </div>
     );
 })

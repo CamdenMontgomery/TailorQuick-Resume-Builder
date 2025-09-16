@@ -11,7 +11,7 @@ const ExperienceSection =  forwardRef<HTMLDivElement, {}>(({}, ref) => {
         <div style={styles.sectionContainer}>
             <h2 ref={ref} style={styles.title}>EXPERIENCE</h2>
             <p style={styles.subtitle}>List your relevant experience.</p>
-            <BlockList blockName="Experience" BlockComponent={ExperienceBlock} emptyData={{ company: "", position: "", startYear: "", endYear: "", description: "" }}></BlockList>
+            <BlockList storageLabel="Experience" blockName="Experience" BlockComponent={ExperienceBlock} emptyData={{ company: "", position: "", startYear: "", endYear: "", description: "" }}></BlockList>
         </div>
     );
 })

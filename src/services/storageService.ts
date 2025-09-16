@@ -1,9 +1,18 @@
 export default class StorageService{
-    static async getApiKey(): Promise<string> {
-        return await chrome.storage.local.get("key") 
+
+    static async storeSectionData(section: string, data: {}){
+        let fullData = (await chrome.storage.local.get('fullResumeData')).fullResumeData
+        if (!fullData) fullData = {}
+        
+        fullData[section.toLowerCase()] = data
+        chrome.storage.local.set({'fullResumeData':fullData})
+        console.log(fullData)
     }
 
-    static storeApiKey(key: string){
-        chrome.storage.local.set({apikey: key})
+    static async getBlocklistData(section: string){
+        let fullData = (await chrome.storage.local.get('fullResumeData')).fullResumeData
+        if (!fullData) fullData = {}
+        console.log(fullData)
+        return fullData[section.toLowerCase()] ?? []
     }
 }
