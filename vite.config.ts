@@ -7,8 +7,8 @@ export default defineConfig({
     react(),
     viteStaticCopy({
       targets: [
-        { src: "manifest.json", dest: "." },
-        { src: "public/*", dest: "assets" }, // icons, etc.
+        { src: "manifest.json", dest: "." },      // copy manifest
+        { src: "public/*", dest: "assets" },      // copy icons, etc.
       ],
     }),
   ],
@@ -19,6 +19,16 @@ export default defineConfig({
       input: {
         popup: "src/popup/index.html",
         options: "src/webpage/index.html",
+        background: "src/background.ts",
+      },
+      output: {
+        entryFileNames: (chunk) => {
+          // make sure background builds to background.js (must match manifest.json)
+          if (chunk.name === "background") {
+            return "background.js";
+          }
+          return "assets/[name].js";
+        },
       },
     },
   },

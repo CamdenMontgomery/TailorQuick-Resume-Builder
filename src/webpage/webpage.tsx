@@ -6,6 +6,7 @@ import ExperienceSection from "../sections/experienceSection";
 import Note from "../components/note";
 import ProjectsSection from "../sections/projectsSection";
 import ResumePreview from "../resume-preview/resumePreview";
+import ApiKeyIntake from "../components/apiKeyIntake";
 
 
 export default function Webpage() {
@@ -30,6 +31,8 @@ export default function Webpage() {
                     <ExperienceSection ref={experienceSectionRef}></ExperienceSection>
                     <ProjectsSection ref={projectsSectionRef}></ProjectsSection>
                 </div>
+
+                <ApiKeyIntake></ApiKeyIntake>
             </div>
         </>
     );

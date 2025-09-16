@@ -1,7 +1,13 @@
 import { useState } from "react";
+import TunnelService from "../services/tunnelService";
 
 export default function Popup() {
   const [jd, setJd] = useState("");
+
+    const getTags = async () => {
+        const tags = await TunnelService.getJobTagsTunneled(jd)
+        console.log(tags)
+    }
 
   return (
     <div style={{ width: "300px", padding: "10px" }}>
@@ -13,7 +19,7 @@ export default function Popup() {
       />
       <button
         style={{ marginTop: "10px" }}
-        onClick={() => chrome.storage.local.set({ jobDesc: jd })}
+        onClick={getTags}
       >
         Save
       </button>
