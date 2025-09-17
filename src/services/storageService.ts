@@ -15,4 +15,8 @@ export default class StorageService{
         console.log(fullData)
         return fullData[section.toLowerCase()] ?? []
     }
+
+    static async getFullPotentialResumeData(){
+        return (await chrome.storage.local.get('fullResumeData')).fullResumeData
+    }
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TunnelService from "../services/tunnelService";
+import ResumePreview from "../resume-preview/resumePreview";
 
 export default function Popup() {
   const [jd, setJd] = useState("");
@@ -23,6 +24,7 @@ export default function Popup() {
       >
         Save
       </button>
+      <ResumePreview data={{}}></ResumePreview>
     </div>
   );
 }

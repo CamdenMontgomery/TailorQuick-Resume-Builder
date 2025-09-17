@@ -1,7 +1,7 @@
 //import { useState } from "react";
 import EducationSection from "../sections/educationSection";
 import SideBarSectionLink from "../components/SidebarSectionLink";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ExperienceSection from "../sections/experienceSection";
 import Note from "../components/note";
 import ProjectsSection from "../sections/projectsSection";
@@ -9,14 +9,37 @@ import ResumePreview from "../resume-preview/resumePreview";
 
 
 export default function Webpage() {
+    const [previewData, setPreviewData] = useState({})
+
     //const [jd, setJd] = useState("");
     const educationSectionRef = useRef<HTMLDivElement>(null)
     const experienceSectionRef = useRef<HTMLDivElement>(null)
     const projectsSectionRef = useRef<HTMLDivElement>(null)
 
+
+    useEffect(() => {
+        const loop = setInterval(() => {
+
+            let path: string[] = []
+            let count = 10
+            while (count > 0)
+            {
+                let current = previewData as any
+                for (const key of path){
+                    current = current[key]
+                }
+                const keys = Object.keys(current)
+
+            }
+
+        }, 1000)
+
+        return () => {clearInterval(loop)}
+    }, [])
+
     return (
         <>
-            <ResumePreview></ResumePreview>
+            <ResumePreview data={previewData}></ResumePreview>
 
             <div style={styles.optionsContainer}>
                 <div style={styles.optionsSidebar}>
