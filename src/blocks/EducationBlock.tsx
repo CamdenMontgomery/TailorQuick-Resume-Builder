@@ -1,12 +1,25 @@
 import { useState } from "react";
-export default function EducationBlock({ data, onChange }: any) {
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import schoolList from "../suggestions/schools";
+
+export default function EducationBlock({ data, onChange }: { data: { school: "", degree: "", startYear: Date, endYear: Date }, onChange: (data: {}) => {} }) {
 
     const [header, setHeader] = useState("Some Education")
+    const [schoolSuggestions, setSchoolSuggestions] = useState<string[]>([])
 
     //Both update the experience header and update blocklist data
     const onChangeTitle = (e: any) => {
         setHeader(e.target.value)
         onChange({ ...data, school: e.target.value })
+    }
+
+    const updateSchoolSuggestions = (text: string) => {
+        fetch(encodeURI(`http://universities.hipolabs.com/search?name=${text}`)).then(
+            async (res) => { setSchoolSuggestions((await res.json()).map((school: any) => (school.name))) }
+        ).catch(() => {
+            setSchoolSuggestions(schoolList)
+        })
     }
 
     return (
@@ -16,13 +29,16 @@ export default function EducationBlock({ data, onChange }: any) {
 
             <input
                 type="text"
-                placeholder="school"
+                list="schools"
+                placeholder="School"
                 value={data.school}
                 maxLength={50}
                 style={styles.input}
-                onChange={onChangeTitle}
+                onChange={(e: any) => { updateSchoolSuggestions(e.target.value); onChangeTitle(e) }}
             />
-
+            <datalist id="schools">
+                {schoolSuggestions.map((value: string) => (<option>{value}</option>))}
+            </datalist>
 
             <input
                 type="text"
@@ -33,25 +49,11 @@ export default function EducationBlock({ data, onChange }: any) {
                 onChange={(e) => onChange({ ...data, degree: e.target.value })}
             />
 
-            <input
-                type="text"
-                placeholder="start year"
-                value={data.startYear}
-                maxLength={4}
-                style={styles.input}
-                onChange={(e) => onChange({ ...data, startYear: e.target.value })}
-            />
+
+            <DatePicker selected={data.startYear} onChange={(date) => onChange({ ...data, startYear: date?.toDateString() })} showIcon dateFormat="MMM yyyy" showMonthYearPicker placeholderText="e.g Jan. 1997"></DatePicker>
+            <DatePicker selected={data.endYear} onChange={(date) => onChange({ ...data, endYear: date?.toDateString() })} showIcon dateFormat="MMM yyyy" showMonthYearPicker placeholderText="e.g Jan. 1997"></DatePicker>
 
 
-
-            <input
-                type="text"
-                placeholder="end year"
-                value={data.endYear}
-                maxLength={4}
-                style={styles.input}
-                onChange={(e) => onChange({ ...data, endYear: e.target.value })}
-            />
 
 
             {/* <button type="submit" style={blockStyles.button}>Save</button> */}
@@ -72,12 +74,12 @@ const styles = {
         marginTop: "10px"
     },
     input: {
-  borderRadius: "5px",
-  borderWidth: "0.5px",
-  padding: "14px",
-  borderColor: "rgb(255 255 255)",
-  borderStyle: "solid",
-  background: "#f9f9f9"
+        borderRadius: "5px",
+        borderWidth: "0.5px",
+        padding: "14px",
+        borderColor: "rgb(255 255 255)",
+        borderStyle: "solid",
+        background: "#f9f9f9"
     },
     blockHeader: {
         textTransform: "uppercase" as const,
