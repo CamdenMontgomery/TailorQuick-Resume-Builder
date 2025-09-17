@@ -1,7 +1,7 @@
 //import { useState } from "react";
 import EducationSection from "../sections/educationSection";
 import SideBarSectionLink from "../components/SidebarSectionLink";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef} from "react";
 import ExperienceSection from "../sections/experienceSection";
 import Note from "../components/note";
 import ProjectsSection from "../sections/projectsSection";
@@ -9,7 +9,7 @@ import ResumePreview from "../resume-preview/resumePreview";
 
 
 export default function Webpage() {
-    const [previewData, setPreviewData] = useState({})
+    //const [previewData, setPreviewData] = useState({})
 
     //const [jd, setJd] = useState("");
     const educationSectionRef = useRef<HTMLDivElement>(null)
@@ -19,7 +19,7 @@ export default function Webpage() {
 
     useEffect(() => {
         const loop = setInterval(() => {
-
+/*
             let path: string[] = []
             let count = 10
             while (count > 0)
@@ -31,7 +31,7 @@ export default function Webpage() {
                 const keys = Object.keys(current)
 
             }
-
+*/
         }, 1000)
 
         return () => {clearInterval(loop)}
@@ -39,7 +39,7 @@ export default function Webpage() {
 
     return (
         <>
-            <ResumePreview data={previewData}></ResumePreview>
+            <ResumePreview data={{}}></ResumePreview>
 
             <div style={styles.optionsContainer}>
                 <div style={styles.optionsSidebar}>

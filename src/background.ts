@@ -13,8 +13,10 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
         //Retrieve Full Potential Resume Data Json
         StorageService.getFullPotentialResumeData().then(async (data) => 
             {
+                console.log(data)
                 if (!data) sendResponse(null)
-                const resume = await OpenAPIService.GenerateResume(message.desc,data)
+                const resume = await OpenAPIService.GenerateResume(message.desc,JSON.stringify(data))
+            console.log(resume)
                 sendResponse(resume)
             })
         

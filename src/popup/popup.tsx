@@ -4,10 +4,12 @@ import ResumePreview from "../resume-preview/resumePreview";
 
 export default function Popup() {
   const [jd, setJd] = useState("");
+  const [previewData, setPreviewData] = useState({})
 
-    const getTags = async () => {
-        const tags = await TunnelService.getJobTagsTunneled(jd)
-        console.log(tags)
+    const getResumeData = async () => {
+        const data = await TunnelService.generateResumeTunneled(jd)
+        console.log("we have it", data)
+        setPreviewData(data)
     }
 
   return (
@@ -20,11 +22,11 @@ export default function Popup() {
       />
       <button
         style={{ marginTop: "10px" }}
-        onClick={getTags}
+        onClick={getResumeData}
       >
         Save
       </button>
-      <ResumePreview data={{}}></ResumePreview>
+      <ResumePreview data={previewData}></ResumePreview>
     </div>
   );
 }

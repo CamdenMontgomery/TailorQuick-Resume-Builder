@@ -11,14 +11,20 @@ export default class TunnelService {
         );
     }
 
-    static generateResumeTunneled(jobDescription: string){
-        chrome.runtime.sendMessage(
-            { type: "GENERATE_RESUME", desc: jobDescription },
-            (response) => {
-                console.log("AI says:", response);
-                return response
-            }
-        );
+    static async generateResumeTunneled(jobDescription: string): Promise<{}> {
+        return new Promise((resolve) => {
+            chrome.runtime.sendMessage(
+                { type: "GENERATE_RESUME", desc: jobDescription },
+                (response: {} | undefined) => {
+                    if (chrome.runtime.lastError) {
+                        console.error("Error from background:", chrome.runtime.lastError);
+                        resolve({}); // default return on error
+                        return;
+                    }
+                    resolve(response ?? {}); // return response or default
+                }
+            );
+        });
     }
 
 }
