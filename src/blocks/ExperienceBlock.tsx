@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BulletedList from "../components/bulletedList";
 export default function ExperienceBlock({ data, onChange }: any) {
 
     const [header, setHeader] = useState("Some Experience")
@@ -53,15 +54,9 @@ export default function ExperienceBlock({ data, onChange }: any) {
                 onChange={(e) => onChange({ ...data, endYear: e.target.value })}
             />
 
-            <textarea
-                placeholder="description"
-                value={data.description}
-                maxLength={4}
-                style={styles.input}
-                onChange={(e: any) => onChange({ ...data, description: e.target.value })}
-            ></textarea>
 
 
+            <BulletedList list={data.bullets} onChange={(list) => {onChange({ ...data, bullets: list })}} ></BulletedList>
 
         </form>
     );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BulletedList from "../components/bulletedList";
 export default function ProjectsBlock({ data, onChange }: any) {
 
     const [header, setHeader] = useState("Some Project")
@@ -24,14 +25,7 @@ export default function ProjectsBlock({ data, onChange }: any) {
             />
 
 
-            <input
-                type="text"
-                placeholder="description"
-                value={data.description}
-                maxLength={50}
-                style={styles.input}
-                onChange={(e) => onChange({ ...data, description: e.target.value })}
-            />
+
 
             <input
                 type="text"
@@ -53,6 +47,7 @@ export default function ProjectsBlock({ data, onChange }: any) {
                 onChange={(e) => onChange({ ...data, endDate: e.target.value })}
             />
 
+            <BulletedList list={data.bullets} onChange={(list) => {onChange({ ...data, bullets: list })}} ></BulletedList>
 
         </form>
     );
