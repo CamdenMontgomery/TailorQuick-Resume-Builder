@@ -77,7 +77,7 @@ const ProfileSection =  forwardRef<HTMLDivElement, {}>(({}, ref) => {
             </div>
 
                         <div style={styles.inputContainer}>
-                <label style={styles.label}>Linkedin</label>
+                <label style={styles.label}>Linkedin (Optional)</label>
             <input
                 type="text"
                 placeholder="Field"
@@ -89,7 +89,7 @@ const ProfileSection =  forwardRef<HTMLDivElement, {}>(({}, ref) => {
             </div>
 
                         <div style={styles.inputContainer}>
-                <label style={styles.label}>Github</label>
+                <label style={styles.label}>Github (Optional)</label>
             <input
                 type="text"
                 placeholder="Field"

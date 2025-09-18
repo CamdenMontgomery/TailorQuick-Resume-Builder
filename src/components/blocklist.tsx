@@ -17,6 +17,14 @@ export default function BlockList({ blockName, BlockComponent, emptyData, storag
         setBlocks([...blocks, { ...emptyData }])
     };
 
+    const removeBlock = (idx: number) => {
+        //blocks.splice(idx, 1) [Incorrect, do not mutate the state object or it fails to rerender]
+        const newBlocks = blocks.filter((_val, i) => i != idx )
+        StorageService.storeSectionData(storageLabel, newBlocks)
+        setBlocks(newBlocks)
+
+    };
+
     const updateBlock = (index: number, newData: object) => {
         const updated = [...blocks];
         updated[index] = newData;
@@ -39,6 +47,7 @@ export default function BlockList({ blockName, BlockComponent, emptyData, storag
                     key={idx}
                     data={block}
                     onChange={(newData: object) => updateBlock(idx, newData)}
+                    remove={() => { removeBlock(idx) }}
                 />
             ))}
             <button onClick={addBlock} style={styles.button}>+ Add Another {blockName}</button>
@@ -53,12 +62,12 @@ const styles = {
 
     },
     button: {
-  background: "#000000",
-  padding: "10px",
-  fontWeight: 800,
-  color: "white",
-  width: "-webkit-fill-available",
-  border: "none",
-  borderRadius: "5px"
+        background: "#000000",
+        padding: "10px",
+        fontWeight: 800,
+        color: "white",
+        width: "-webkit-fill-available",
+        border: "none",
+        borderRadius: "5px"
     }
 }
