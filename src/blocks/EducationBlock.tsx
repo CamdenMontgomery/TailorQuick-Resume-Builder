@@ -3,14 +3,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import schoolList from "../suggestions/schools";
 
-export default function EducationBlock({ data, onChange }: { data: { school: "", degree: "", startYear: Date, endYear: Date }, onChange: (data: {}) => {} }) {
+export default function EducationBlock({ data, onChange }: { data: { school: "", degree: "", startYear: Date, endYear: Date, field: "" }, onChange: (data: {}) => {} }) {
 
-    const [header, setHeader] = useState("Some Education")
     const [schoolSuggestions, setSchoolSuggestions] = useState<string[]>([])
 
     //Both update the experience header and update blocklist data
     const onChangeTitle = (e: any) => {
-        setHeader(e.target.value)
         onChange({ ...data, school: e.target.value })
     }
 
@@ -25,10 +23,13 @@ export default function EducationBlock({ data, onChange }: { data: { school: "",
     return (
         <form style={styles.form}>
 
-            <h2 style={styles.blockHeader}>{header}</h2>
+            <h2 style={styles.blockHeader}>{data.school + " - Education"}</h2>
 
+            <div style={{...styles.inputContainer,gridColumn:"1/3"}}>
+            <label style={styles.label}>School</label>
             <input
                 type="text"
+                name="schools"
                 list="schools"
                 placeholder="School"
                 value={data.school}
@@ -39,7 +40,10 @@ export default function EducationBlock({ data, onChange }: { data: { school: "",
             <datalist id="schools">
                 {schoolSuggestions.map((value: string) => (<option>{value}</option>))}
             </datalist>
+            </div>
 
+            <div style={styles.inputContainer}>
+                <label style={styles.label}>Degree</label>
             <input
                 type="text"
                 placeholder="degree"
@@ -48,15 +52,34 @@ export default function EducationBlock({ data, onChange }: { data: { school: "",
                 style={styles.input}
                 onChange={(e) => onChange({ ...data, degree: e.target.value })}
             />
+            </div>
 
 
+            <div style={styles.inputContainer}>
+                <label style={styles.label}>Field of Study</label>
+            <input
+                type="text"
+                placeholder="Field"
+                value={data.field}
+                maxLength={50}
+                style={styles.input}
+                onChange={(e) => onChange({ ...data, field: e.target.value })}
+            />
+            </div>
+
+            <div style={styles.inputContainer}>
+                <label style={styles.label}>Start Date</label>
             <DatePicker selected={data.startYear} onChange={(date) => onChange({ ...data, startYear: date?.toDateString() })} showIcon dateFormat="MMM yyyy" showMonthYearPicker placeholderText="e.g Jan. 1997"></DatePicker>
+            </div>
+            
+                        <div style={styles.inputContainer}>
+                <label style={styles.label}>End Date</label>
             <DatePicker selected={data.endYear} onChange={(date) => onChange({ ...data, endYear: date?.toDateString() })} showIcon dateFormat="MMM yyyy" showMonthYearPicker placeholderText="e.g Jan. 1997"></DatePicker>
+        </div>
 
 
 
-
-            {/* <button type="submit" style={blockStyles.button}>Save</button> */}
+            <button type="button" style={styles.button}>Remove</button>
         </form>
     );
 }
@@ -71,7 +94,11 @@ const styles = {
         background: "#ff6c00",
         color: "white",
         fontWeight: 900,
-        marginTop: "10px"
+          marginTop: "30px",
+  gridColumn: "1 / 3",
+  textTransform: "uppercase" as const,
+  fontSize: "smaller",
+  cursor: "pointer"
     },
     input: {
         borderRadius: "5px",
@@ -81,16 +108,32 @@ const styles = {
         borderStyle: "solid",
         background: "#f9f9f9"
     },
+    inputContainer: {
+  display: "flex",
+  flexDirection: "column" as const,
+    marginTop: "10px"
+    },
     blockHeader: {
-        textTransform: "uppercase" as const,
-        letterSpacing: "1px",
-        fontWeight: 200,
-        color: "#893a00"
+  textTransform: "uppercase" as const,
+  fontWeight: 800,
+  color: "rgb(0 0 0)",
+  letterSpacing: "2px",
+  gridColumn: "1 / 3"
     },
     form: {
-        display: "flex",
-        flexDirection: "column" as const,
-        gap: "0.5rem",
-        padding: "1rem",
+  display: "grid",
+  gap: "0.5rem 1rem",
+  background: "#ffffff",
+  padding: "30px",
+  borderRadius: "10px",
+  boxShadow: "#00000012 0 0 6px 0",
+  marginBottom: "30px"
+    },
+    label: {
+          padding: "10px",
+  fontWeight: "bolder",
+  textTransform: "uppercase" as const,
+  letterSpacing: "1px",
+  color: "#3d3d3d"
     }
 }

@@ -8,6 +8,7 @@ import ProjectsSection from "../sections/projectsSection";
 import ResumePreview from "../resume-preview/resumePreview";
 import SkillsSection from "../sections/skillsSection";
 import ProfileSection from "../sections/profileSection";
+import HistorySidebar from "../components/sidebar";
 
 
 export default function Webpage() {
@@ -47,19 +48,19 @@ export default function Webpage() {
 
             <div style={styles.optionsContainer}>
                 <div style={styles.optionsSidebar}>
-                    <SideBarSectionLink title="Profile" color="rgb(147 0 40 / 64%)" section={profileSectionRef}>!</SideBarSectionLink>
-                    <SideBarSectionLink title="Education" color="#ff6c0087" section={educationSectionRef}>1</SideBarSectionLink>
-                    <SideBarSectionLink title="Experience" color="rgb(0 147 94 / 64%)" section={experienceSectionRef}>2</SideBarSectionLink>
-                    <SideBarSectionLink title="Projects" color="rgb(0 112 147 / 64%)" section={projectsSectionRef}>3</SideBarSectionLink>
-                    <SideBarSectionLink title="Skills" color="rgb(31 0 147 / 64%)" section={skillsSectionRef}>4</SideBarSectionLink>
+                    <SideBarSectionLink title="Profile" color="rgb(255 0 69 / 64%)" section={profileSectionRef}>i</SideBarSectionLink>
+                    <SideBarSectionLink title="Education" color="#ff6c0087" section={educationSectionRef}>E</SideBarSectionLink>
+                    <SideBarSectionLink title="Experience" color="rgb(0 147 94 / 64%)" section={experienceSectionRef}>X</SideBarSectionLink>
+                    <SideBarSectionLink title="Projects" color="rgb(0 112 147 / 64%)" section={projectsSectionRef}>P</SideBarSectionLink>
+                    <SideBarSectionLink title="Skills" color="rgb(31 0 147 / 64%)" section={skillsSectionRef}>S</SideBarSectionLink>
 
                 </div>
                 <div style={styles.optionsContent}>
 
-                    <div style={styles.header}>TailorQuick</div>
-
-                    <ProfileSection ref={profileSectionRef}></ProfileSection>
+                    {/*<div style={styles.header}>TailorQuick</div>*/}
                     <Note text="Sections Left Empty Will Not Contribute To Final Selection."></Note>
+                    <ProfileSection ref={profileSectionRef}></ProfileSection>
+
                     <EducationSection ref={educationSectionRef}></EducationSection>
                     <ExperienceSection ref={experienceSectionRef}></ExperienceSection>
                     <ProjectsSection ref={projectsSectionRef}></ProjectsSection>
@@ -69,6 +70,8 @@ export default function Webpage() {
                 
             </div>
             <ResumePreview data={{}}></ResumePreview>
+
+            <HistorySidebar></HistorySidebar>
         </>
     );
 }
@@ -94,7 +97,13 @@ const styles = {
         overflowY: "scroll" as const
     },
     optionsSidebar: {
-        width: "100px", boxShadow: "#0000000d 2px 0 4px 0"
+          width: "90px",
+  boxShadow: "rgb(0 0 0 / 5%) 5px 1px 5px 0px",
+  background: "#f9f9f9",
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "28px",
+  justifyContent: "flex-start" as const
     },
     note: {
 

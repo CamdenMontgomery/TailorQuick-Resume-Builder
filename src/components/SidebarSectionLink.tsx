@@ -11,26 +11,25 @@ export default function SideBarSectionLink({ title, color, section, children }: 
 
 const styles = {
     container: {
-        padding: "21px",
-        width: "-webkit-fill-available",
-        borderWidth: "0",
-        background: "white",
-        pointer: "cursor"
+  padding: "21px",
+  width: "-webkit-fill-available",
+  borderWidth: "0px",
+  background: "#00000000"
     },
     icon: {
-        background: "white",
-        borderRadius: "62px",
-        width: "-webkit-fill-available",
-        aspectRatio: "1",
-        color: "white",
-        textAlign: "center" as const,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        fontSize: "x-large",
-        fontWeight: "bold",
-        lineHeight: "24px",
-        margin: "8PX"
+  borderRadius: "500px",
+  width: "-webkit-fill-available" as const,
+  aspectRatio: "1 / 1",
+  color: "white",
+  textAlign: "center" as const,
+  display: "flex",
+  justifyContent: "center" as const,
+  alignItems: "center" as const,
+  fontSize: "large" as const,
+  fontWeight: "bold" as const,
+  lineHeight: "24px",
+  margin: "8px",
+  boxShadow: "inset #00000036 4px -6px 6px 0"
     }
     ,
     label: {

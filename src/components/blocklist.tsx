@@ -53,9 +53,12 @@ const styles = {
 
     },
     button: {
-        background: "transparent",
-        width: "-webkit-fill-available",
-        padding: "10px",
-        fontWeight: "800",
+  background: "#000000",
+  padding: "10px",
+  fontWeight: 800,
+  color: "white",
+  width: "-webkit-fill-available",
+  border: "none",
+  borderRadius: "5px"
     }
 }

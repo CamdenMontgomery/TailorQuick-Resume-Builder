@@ -21,6 +21,7 @@ const styles = {
         fontWeight: 500,
         display: "flex",
         justifyContent: "flex-start",
-        alignItems: "center"
+        alignItems: "center",
+            marginTop: "30px"
     }
 }
