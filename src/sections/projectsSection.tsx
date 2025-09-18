@@ -28,8 +28,9 @@ const styles = {
 
     },
     title: {
+              paddingTop: "50px",
         fontWeight: "900",
-        color: "#ff6c00",
+        color: "rgb(0 22 139)",
         fontSize: "x-large"
     }, subtitle: {
         fontSize: "larger",

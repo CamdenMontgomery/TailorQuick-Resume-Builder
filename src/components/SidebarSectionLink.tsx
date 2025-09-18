@@ -14,7 +14,8 @@ const styles = {
         padding: "21px",
         width: "-webkit-fill-available",
         borderWidth: "0",
-        background: "white"
+        background: "white",
+        pointer: "cursor"
     },
     icon: {
         background: "white",

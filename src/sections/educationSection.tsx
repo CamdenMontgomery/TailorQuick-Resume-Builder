@@ -28,6 +28,7 @@ const styles = {
 
     },
     title: {
+              paddingTop: "50px",
         fontWeight: "900",
         color: "#ff6c00",
         fontSize: "x-large"
