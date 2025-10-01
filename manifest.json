@@ -11,5 +11,10 @@
   "background": {
     "service_worker": "background.js",
     "type": "module"
-  }
+  },  "web_accessible_resources": [
+    {
+      "resources": [ "src/assets/*.png" ],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

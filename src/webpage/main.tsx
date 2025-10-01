@@ -1,9 +1,14 @@
+
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Webpage from "./webpage";
+
+import { Provider } from "../components/ui/provider"
+import InformationModal from "../modals/informatonModal";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Webpage />
+    <Provider >
+        <welcomeModal/>
+    </Provider>
   </React.StrictMode>
 );

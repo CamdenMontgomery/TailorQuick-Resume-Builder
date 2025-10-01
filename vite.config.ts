@@ -1,14 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import tsconfigPaths from "vite-tsconfig-paths"
 
 export default defineConfig({
   plugins: [
     react(),
+    tsconfigPaths(),
     viteStaticCopy({
       targets: [
         { src: "manifest.json", dest: "." },      // copy manifest
-        { src: "public/*", dest: "assets" },      // copy icons, etc.
+        { src: "src/assets", dest: "src" },      // copy icons, etc.
       ],
     }),
   ],
