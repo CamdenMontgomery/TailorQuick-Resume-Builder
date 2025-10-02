@@ -6,6 +6,7 @@ import { Provider as ChkrProvider } from "../components/ui/provider"
 import { Provider as RdxProvider } from "react-redux"
 import BuilderPage from "../pages/BuilderPage";
 import { store } from "../store";
+import "../App.css"
 
 
 

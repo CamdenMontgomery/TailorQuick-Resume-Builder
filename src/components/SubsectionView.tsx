@@ -8,16 +8,14 @@ export default function SubsectionView({SubsectionViewItem} : {SubsectionViewIte
     let educations = useSelector((state : TQTranscript) => state.education)
     
     return (
-        <Stack direction="column">
+        <Stack id="subsectionview" direction="column" >
             <SubsectionHeader></SubsectionHeader>
-            <Stack direction="column">
+            <Stack id="subsectionlist" gap="0" direction="column">
                 {
-                    educations.map(_data => <SubsectionViewItem>text</SubsectionViewItem>)
+                    educations.map(_data => <SubsectionViewItem></SubsectionViewItem>)
                 }
-                
             </Stack>
             <SubsectionFooter section="Education"></SubsectionFooter>
         </Stack>
-
     )
 }
