@@ -1,6 +1,6 @@
 
 
-export default function BulletedList({list = [], onChange}: {list : string[], onChange : (data : object) => void }){
+export default function BulletedList({list = [], onChange}: {list : string[], onChange : (e : object) => void }){
     
 
     return (

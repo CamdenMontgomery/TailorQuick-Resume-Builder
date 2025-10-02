@@ -1,5 +1,7 @@
-import type { Education } from "../resume-preview/types/education"
-import type { Experience } from "../resume-preview/types/experience"
+
+import type Education from "./Education"
+import type Experience from "./Experience"
+import type Project from "./Project"
 
 export default interface TQTranscript {
     profile? : {
@@ -7,6 +9,6 @@ export default interface TQTranscript {
     },
     education: Education[],
     experience: Experience[],
-    //projects: Project[],
-    //skills: string[]
+    projects: Project[],
+    skills: string[]
 }

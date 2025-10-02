@@ -1,3 +1,7 @@
 export default interface Education {
-    school: string 
+    school: string,
+    degree: string,
+    startDate?: Date,
+    endDate?: Date,
+    bullets?: string[] 
 }

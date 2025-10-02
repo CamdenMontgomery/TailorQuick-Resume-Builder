@@ -6,17 +6,20 @@ import type TQTranscript from "../interfaces/TQTranscript"
 import FadeScroll from "./wrappers/scroll"
 import type { SectionType } from "../types/SectionType"
 import EducationSubsection from "./SubsectionItems/EducationSubsection"
+import type Education from "../interfaces/Education"
 
-const SubsectionComponents = {
+
+
+/*const SubsectionComponents = {
     "EDUCATION" : EducationSubsection,
-    "EXPERIENCE" : EducationSubsection,
+    "EXPERIENCE" : ExperienceSubsection,
     "PROFILE" : EducationSubsection,
     "SKILLS" : EducationSubsection,
     "PROJECTS" : EducationSubsection
-}
+}*/
 
 export default function SubsectionView({section} : {section : SectionType}){
-    const SubsectionComponent = SubsectionComponents[section]
+    //const SubsectionComponent = SubsectionComponents[section]
     const data = useSelector((state : TQTranscript) => {
         switch (section){
             case "EDUCATION":
@@ -38,12 +41,19 @@ export default function SubsectionView({section} : {section : SectionType}){
             
             {Array.isArray(data) && /*Conditional Render*/ <Stack id="subsectionlist" gap="0" direction="column">
                 {
-                    data!.map(_data => <SubsectionComponent></SubsectionComponent>)
-
+                    section == "EDUCATION" ? data!.map((d,idx) => <EducationSubsection data={d as Education} index={idx}></EducationSubsection>)  :
+                    section == "EXPERIENCE" ?<></> :
+                    section == "PROJECTS" ? <></>  : 
+                    <></>
                 }
             </Stack>}
 
-            {!Array.isArray(data) && <SubsectionComponent></SubsectionComponent>}
+            {
+                section == "PROFILE" ? <></>  :
+                section == "SKILLS" ? <></> :
+                <></>
+            }
+        
 
             </FadeScroll>
             <SubsectionFooter section={section}></SubsectionFooter>
