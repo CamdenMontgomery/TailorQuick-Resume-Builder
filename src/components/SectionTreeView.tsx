@@ -1,5 +1,6 @@
-import { TreeView, createTreeCollection } from "@chakra-ui/react"
+import { TreeView, createTreeCollection, type TreeViewSelectionChangeDetails } from "@chakra-ui/react"
 import type TQTranscript from "../interfaces/TQTranscript"
+import type { SectionType } from "../types/SectionType"
 
 /**
  * TreeView component tailored to display transcript sections and subsections
@@ -8,16 +9,21 @@ import type TQTranscript from "../interfaces/TQTranscript"
  *
  * @param {Object} props - React profile
  * @param {TQTranscript} props.transcript - The data displayed in the tree view
- * @returns {JSX.Element} Rendered button component
+ * @returns {JSX.Element} Rendered tree view component
  */
 
-export default function SectionTreeView({transcript} : {transcript : TQTranscript}) {
+export default function SectionTreeView({ transcript, callback }: { transcript: TQTranscript, callback : (section : SectionType) => void }) {
 
-    const collection = createSectionTreeCollection(transcript)
+  const collection = createSectionTreeCollection(transcript)
 
-    return (
-        <TreeView.Root collection={collection} maxW="sm">
-      <TreeView.Label>Tree</TreeView.Label>
+
+
+  const reroute = (details: TreeViewSelectionChangeDetails) => {
+    callback(details.selectedValue[0].split('/')[0] as SectionType)  //ID's in the form of [SectionType]/[Subsection or Action] e.g EDUCATION/ADD or EXPERIENCE/1
+  }
+
+  return (
+    <TreeView.Root variant="subtle" onSelectionChange={reroute} collection={collection} maxW="sm">
       <TreeView.Tree>
         <TreeView.Node
           indentGuide={<TreeView.BranchIndentGuide />}
@@ -35,57 +41,50 @@ export default function SectionTreeView({transcript} : {transcript : TQTranscrip
         />
       </TreeView.Tree>
     </TreeView.Root>
-    )
+  )
 
 }
 
 
 
 interface Node {
-    id: string
-    name: string
-    children?: Node[]
+  id: string
+  name: string
+  children?: Node[]
 }
 
 
-function createSectionTreeCollection(_transcript: TQTranscript) {
-    return createTreeCollection<Node>({
-        nodeToValue: (node) => node.id,
-        nodeToString: (node) => node.name,
-        rootNode: {
-            id: "ROOT",
-            name: "",
-            children: [
-                {
-                    id: "node_modules",
-                    name: "node_modules",
-                    children: [
-                        { id: "node_modules/zag-js", name: "zag-js" },
-                        { id: "node_modules/pandacss", name: "panda" },
-                        {
-                            id: "node_modules/@types",
-                            name: "@types",
-                            children: [
-                                { id: "node_modules/@types/react", name: "react" },
-                                { id: "node_modules/@types/react-dom", name: "react-dom" },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    id: "src",
-                    name: "src",
-                    children: [
-                        { id: "src/app.tsx", name: "app.tsx" },
-                        { id: "src/index.ts", name: "index.ts" },
-                    ],
-                },
-                { id: "panda.config", name: "panda.config.ts" },
-                { id: "package.json", name: "package.json" },
-                { id: "renovate.json", name: "renovate.json" },
-                { id: "readme.md", name: "README.md" },
-            ],
+function createSectionTreeCollection(transcript: TQTranscript) {
+  return createTreeCollection<Node>({
+    nodeToValue: (node) => node.id,
+    nodeToString: (node) => node.name,
+    rootNode: {
+      id: "ROOT",
+      name: "",
+      children: [
+          { id: "PROFILE", name: "Profile" },
+        {
+          id: "EDUCATION",
+          name: "Education",
+          children: [
+            ...transcript.education.map((education, index) => { return { id: `EDUCATION/${index}`, name: education.school ?? "" } }
+            ),
+            { id: "EDUCATION/ADD", name: "+ Add Education" },
+          ],
         },
-    })
+        {
+          id: "EXPERIENCE",
+          name: "Experience",
+          children: [
+            ...transcript.experience.map((experience, index) => { return { id: `EXPERIENCE/${index}`, name: experience.position ?? "" } }
+            ),
+            { id: "EXPERIENCE/ADD", name: "+ Add Experience" },
+          ],
+        },
+
+        { id: "SKILLS", name: "Skills" },
+      ],
+    },
+  })
 }
 

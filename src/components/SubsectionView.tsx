@@ -4,19 +4,47 @@ import SubsectionFooter from "./SubsectionFooter"
 import { useSelector } from "react-redux"
 import type TQTranscript from "../interfaces/TQTranscript"
 import FadeScroll from "./wrappers/scroll"
+import type { SectionType } from "../types/SectionType"
+import EducationSubsection from "./SubsectionItems/EducationSubsection"
 
-export default function SubsectionView({SubsectionViewItem} : {SubsectionViewItem : React.ComponentType<any>}){
-    let educations = useSelector((state : TQTranscript) => state.education)
+const SubsectionComponents = {
+    "EDUCATION" : EducationSubsection,
+    "EXPERIENCE" : EducationSubsection,
+    "PROFILE" : EducationSubsection,
+    "SKILLS" : EducationSubsection,
+    "PROJECTS" : EducationSubsection
+}
+
+export default function SubsectionView({section} : {section : SectionType}){
+    const SubsectionComponent = SubsectionComponents[section]
+    const data = useSelector((state : TQTranscript) => {
+        switch (section){
+            case "EDUCATION":
+                return state.education
+            case "EXPERIENCE":
+                return state.experience
+            case "PROFILE":
+                return state.profile 
+            default:
+                return state.profile
+        }
+    })
     
     return (
         <Stack id="subsectionview" direction="column" height="100%" gap="0" background="white">
             <SubsectionHeader></SubsectionHeader>
             <FadeScroll flex="1">
-            <Stack id="subsectionlist" gap="0" direction="column">
+
+            
+            {Array.isArray(data) && /*Conditional Render*/ <Stack id="subsectionlist" gap="0" direction="column">
                 {
-                    educations.map(_data => <SubsectionViewItem></SubsectionViewItem>)
+                    data!.map(_data => <SubsectionComponent></SubsectionComponent>)
+
                 }
-            </Stack>
+            </Stack>}
+
+            {!Array.isArray(data) && <SubsectionComponent></SubsectionComponent>}
+
             </FadeScroll>
             <SubsectionFooter section="Education"></SubsectionFooter>
         </Stack>
