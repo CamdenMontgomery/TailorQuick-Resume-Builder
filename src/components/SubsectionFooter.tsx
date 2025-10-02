@@ -1,7 +1,8 @@
 import { Button } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
+import type { SectionType } from "../types/SectionType";
 
-export default function SubsectionFooter({section} : {section : string}) {
+export default function SubsectionFooter({section} : {section : SectionType}) {
     const dispatch = useDispatch()
 
     const addSubsectionItem = () => {
@@ -10,5 +11,5 @@ export default function SubsectionFooter({section} : {section : string}) {
         };
     }
 
-    return (<Button onClick={ () => {dispatch(addSubsectionItem())}}>Add</Button>)
+    return (<Button onClick={ () => {dispatch(addSubsectionItem())}}>Add {section}</Button>)
 }

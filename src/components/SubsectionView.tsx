@@ -46,7 +46,7 @@ export default function SubsectionView({section} : {section : SectionType}){
             {!Array.isArray(data) && <SubsectionComponent></SubsectionComponent>}
 
             </FadeScroll>
-            <SubsectionFooter section="Education"></SubsectionFooter>
+            <SubsectionFooter section={section}></SubsectionFooter>
         </Stack>
     )
 }

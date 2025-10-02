@@ -9,7 +9,9 @@ const initialState: TQTranscript = {
 export default function rootReducer(state: TQTranscript = initialState, action: UnknownAction): TQTranscript {
     switch (action.type) {
         case "ADD_EDUCATION":
-            return {...state, education: [...state.education, {school:"Empty"}]}
+            return {...state, education: [...state.education, {school:"Undefined"}]}
+        case "ADD_EXPERIENCE":
+            return {...state, experience: [...state.experience, {position: "Undefined"}]}
         default:
             return state;
     }
