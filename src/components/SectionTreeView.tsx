@@ -81,6 +81,15 @@ function createSectionTreeCollection(transcript: TQTranscript) {
             { id: "EXPERIENCE/ADD", name: "+ Add Experience" },
           ],
         },
+        {
+          id: "PROJECTS",
+          name: "Projects",
+          children: [
+            ...transcript.experience.map((experience, index) => { return { id: `PROJECTS/${index}`, name: experience.position ?? "" } }
+            ),
+            { id: "PROJECTS/ADD", name: "+ Add Project" },
+          ],
+        },
 
         { id: "SKILLS", name: "Skills" },
       ],

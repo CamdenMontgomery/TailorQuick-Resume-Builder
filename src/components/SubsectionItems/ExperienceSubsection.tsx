@@ -3,8 +3,10 @@ import { Field } from "../ui/field"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
+import EditableBulletedList from "../ui/EditableBullets";
+import type { Experience } from "../../resume-preview/types/experience";
 
-export default function ExperienceSubsection({index} : {index : number}) {
+export default function ExperienceSubsection({data, index} : {data : Experience,index : number}) {
     const dispatch = useDispatch()
     const editField = (type : string, value: any) => {
         dispatch({type: type, payload: { index: index, value: value }})
@@ -37,6 +39,7 @@ export default function ExperienceSubsection({index} : {index : number}) {
                 </GridItem>
 
             </Grid>
+            <EditableBulletedList bullets={data.bullets ?? []} onChange={(bullets) => { editField("EDIT_EXPERIENCE_BULLETS", bullets) }}></EditableBulletedList>
             <Button></Button>
         </Stack>
     )
