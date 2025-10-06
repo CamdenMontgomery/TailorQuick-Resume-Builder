@@ -26,7 +26,7 @@ export default function ProfileSubsection({ data }: { data: Profile }) {
 
                 <GridItem>
                     <Field label="Last Name" background="white" color="gray" required>
-                        <Input placeholder="Montgomery" value={data.lastName} onChange={(e) => editField("EDIT_EDUCATION_LAST_NAME", e.target.value)} />
+                        <Input placeholder="Montgomery" value={data.lastName} onChange={(e) => editField("EDIT_PROFILE_LAST_NAME", e.target.value)} />
                     </Field>
                 </GridItem>
 
@@ -38,14 +38,14 @@ export default function ProfileSubsection({ data }: { data: Profile }) {
 
                 <GridItem>
                     <Field label="Phone" background="white" color="gray" required>
-                        <Input placeholder="(000)-000-0000" value={data.phone} onChange={(e) => editField("EDIT_EDUCATION_PHONE", e.target.value)} />
+                        <Input placeholder="(000)-000-0000" value={data.phone} onChange={(e) => editField("EDIT_PROFILE_PHONE", e.target.value)} />
                     </Field>
                 </GridItem>
 
 
                 <GridItem>
                     <Field label="Linkedin" background="white" color="gray">
-                        <Input placeholder="linkedin/in/camdenmontgomery" value={data.linkedin} onChange={(e) => editField("EDIT_EDUCATION_LINKEDIN", e.target.value)} />
+                        <Input placeholder="linkedin/in/camdenmontgomery" value={data.linkedin} onChange={(e) => editField("EDIT_PROFILE_LINKEDIN", e.target.value)} />
                     </Field>
                 </GridItem>
 
