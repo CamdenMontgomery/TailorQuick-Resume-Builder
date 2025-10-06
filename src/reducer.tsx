@@ -5,7 +5,7 @@ import type { Action } from "./types/Action";
 
 const initialState: TQTranscript = {
     profile: {firstName: "", lastName: "", email: "", phone: ""},
-    education: [],
+    education: [{school:"",field:"",degree:""}],
     experience: [],
     projects: [],
     skills: []

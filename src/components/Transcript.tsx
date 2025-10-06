@@ -6,24 +6,41 @@ import type Project from "../interfaces/Project";
 
 
 export default function Transcript({ information }: { information: TQTranscript }) {
+
+    const placehold = (condition : boolean, content : string | null, placeholder : string) => {
+        return condition ? placeholder : content;
+    }
+
     return (
         <Flex className="transcript-container">
             <Flex className="transcript-profile-container transcript-section">
-                { !information.profile.firstName ? <Heading color="gray">Your Name</Heading> : <Heading>{information.profile.firstName} {information.profile.lastName}</Heading>}
+                { !information.profile.firstName ? <Heading color="gray">Your Name</Heading> : <Heading>{information.profile.firstName} {information.profile.lastName} Transcript</Heading>}
                 <Em>{information.profile.email}</Em>
             </Flex>
-            <Flex className="transcript-education-container transcript-section">
-                <Heading>Education</Heading>
+            <Alert.Root colorPalette="gray" status="info">
+                <Alert.Indicator />
+                <Alert.Title>
+                    Blank sections will not be visible on your resume.
+                </Alert.Title>
+            </Alert.Root>
+            <Flex className="transcript-section">
+                <Heading className="transcript-section-heading">Education</Heading>
                 <Separator />
-                {information.education.length == 0 ? (<Text color="gray">No Education</Text>) :
+                {information.education.length == 0 ? (<Text className="transcript-section-placeholder">No Education</Text>) :
                     information.education.map((ed: Education) => (
                         <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
-                            <GridItem> <Text className="transcript-education-type">{ed.degree} in {ed.field}</Text> </GridItem> <GridItem> <Text className="transcript-education-date">{ed.startDate?.toDateString()} - {ed.endDate?.toDateString()}</Text> </GridItem>
-                            <GridItem colSpan={2}> <Text className="transcript-education-school">{ed.school}</Text> </GridItem>
+
+                            <GridItem> <Text className="transcript-subsection-title">{placehold(ed.degree == "" || ed.field == "", `${ed.degree} in ${ed.field}`, "[Your level of degree in your field of study]")} </Text> </GridItem> 
+                           
+                            <GridItem> <Text className="transcript-subsection-date">{placehold(!ed.startDate || !ed.endDate,`${ed.startDate?.toDateString()} - ${ed.endDate?.toDateString()}`, "[Your start date of study - Your end date of study]")}</Text> </GridItem>
+                            
+                            <GridItem colSpan={2}> <Text className="transcript-subsection-subtitle">{placehold(ed.school == "", `${ed.school}`,"[Your school which you attended]")}</Text> </GridItem>
+                            
                             <List.Root>
                                 {
+                                    ed.bullets?.length == 0 || !ed.bullets ? (<ListItem>[Bulleted information of note]</ListItem>) :
                                     ed.bullets?.map((bullet: string) => (
-                                        <ListItem>{bullet}</ListItem>
+                                        <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
                                     ))
                                 }
                             </List.Root>
@@ -31,26 +48,20 @@ export default function Transcript({ information }: { information: TQTranscript 
                     ))
                 }
             </Flex>
-            <Flex className="transcript-experience-container transcript-section">
-                <Heading>Experience</Heading>
+            <Flex className="transcript-section">
+                <Heading className="transcript-section-heading">Experience</Heading>
                 <Separator />
-                {information.experience.length == 0 ? (<>
-                    <Text color="gray">No Experience Provided</Text>
-                    <Alert.Root status="info">
-                        <Alert.Indicator />
-                        <Alert.Title>
-                            This section will not be visible on any derived resumes.
-                        </Alert.Title>
-                    </Alert.Root></>
+                {information.experience.length == 0 ? (
+                    <Text className="transcript-section-placeholder">No Experience Provided</Text>
                 ) :
                     information.experience.map((ex: Experience) => (
                         <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
-                            <GridItem> <Text className="transcript-experience-type">{ex.position}</Text> </GridItem> <GridItem> <Text className="transcript-experience-date">{ex.startDate?.toDateString()} - {ex.endDate?.toDateString()}</Text> </GridItem>
-                            <GridItem colSpan={2}> <Text className="transcript-experience-school">{ex.company}</Text> </GridItem>
+                            <GridItem> <Text className="transcript-subsection-title">{ex.position == "" ? "Your Position Here" : ex.position}</Text> </GridItem> <GridItem> <Text className="transcript-subsection-date">{ex.startDate?.toDateString() ?? "Start Date"} - {ex.endDate?.toDateString() ?? "End Date"}</Text> </GridItem>
+                            <GridItem colSpan={2}> <Text className="transcript-subsection-subtitle">{ex.company == "" ? "The company you worked at here" : ex.company}</Text> </GridItem>
                             <List.Root>
                                 {
                                     ex.bullets?.map((bullet: string) => (
-                                        <ListItem>{bullet}</ListItem>
+                                        <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
                                     ))
                                 }
                             </List.Root>
@@ -58,17 +69,17 @@ export default function Transcript({ information }: { information: TQTranscript 
                     ))
                 }
             </Flex>
-            <Flex className="transcript-projects-container transcript-section">
-                <Heading>Projects</Heading>
+            <Flex className="transcript-section">
+                <Heading className="transcript-section-heading">Projects</Heading>
                 <Separator />
                 {information.projects.length == 0 ? (<Text color="gray">No Projects</Text>) :
                     information.projects.map((pr: Project) => (
                         <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
-                            <GridItem> <Text className="transcript-projects-title">{pr.title}</Text> </GridItem> <GridItem> <Text className="transcript-projects-date">{pr.startDate?.toDateString()} - {pr.endDate?.toDateString()}</Text> </GridItem>
+                            <GridItem> <Text className="transcript-subsection-title">{pr.title}</Text> </GridItem> <GridItem> <Text className="transcript-subsection-date">{pr.startDate?.toDateString()} - {pr.endDate?.toDateString()}</Text> </GridItem>
                             <List.Root>
                                 {
                                     pr.bullets?.map((bullet: string) => (
-                                        <ListItem>{bullet}</ListItem>
+                                        <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
                                     ))
                                 }
                             </List.Root>
@@ -76,8 +87,8 @@ export default function Transcript({ information }: { information: TQTranscript 
                     ))
                 }
             </Flex>
-            <Flex className="transcript-skills-container transcript-section">
-                <Heading>Skills</Heading>
+            <Flex className="transcript-section">
+                <Heading className="transcript-section-heading">Skills</Heading>
                 <Separator />
             </Flex>
         </Flex>

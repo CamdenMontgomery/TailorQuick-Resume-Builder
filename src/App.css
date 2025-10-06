@@ -57,7 +57,7 @@ h2 {
 
 .transcript-container{
   flex: 1;
-  padding: 2rem;
+  padding: 4rem;
   margin: 2rem;
   box-shadow: black 0 0 0 0;
   background-color: white;
@@ -71,4 +71,33 @@ h2 {
 
 #preview-generate-container{
   flex: 1;
+}
+
+.transcript-subsection-subtitle{
+      text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+}
+.transcript-subsection-title{
+      text-align: left;
+      font-weight: bold;
+      font-family: 'Times New Roman', Times, serif;
+}
+.transcript-subsection-date{
+      text-align: end;
+            font-family: 'Times New Roman', Times, serif;
+}
+.transcript-section-heading{
+      text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+}
+.transcript-subsection-bullet{
+  text-align: justify;
+        font-family: 'Times New Roman', Times, serif;
+}
+
+.transcript-section-placeholder{
+      padding: 1rem;
+    margin: 1rem;
+    background: #f9f9f9;
+    border: dashed 1px #e7e7e7;
 }
