@@ -1,30 +1,40 @@
 //import type { UnknownAction } from "redux";
 import type TQTranscript from "./interfaces/TQTranscript";
+import StorageService from "./services/storageService";
 import type { Action } from "./types/Action";
 
 
 const initialState: TQTranscript = {
-    profile: {firstName: "", lastName: "", email: "", phone: ""},
-    education: [{school:"",field:"",degree:""}],
+    profile: { firstName: "", lastName: "", email: "", phone: "" },
+    education: [{ school: "", field: "", degree: "" }],
     experience: [],
     projects: [],
     skills: []
 }
 
 export default function rootReducer(state: TQTranscript = initialState, action: Action): TQTranscript {
+    console.log(action)
     switch (action.type) {
+
+        //SETTER
+        case "SET_TRANSCRIPT":
+            state = action.payload.transcript
+            break;
+
 
         //ADD SUBSECTION ACTIONS
 
         case "ADD_EDUCATION":
-            return { ...state, education: [...state.education, { school: "", degree: "", field: "" }] }
+            state = { ...state, education: [...state.education, { school: "", degree: "", field: "" }] }
+            break
 
         case "ADD_EXPERIENCE":
-            return { ...state, experience: [...state.experience, { position: "", company: "" }] }
+            state = { ...state, experience: [...state.experience, { position: "", company: "" }] }
+            break
 
         case "ADD_PROJECTS":
-            return { ...state, projects: [...state.projects, { title: "" }] }
-
+            state = { ...state, projects: [...state.projects, { title: "" }] }
+            break
 
 
         //EDIT EDUCATION SUBSECTION FIELD ACTIONS
@@ -33,38 +43,44 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
         case "EDIT_EDUCATION_SCHOOL": {
             const copy = { ...state }
             copy.education[action.payload.index].school = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EDUCATION_DEGREE": {
             const copy = { ...state }
             copy.education[action.payload.index].degree = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EDUCATION_FIELD": {
             const copy = { ...state }
             copy.education[action.payload.index].field = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EDUCATION_START_DATE": {
             const copy = { ...state }
             copy.education[action.payload.index].startDate = action.payload.value as Date
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EDUCATION_END_DATE": {
             const copy = { ...state }
             copy.education[action.payload.index].endDate = action.payload.value as Date
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EDUCATION_BULLETS": {
             const copy = { ...state }
             console.log(copy)
             copy.education[action.payload.index].bullets = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
 
@@ -75,31 +91,36 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
         case "EDIT_EXPERIENCE_POSITION": {
             const copy = { ...state }
             copy.experience[action.payload.index].position = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EXPERIENCE_COMPANY": {
             const copy = { ...state }
             copy.experience[action.payload.index].company = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EXPERIENCE_START_DATE": {
             const copy = { ...state }
             copy.experience[action.payload.index].startDate = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EXPERIENCE_END_DATE": {
             const copy = { ...state }
             copy.experience[action.payload.index].endDate = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_EXPERIENCE_BULLETS": {
             const copy = { ...state }
             copy.experience[action.payload.index].bullets = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
 
@@ -110,25 +131,29 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
         case "EDIT_PROJECT_TITLE": {
             const copy = { ...state }
             copy.projects[action.payload.index].title = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROJECT_START_DATE": {
             const copy = { ...state }
             copy.projects[action.payload.index].startDate = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROJECT_END_DATE": {
             const copy = { ...state }
             copy.projects[action.payload.index].endDate = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROJECT_BULLETS": {
             const copy = { ...state }
             copy.projects[action.payload.index].bullets = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
 
@@ -139,47 +164,57 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
         case "EDIT_PROFILE_FIRST_NAME": {
             const copy = { ...state }
             copy.profile.firstName = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROFILE_LAST_NAME": {
             const copy = { ...state }
             copy.profile.lastName = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROFILE_EMAIL": {
             const copy = { ...state }
             copy.profile.email = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROFILE_PHONE": {
             const copy = { ...state }
             copy.profile.phone = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROFILE_GITHUB": {
             const copy = { ...state }
             copy.profile.github = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROFILE_LINKEDIN": {
             const copy = { ...state }
             copy.profile.linkedin = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
         case "EDIT_PROFILE_PORTFOLIO": {
             const copy = { ...state }
             copy.profile.portfolio = action.payload.value
-            return copy
+            state = copy
+            break
         }
 
-        default: return state;
+        default: break;
     }
+    
+    StorageService.store(state)
+    return state
 }
 
 
