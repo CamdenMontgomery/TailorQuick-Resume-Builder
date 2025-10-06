@@ -17,10 +17,10 @@
 }
 
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   font-family: 'WorkSans';
   text-align: center;
+  color: black;
 }
 
 #app-container{
@@ -50,4 +50,25 @@ h2 {
   background: white;
     padding: 2rem;
         border-bottom: solid whitesmoke 1px;
+}
+
+
+
+
+.transcript-container{
+  flex: 1;
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: black 0 0 0 0;
+  background-color: white;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.transcript-section{
+  flex-direction: column;
+}
+
+#preview-generate-container{
+  flex: 1;
 }

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import type TQTranscript from "../interfaces/TQTranscript"
 import { useState } from "react"
 import type { SectionType } from "../types/SectionType"
+import Transcript from "../components/Transcript"
 
 export default function BuilderPage() {
 
@@ -20,7 +21,9 @@ export default function BuilderPage() {
             <Stack id="content" direction="column">
                 <SubsectionView section={viewSection}></SubsectionView>
             </Stack>
-            <Stack id="preview-generate-container" direction="column"></Stack>
+            <Stack id="preview-generate-container" direction="column">
+                <Transcript information={transcript}></Transcript>
+            </Stack>
         </Stack>
     )
 }
