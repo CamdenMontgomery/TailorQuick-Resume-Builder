@@ -36,16 +36,22 @@
     gap: 0;
 }
 
+#logo {
+      padding-bottom: 2rem;
+    font-size: 2rem;
+}
+
 #sidebar{
   height: 100%;
-    width: 14rem;
+    width: 24rem;
     background: white;
     color: black;
     border-right: solid whitesmoke 1px;
+    padding: 2rem;
 }
 
 #content{
-      width: 38rem;
+      width: 46rem;
     height: 100%;
 }
 
@@ -55,13 +61,22 @@ h2 {
 
 .subsectionitem{
   background: white;
-    padding: 2rem;
+    padding: 4rem;
         border-bottom: solid whitesmoke 1px;
+            border-radius: 10px;
+    box-shadow: #0000001f 0 0 5px 0;
+    margin: 3rem;
 }
 
+#subsection-list{
+  background-color: #f9f9f9;
+  padding: 3rem;
 
+}
 
+#subsectionview{
 
+}
 .transcript-container{
   flex: 1;
   padding: 4rem;

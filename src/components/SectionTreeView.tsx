@@ -20,7 +20,7 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
 
   const iconFromID = (id : string) => {
     switch (id){
-      case "PROFILE": return <CgProfile /> 
+      case "PROFILE": return <CgProfile size="md"/> 
       case "EDUCATION": return <MdOutlineSchool /> 
       case "EXPERIENCE": return <MdWorkOutline />
       case "PROJECTS": return <LuCodesandbox />
@@ -33,7 +33,7 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
   }
 
   return (
-    <TreeView.Root variant="subtle" onSelectionChange={reroute} collection={collection} maxW="sm">
+    <TreeView.Root gap="1rem" textAlign="left" fontSize="1rem" variant="subtle" onSelectionChange={reroute} collection={collection} maxW="sm">
       <TreeView.Tree>
         <TreeView.Node
           indentGuide={<TreeView.BranchIndentGuide />}
@@ -41,12 +41,12 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
             nodeState.isBranch ? (
               <TreeView.BranchControl>
                 {iconFromID(node.id)}
-                <TreeView.BranchText>{node.name}</TreeView.BranchText>
+                <TreeView.BranchText color={nodeState.depth == 0 ? "gray" : "black"}>{node.name == "" ? "(New)" : node.name}</TreeView.BranchText>
               </TreeView.BranchControl>
             ) : (
               <TreeView.Item>
                 {iconFromID(node.id)}
-                <TreeView.ItemText>{node.name}</TreeView.ItemText>
+                <TreeView.ItemText color={nodeState.depth > 1 ? "gray" : "black"}>{node.name == "" ? "(New)" : node.name}</TreeView.ItemText>
               </TreeView.Item>
             )
           }
