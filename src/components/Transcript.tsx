@@ -1,6 +1,7 @@
 import { Em, Flex, Grid, GridItem, Heading, List, ListItem, Text } from "@chakra-ui/react";
 import type TQTranscript from "../interfaces/TQTranscript";
-import type { Education } from "../resume-preview/types/education";
+import type Education from "../interfaces/Education";
+
 
 export default function Transcript({information} : {information : TQTranscript}){
     return (
@@ -15,8 +16,8 @@ export default function Transcript({information} : {information : TQTranscript})
                 {   information.education.length == 0 ? (<Text color="gray">No Education</Text>) :
                     information.education.map((ed : Education) => ( 
                         <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
-                            <GridItem> <Text className="transcript-education-type">{ed.degree}</Text> </GridItem> <GridItem> <Text className="transcript-education-date">{ed.dates}</Text> </GridItem>
-                            <GridItem> <Text className="transcript-education-school">{ed.school}</Text> </GridItem>
+                            <GridItem> <Text className="transcript-education-type">{ed.degree} in {ed.field}</Text> </GridItem> <GridItem> <Text className="transcript-education-date">{ed.startDate?.toDateString()} - {ed.endDate?.toDateString()}</Text> </GridItem>
+                            <GridItem colSpan={2}> <Text className="transcript-education-school">{ed.school}</Text> </GridItem>
                             <List.Root>
                                 {
                                     ed.bullets?.map((bullet : string) => (

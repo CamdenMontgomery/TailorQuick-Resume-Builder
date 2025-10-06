@@ -17,7 +17,7 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
         //ADD SUBSECTION ACTIONS
 
         case "ADD_EDUCATION":
-            return { ...state, education: [...state.education, { school: "", degree: "" }] }
+            return { ...state, education: [...state.education, { school: "", degree: "", field: "" }] }
 
         case "ADD_EXPERIENCE":
             return { ...state, experience: [...state.experience, { position: "", company: "" }] }
@@ -42,15 +42,21 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
             return copy
         }
 
+        case "EDIT_EDUCATION_FIELD": {
+            const copy = { ...state }
+            copy.education[action.payload.index].field = action.payload.value
+            return copy
+        }
+
         case "EDIT_EDUCATION_START_DATE": {
             const copy = { ...state }
-            copy.education[action.payload.index].startDate = action.payload.value
+            copy.education[action.payload.index].startDate = action.payload.value as Date
             return copy
         }
 
         case "EDIT_EDUCATION_END_DATE": {
             const copy = { ...state }
-            copy.education[action.payload.index].endDate = action.payload.value
+            copy.education[action.payload.index].endDate = action.payload.value as Date
             return copy
         }
 

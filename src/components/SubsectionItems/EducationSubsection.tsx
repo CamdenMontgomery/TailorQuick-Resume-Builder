@@ -1,4 +1,4 @@
-import { Stack, Button, Heading, Grid, GridItem, createListCollection, Input } from "@chakra-ui/react"
+import { Stack, Button, Heading, Grid, GridItem, createListCollection, Input, type MenuSelectionDetails } from "@chakra-ui/react"
 import { Field } from "../ui/field"
 import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText } from "../ui/select"
 import DatePicker from "react-datepicker"
@@ -16,9 +16,9 @@ export default function EducationSubsection({data, index} : {data : Education,in
 
     const collection = createListCollection({
         items: [
-            { value: "option1", label: "Associate of Arts" },
-            { value: "option2", label: "Bachelor of Science" },
-            { value: "option3", label: "Master" },
+            { value: "Associate of Arts", label: "Associate of Arts" },
+            { value: "Bachelor of Science", label: "Bachelor of Science" },
+            { value: "Master", label: "Master" },
         ],
     })
     return (
@@ -28,14 +28,15 @@ export default function EducationSubsection({data, index} : {data : Education,in
 
             <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap="1rem" alignItems="end">
 
-                <GridItem>
+                <GridItem colSpan={2}>
                     <Field label="School" background="white" color="gray" required>
                         <Input placeholder="Florida International University" value={data.school} onChange={ (e) => editField("EDIT_EDUCATION_SCHOOL", e.target.value)} />
                     </Field>
                 </GridItem>
 
                 <GridItem>
-                    <SelectRoot collection={collection} >
+                    <Field label="Degree" background="white" color="gray" required>
+                    <SelectRoot collection={collection} onSelect={ (selection : MenuSelectionDetails) => editField("EDIT_EDUCATION_DEGREE", selection.value)}>
                         <SelectTrigger clearable>
                             <SelectValueText placeholder="Select an option…" />
                         </SelectTrigger>
@@ -47,14 +48,21 @@ export default function EducationSubsection({data, index} : {data : Education,in
                             ))}
                         </SelectContent>
                     </SelectRoot>
+                    </Field>
                 </GridItem>
 
                 <GridItem>
-                    <DatePicker showIcon dateFormat="MMM yyyy" showMonthYearPicker placeholderText="e.g Jan. 1997" />
+                    <Field label="Field" background="white" color="gray" required>
+                        <Input placeholder="Commputer Science" value={data.field} onChange={ (e) => editField("EDIT_EDUCATION_FIELD", e.target.value)} />
+                    </Field>
                 </GridItem>
 
                 <GridItem>
-                    <DatePicker showIcon dateFormat="MMM yyyy" showMonthYearPicker placeholderText="e.g Jan. 1997" />
+                    <DatePicker onChange={ (date) => editField("EDIT_EDUCATION_START_DATE", date)} showIcon dateFormat="MMM yyyy" showMonthYearPicker placeholderText="e.g Jan. 1997" />
+                </GridItem>
+
+                <GridItem>
+                    <DatePicker onChange={ (date) => editField("EDIT_EDUCATION_END_DATE", date)} showIcon dateFormat="MMM yyyy" showMonthYearPicker placeholderText="e.g Jan. 1997" />
                 </GridItem>
 
             </Grid>
