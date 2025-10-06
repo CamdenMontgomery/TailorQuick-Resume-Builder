@@ -16,9 +16,16 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #root {
   margin: 0 auto;
-  font-family: 'WorkSans';
+  font-family: 'Inter';
   text-align: center;
   color: black;
 }
@@ -43,7 +50,7 @@
 }
 
 h2 {
-  font-family: 'FugazOne-Regular';
+  font-family: 'Inter';
 }
 
 .subsectionitem{
