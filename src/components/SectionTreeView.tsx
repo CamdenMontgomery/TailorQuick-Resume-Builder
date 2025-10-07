@@ -39,12 +39,12 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
           indentGuide={<TreeView.BranchIndentGuide />}
           render={({ node, nodeState }) =>
             nodeState.isBranch ? (
-              <TreeView.BranchControl>
+              <TreeView.BranchControl className="section-tree-option">
                 {iconFromID(node.id)}
                 <TreeView.BranchText className={nodeState.depth > 1 ? "section-tree-text-subtle" : "section-tree-text"}>{node.name == "" ? "(New)" : node.name}</TreeView.BranchText>
               </TreeView.BranchControl>
             ) : (
-              <TreeView.Item>
+              <TreeView.Item className="section-tree-option">
                 {iconFromID(node.id)}
                 <TreeView.ItemText className={nodeState.depth > 1 ? "section-tree-text-subtle" : "section-tree-text"}>{node.name == "" ? "(New)" : node.name}</TreeView.ItemText>
               </TreeView.Item>
