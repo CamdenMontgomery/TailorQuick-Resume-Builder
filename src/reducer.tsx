@@ -37,6 +37,25 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
             break
 
 
+
+            
+        //REMOVE SUBSECTION ACTIONS
+
+        case "REMOVE_EDUCATION":
+            const copy = { ...state }
+            copy.education.splice(action.payload.index, 1)
+            state = copy
+            break
+
+        case "REMOVE_EXPERIENCE":
+            state = { ...state, experience: [...state.experience, { position: "", company: "" }] }
+            break
+
+        case "REMOVE_PROJECT":
+            state = { ...state, projects: [...state.projects, { title: "" }] }
+            break
+
+
         //EDIT EDUCATION SUBSECTION FIELD ACTIONS
 
 

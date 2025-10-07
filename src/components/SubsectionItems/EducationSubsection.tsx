@@ -1,4 +1,4 @@
-import { Stack, Button, Heading, Grid, GridItem, createListCollection, Input, type MenuSelectionDetails } from "@chakra-ui/react"
+import { Stack, Button, Heading, Grid, GridItem, createListCollection, Input, type MenuSelectionDetails, Flex } from "@chakra-ui/react"
 import { Field } from "../ui/field"
 import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText } from "../ui/select"
 import DatePicker from "react-datepicker"
@@ -6,12 +6,18 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
 import EditableBulletedList from "../ui/EditableBullets";
 import type Education from "../../interfaces/Education";
-
+//import {RxCross1} from "react-icons/rx"
+import { FaTrash } from "react-icons/fa";
+import RemoveDialog from "../RemoveDialog";
 export default function EducationSubsection({data, index} : {data : Education,index : number}) {
 
     const dispatch = useDispatch()
     const editField = (type : string, value: any) => {
         dispatch({type: type, payload: { index: index, value: value }})
+    }
+
+    const remove = () => {
+        dispatch({type: "REMOVE_EDUCATION", payload: {index: index}})
     }
 
     const collection = createListCollection({
@@ -24,7 +30,13 @@ export default function EducationSubsection({data, index} : {data : Education,in
     return (
         <Stack className="subsectionitem" >
 
-            <Heading fontFamily='WorkSans' textAlign='justify' color='black'>Education {index}</Heading>
+            
+
+            <Flex justifyContent="space-between" alignItems="center">
+                <Heading fontFamily='WorkSans' textAlign='justify' color='black'>Education {index}</Heading>
+                <RemoveDialog callback={remove}><Button width="fit-content"><FaTrash /></Button></RemoveDialog>
+                
+            </Flex>
 
             <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap="1rem" alignItems="end">
 
@@ -67,7 +79,7 @@ export default function EducationSubsection({data, index} : {data : Education,in
 
             </Grid>
             <EditableBulletedList bullets={data.bullets ?? []} onChange={(bullets) => { editField("EDIT_EDUCATION_BULLETS", bullets) }}></EditableBulletedList>
-            <Button></Button>
+            
         </Stack>
     )
 }
