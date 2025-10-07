@@ -193,3 +193,25 @@ h2 {
     background: #f9f9f9;
     border: dashed 1px #e7e7e7;
 }
+
+
+
+
+.subsection-datepicker{
+  background: white;
+  color: black;
+  border-radius: 5px;
+  border: black 1px solid;
+    height: 38px;
+    padding-left: 34px !important;
+    width: 100%;
+}
+
+.subsection-datepicker-wrapper{
+  width: 100%;
+}
+
+.subsection-datepicker-icon{
+  height: 23px;
+  width: 23px;
+}
