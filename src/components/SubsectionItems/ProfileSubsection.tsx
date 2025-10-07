@@ -12,7 +12,7 @@ export default function ProfileSubsection({ data }: { data: Profile }) {
     }
 
     return (
-        <Stack className="subsectionitem" >
+        <Stack className="subsectionitem" margin="3rem">
 
             <Heading fontFamily='WorkSans' textAlign='justify' color='black'>Profile</Heading>
 

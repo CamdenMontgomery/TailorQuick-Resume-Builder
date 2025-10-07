@@ -10,6 +10,8 @@ import StorageService from "../services/storageService";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "../reducer";
 
+
+
 const stored = await StorageService.load()
 const store = configureStore({
   reducer: rootReducer,

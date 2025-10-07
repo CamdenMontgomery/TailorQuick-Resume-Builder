@@ -20,11 +20,11 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
 
   const iconFromID = (id : string) => {
     switch (id){
-      case "PROFILE": return <CgProfile size="md"/> 
-      case "EDUCATION": return <MdOutlineSchool /> 
-      case "EXPERIENCE": return <MdWorkOutline />
-      case "PROJECTS": return <LuCodesandbox />
-      case "SKILLS": return <LuLightbulb />
+      case "PROFILE": return <CgProfile className="sidebar-icon"/> 
+      case "EDUCATION": return <MdOutlineSchool className="sidebar-icon"/> 
+      case "EXPERIENCE": return <MdWorkOutline className="sidebar-icon"/>
+      case "PROJECTS": return <LuCodesandbox className="sidebar-icon"/>
+      case "SKILLS": return <LuLightbulb className="sidebar-icon"/>
     }
   }
 
@@ -33,7 +33,7 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
   }
 
   return (
-    <TreeView.Root gap="1rem" textAlign="left" fontSize="1rem" variant="subtle" onSelectionChange={reroute} collection={collection} maxW="sm">
+    <TreeView.Root animateContent colorPalette='orange' gap="1rem" textAlign="left" fontSize="1rem" variant="subtle" onSelectionChange={reroute} collection={collection} maxW="sm">
       <TreeView.Tree>
         <TreeView.Node
           indentGuide={<TreeView.BranchIndentGuide />}
@@ -41,12 +41,12 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
             nodeState.isBranch ? (
               <TreeView.BranchControl>
                 {iconFromID(node.id)}
-                <TreeView.BranchText color={nodeState.depth == 0 ? "gray" : "black"}>{node.name == "" ? "(New)" : node.name}</TreeView.BranchText>
+                <TreeView.BranchText className={nodeState.depth > 1 ? "section-tree-text-subtle" : "section-tree-text"}>{node.name == "" ? "(New)" : node.name}</TreeView.BranchText>
               </TreeView.BranchControl>
             ) : (
               <TreeView.Item>
                 {iconFromID(node.id)}
-                <TreeView.ItemText color={nodeState.depth > 1 ? "gray" : "black"}>{node.name == "" ? "(New)" : node.name}</TreeView.ItemText>
+                <TreeView.ItemText className={nodeState.depth > 1 ? "section-tree-text-subtle" : "section-tree-text"}>{node.name == "" ? "(New)" : node.name}</TreeView.ItemText>
               </TreeView.Item>
             )
           }

@@ -15,7 +15,7 @@ export default function BuilderPage() {
     return (
         <Stack id="app-container" direction="row">
             <Stack id="sidebar" direction="column">
-                <Heading>TailorThis</Heading>
+                <Heading id="logo">TailorScript</Heading>
                 <SectionTreeView transcript={transcript} callback={setViewSection}></SectionTreeView>
             </Stack>
             <Stack id="content" direction="column">

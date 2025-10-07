@@ -19,7 +19,7 @@
 @font-face {
   font-family: 'Inter';
   src: url('./assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-  font-weight: normal;
+  font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
   font-style: normal;
 }
 
@@ -37,22 +37,42 @@
 }
 
 #logo {
-      padding-bottom: 2rem;
+font-weight: 700;
     font-size: 2rem;
+    padding: 1rem;
+    padding-bottom: 3rem;
 }
 
 #sidebar{
   height: 100%;
-    width: 24rem;
     background: white;
     color: black;
-    border-right: solid whitesmoke 1px;
-    padding: 2rem;
+border-right: solid #dfdfdf 1px;
+    padding: 4rem;
+}
+
+.sidebar-icon{
+      height: 1.5rem;
+    aspect-ratio: 1;
+    width: auto;
+}
+
+.section-tree-text{
+  font-size: 1rem;
+  color: black;
+  padding: 1rem;
+}
+
+.section-tree-text-subtle{
+  font-size: 0.8rem;
+  color: gray;
+  padding: 0rem;
 }
 
 #content{
       width: 46rem;
     height: 100%;
+    border-right: solid #dfdfdf 1px;
 }
 
 h2 {
@@ -65,12 +85,12 @@ h2 {
         border-bottom: solid whitesmoke 1px;
             border-radius: 10px;
     box-shadow: #0000001f 0 0 5px 0;
-    margin: 3rem;
 }
 
 #subsection-list{
   background-color: #f9f9f9;
   padding: 3rem;
+  gap: 3rem;
 
 }
 
@@ -81,7 +101,7 @@ h2 {
   flex: 1;
   padding: 4rem;
   margin: 2rem;
-  box-shadow: black 0 0 0 0;
+    box-shadow: #0000002e 0 0 4px;
   background-color: white;
   gap: 1rem;
   flex-direction: column;

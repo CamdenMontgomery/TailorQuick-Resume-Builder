@@ -42,12 +42,12 @@ export default function SubsectionView({section} : {section : SectionType}){
     })
     
     return (
-        <Stack id="subsectionview" direction="column" height="100%" gap="0" background="#f9f9f9" >
+        <Stack id="subsection-view" direction="column" height="100%" gap="0" background="#f9f9f9" >
             <SubsectionHeader></SubsectionHeader>
             <FadeScroll flex="1">
 
             
-            {Array.isArray(data) && /*Conditional Render*/ <Stack id="subsectionlist" direction="column">
+            {Array.isArray(data) && /*Conditional Render*/ <Stack id="subsection-list" direction="column">
                 {
                     section == "EDUCATION" ? data!.map((d,idx) => <EducationSubsection data={d as Education} index={idx}></EducationSubsection>)  :
                     section == "EXPERIENCE" ? data!.map((d,idx) => <ExperienceSubsection data={d as Experience} index={idx}></ExperienceSubsection>) :
