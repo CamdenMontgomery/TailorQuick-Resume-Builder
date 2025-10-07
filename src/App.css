@@ -79,6 +79,12 @@ h2 {
   font-family: 'Inter';
 }
 
+.button-icon{
+  height:0.8rem;
+      aspect-ratio: 1;
+    width: auto;
+}
+
 .subsectionitem{
   background: white;
     padding: 4rem;
