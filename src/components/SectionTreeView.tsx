@@ -4,6 +4,7 @@ import type { SectionType } from "../types/SectionType"
 import { LuCodesandbox, LuLightbulb } from "react-icons/lu"
 import {CgProfile} from "react-icons/cg"
 import {MdOutlineSchool, MdWorkOutline} from "react-icons/md"
+import { useState } from "react"
 /**
  * TreeView component tailored to display transcript sections and subsections
  *
@@ -15,6 +16,12 @@ import {MdOutlineSchool, MdWorkOutline} from "react-icons/md"
  */
 
 export default function SectionTreeView({ transcript, callback }: { transcript: TQTranscript, callback : (section : SectionType) => void }) {
+
+  const [expandedValue, setExpandedValue] = useState<string[]>(["node_modules"])
+
+  const swapExpandedValue = (e : TreeView.ExpandedChangeDetails) => {
+    setExpandedValue(e.expandedValue.slice(-1))
+  }
 
   const collection = createSectionTreeCollection(transcript)
 
@@ -33,7 +40,10 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
   }
 
   return (
-    <TreeView.Root animateContent colorPalette='orange' gap="1rem" textAlign="left" fontSize="1rem" variant="subtle" onSelectionChange={reroute} collection={collection} maxW="sm">
+    <TreeView.Root animateContent colorPalette='orange' gap="1rem" textAlign="left" fontSize="1rem" variant="subtle" onSelectionChange={reroute} collection={collection} maxW="sm"
+      expandedValue={expandedValue}
+      onExpandedChange={swapExpandedValue}
+    >
       <TreeView.Tree>
         <TreeView.Node
           indentGuide={<TreeView.BranchIndentGuide />}
