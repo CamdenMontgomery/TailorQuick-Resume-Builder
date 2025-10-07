@@ -43,7 +43,7 @@ export default function SubsectionView({section} : {section : SectionType}){
     
     return (
         <Stack id="subsection-view" direction="column" height="100%" gap="0" background="#f9f9f9" >
-            <SubsectionHeader></SubsectionHeader>
+            { Array.isArray(data) && <SubsectionHeader></SubsectionHeader> /*Remove Header if not displaying multiple subsections*/}
             <FadeScroll flex="1">
 
             
@@ -64,7 +64,7 @@ export default function SubsectionView({section} : {section : SectionType}){
         
 
             </FadeScroll>
-            <SubsectionFooter section={section}></SubsectionFooter>
+            { Array.isArray(data) && <SubsectionFooter section={section}></SubsectionFooter> /*Remove Footer if not displaying multiple subsections*/} 
         </Stack>
     )
 }
