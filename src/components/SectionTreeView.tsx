@@ -31,6 +31,11 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
       setSelectedValue([selection]);  //If top level selection, update selected value value
 
       //This is so that only the larger section leaves act as selectables while we make the subsection leaves act as buttons 
+    } else {
+      
+      //If the selection is a subsection then fire the subsection select event
+      const scrollto = new CustomEvent('scrollto', {detail: {index: selection.split('/')[1]}})
+      window.dispatchEvent(scrollto)
 
     }
     callback(selection.split('/')[0] as SectionType)  //ID's in the form of [SectionType]/[Subsection or Action] e.g EDUCATION/ADD or EXPERIENCE/1
@@ -118,7 +123,7 @@ function createSectionTreeCollection(transcript: TQTranscript) {
           id: "PROJECTS",
           name: "Projects",
           children: [
-            ...transcript.experience.map((experience, index) => { return { id: `PROJECTS/${index}`, name: experience.position ?? "" } }
+            ...transcript.projects.map((project, index) => { return { id: `PROJECTS/${index}`, name: project.title ?? "" } }
             ),
             { id: "PROJECTS/ADD", name: "+ Add Project" },
           ],

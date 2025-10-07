@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import schoolList from "../suggestions/schools";
@@ -19,6 +19,10 @@ export default function EducationBlock({ data, onChange, remove }: { data: { sch
             setSchoolSuggestions(schoolList)
         })
     }
+
+
+
+
 
     return (
         <form style={styles.form}>

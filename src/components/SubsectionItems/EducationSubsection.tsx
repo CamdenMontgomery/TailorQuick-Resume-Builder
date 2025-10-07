@@ -9,6 +9,7 @@ import type Education from "../../interfaces/Education";
 //import {RxCross1} from "react-icons/rx"
 import { FaTrash } from "react-icons/fa";
 import RemoveDialog from "../RemoveDialog";
+import { useEffect, useRef } from "react";
 export default function EducationSubsection({data, index} : {data : Education,index : number}) {
 
     const dispatch = useDispatch()
@@ -20,6 +21,20 @@ export default function EducationSubsection({data, index} : {data : Education,in
         dispatch({type: "REMOVE_EDUCATION", payload: {index: index}})
     }
 
+    
+    const scrollRef = useRef<HTMLDivElement>(null)
+    useEffect(() => {
+
+        const ctrl = new AbortController(); //For easy removal of listener
+
+        window.addEventListener('scrollto', (e: CustomEventInit<{index: number}>) => {
+            if (e.detail?.index == index) scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, ctrl)
+
+        return () => {ctrl.abort()} //Remove listener on unmount
+
+    }, [])
+
     const collection = createListCollection({
         items: [
             { value: "Associate of Arts", label: "Associate of Arts" },
@@ -27,8 +42,9 @@ export default function EducationSubsection({data, index} : {data : Education,in
             { value: "Master", label: "Master" },
         ],
     })
+
     return (
-        <Stack className="subsectionitem" >
+        <Stack className="subsectionitem" ref={scrollRef}>
 
             
 
