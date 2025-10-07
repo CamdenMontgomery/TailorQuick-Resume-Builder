@@ -1,4 +1,4 @@
-import { TreeView, createTreeCollection, type TreeViewSelectionChangeDetails } from "@chakra-ui/react"
+import { TreeView, createTreeCollection } from "@chakra-ui/react"
 import type TQTranscript from "../interfaces/TQTranscript"
 import type { SectionType } from "../types/SectionType"
 import { LuCodesandbox, LuLightbulb } from "react-icons/lu"
@@ -17,10 +17,23 @@ import { useState } from "react"
 
 export default function SectionTreeView({ transcript, callback }: { transcript: TQTranscript, callback : (section : SectionType) => void }) {
 
-  const [expandedValue, setExpandedValue] = useState<string[]>(["node_modules"])
+  //Programmatically handle expansion and selection to overwrite base behaviour
+  const [expandedValue, setExpandedValue] = useState<string[]>([])
+  const [selectedValue, setSelectedValue] = useState<string[]>(["PROFILE"])
 
-  const swapExpandedValue = (e : TreeView.ExpandedChangeDetails) => {
-    setExpandedValue(e.expandedValue.slice(-1))
+
+
+  const handleSelection = (e : TreeView.SelectionChangeDetails) => {
+
+    const selection = e.selectedValue[0] //Single Selection
+    if (!selection.includes('/')) {
+      setExpandedValue([selection]); //If top level selection, update expanded value
+      setSelectedValue([selection]);  //If top level selection, update selected value value
+
+      //This is so that only the larger section leaves act as selectables while we make the subsection leaves act as buttons 
+
+    }
+    callback(selection.split('/')[0] as SectionType)  //ID's in the form of [SectionType]/[Subsection or Action] e.g EDUCATION/ADD or EXPERIENCE/1
   }
 
   const collection = createSectionTreeCollection(transcript)
@@ -35,14 +48,12 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
     }
   }
 
-  const reroute = (details: TreeViewSelectionChangeDetails) => {
-    callback(details.selectedValue[0].split('/')[0] as SectionType)  //ID's in the form of [SectionType]/[Subsection or Action] e.g EDUCATION/ADD or EXPERIENCE/1
-  }
+
 
   return (
-    <TreeView.Root animateContent colorPalette='orange' gap="1rem" textAlign="left" fontSize="1rem" variant="subtle" onSelectionChange={reroute} collection={collection} maxW="sm"
+    <TreeView.Root animateContent colorPalette='orange' gap="1rem" textAlign="left" fontSize="1rem" variant="subtle" onSelectionChange={handleSelection} collection={collection} maxW="sm"
       expandedValue={expandedValue}
-      onExpandedChange={swapExpandedValue}
+      selectedValue={selectedValue}
     >
       <TreeView.Tree>
         <TreeView.Node
@@ -51,12 +62,12 @@ export default function SectionTreeView({ transcript, callback }: { transcript: 
             nodeState.isBranch ? (
               <TreeView.BranchControl className="section-tree-option">
                 {iconFromID(node.id)}
-                <TreeView.BranchText className={nodeState.depth > 1 ? "section-tree-text-subtle" : "section-tree-text"}>{node.name == "" ? "(New)" : node.name}</TreeView.BranchText>
+                <TreeView.BranchText className={nodeState.depth > 1 ? "section-tree-text-subtle" : "section-tree-text"}>{node.name == "" ? "New" : node.name}</TreeView.BranchText>
               </TreeView.BranchControl>
             ) : (
               <TreeView.Item className="section-tree-option">
                 {iconFromID(node.id)}
-                <TreeView.ItemText className={nodeState.depth > 1 ? "section-tree-text-subtle" : "section-tree-text"}>{node.name == "" ? "(New)" : node.name}</TreeView.ItemText>
+                <TreeView.ItemText className={nodeState.depth > 1 ? "section-tree-text-subtle" : "section-tree-text"}>{node.name == "" ? "New" : node.name}</TreeView.ItemText>
               </TreeView.Item>
             )
           }

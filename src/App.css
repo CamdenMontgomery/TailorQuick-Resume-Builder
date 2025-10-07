@@ -105,7 +105,9 @@ border-right: solid #dfdfdf 1px;
   padding: 0rem;
 }
 
-
+.section-tree-option:hover  .section-tree-text-subtle{
+  text-decoration: underline;
+}
 
 
 
