@@ -36,7 +36,7 @@ export default function EditableBulletedList({bullets,callback} : {bullets: stri
             {bullets.map((bullet, index) => (
                 <List.Item className="bulleted-list-item">
                     <HStack gap="0">
-                    <Input className="bulleted-list-input" placeholder="Text Here" value={bullet} onChange={(e) => handleChange(e.target.value, index)}></Input>
+                    <Input className="bulleted-list-input" placeholder="Add bullet point..." value={bullet} onChange={(e) => handleChange(e.target.value, index)}></Input>
                     { index != bullets.length - 1 && <Button className="bulleted-list-button" onClick={() => {removeBullet(index)}}><RxCross2 /></Button> }
                     </HStack>
                 </List.Item>
