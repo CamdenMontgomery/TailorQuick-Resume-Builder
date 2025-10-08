@@ -21,7 +21,7 @@ export default defineConfig({
       input: {
         popup: "src/popup/index.html",
         options: "src/webpage/index.html",
-        background: "src/background.ts",
+        background: "src/background.ts"
       },
       output: {
         entryFileNames: (chunk) => {

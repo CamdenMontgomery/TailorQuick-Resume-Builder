@@ -37,8 +37,30 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
 
 //Handle TailorTo context menu button to begin generating
-chrome.contextMenus.onClicked.addListener((info) => {
+chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "GENERATE_TAILORED_RESUME") {
+    
     console.log("Generating")
+
+    chrome.scripting.executeScript({
+      target: { tabId: tab?.id as number},
+      func: () => {
+        
+        //Inject React Root Into Page
+        const body = document.getElementsByTagName('body')[0]
+        const injection = document.createElement('div')
+        injection.id = "injected-root"
+
+        body.prepend(injection)
+        alert("injected")
+
+
+      }
+    });
   }
 });
+
+
+
+
+
