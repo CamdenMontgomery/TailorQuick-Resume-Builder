@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+  font-style: normal;
+}
+
+
+.resume-preview-cover{
+    position: absolute;
+    z-index: 100000000;
+    width: 100%;
+    height: 100dvh;
+    background: #0000003d;
+    font-family: 'Inter';
+}
+
+.resume-preview-modal{
+        height: 80dvh;
+        border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: #00000036 0 0 20px 0;
+}
+
+.resume-preview-sidepanel{
+
+    background: white;
+    padding: 3rem;
+    align-items: start;
+}
+
+.resume-preview-title{
+    font-weight: 800;
+    font-size: 2rem;
+    text-wrap-style: balance;
+}
+
+.resume-preview-button{
+        width: -webkit-fill-available;
+    margin: 1rem;
+}
+
+.resume-preview-stats{
+        margin: auto;
+}

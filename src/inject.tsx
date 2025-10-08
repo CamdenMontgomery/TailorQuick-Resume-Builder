@@ -2,7 +2,7 @@
 
 import ReactDOM from "react-dom/client";
 import { Provider as ChkrProvider } from "./components/ui/provider"
-import { Text } from "@chakra-ui/react"
+import ResumePreviewCover from "./components/cover/Cover";
 
 //Has to be in this file and then properly compiled and bundled by vite, the resulting bundled file can then be referenced and injected by the background script
 //If this same code is written directly into the background script it does not get properly compiled
@@ -13,12 +13,9 @@ const injection = document.createElement('div')
 injection.id = "injected-root"
 
 body.prepend(injection)
-alert("injected")
-
-
 
 ReactDOM.createRoot(document.getElementById("injected-root")!).render(
     <ChkrProvider>
-        <Text>Hello World</Text>
+        <ResumePreviewCover></ResumePreviewCover>
     </ChkrProvider>
 );

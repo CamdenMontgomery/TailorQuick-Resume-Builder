@@ -52,8 +52,16 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                 script.type = "module";
                 script.src = chrome.runtime.getURL("inject.js");
                 document.head.appendChild(script);
+
+                const cssUrl = chrome.runtime.getURL("Cover.css");
+                const link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.href = cssUrl;
+                document.head.appendChild(link);
             },
         });
+
+
     }
 });
 

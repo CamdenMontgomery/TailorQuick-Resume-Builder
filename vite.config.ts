@@ -11,6 +11,7 @@ export default defineConfig({
       targets: [
         { src: "manifest.json", dest: "." },      // copy manifest
         { src: "src/assets", dest: "src" },      // copy icons, etc.
+        { src: "src/components/cover/Cover.css", dest: "." },
       ],
     }),
   ],

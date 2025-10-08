@@ -13,7 +13,7 @@
     "type": "module"
   },  "web_accessible_resources": [
     {
-      "resources": [ "src/assets/*.png", "inject.js", "assets/*"], 
+      "resources": [ "src/assets/*.png", "inject.js", "assets/*","Cover.css"], 
       "matches": ["<all_urls>"]
     }
   ]
