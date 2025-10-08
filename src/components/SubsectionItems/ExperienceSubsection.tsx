@@ -39,7 +39,7 @@ export default function ExperienceSubsection({data, index} : {data : Experience,
                 </GridItem>
 
             </Grid>
-            <EditableBulletedList bullets={data.bullets ?? []} onChange={(bullets) => { editField("EDIT_EXPERIENCE_BULLETS", bullets) }}></EditableBulletedList>
+            <EditableBulletedList bullets={data.bullets ?? []} callback={(bullets : string[]) => { editField("EDIT_EXPERIENCE_BULLETS", bullets) }}></EditableBulletedList>
             <Button></Button>
         </Stack>
     )

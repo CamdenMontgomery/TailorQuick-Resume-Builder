@@ -99,7 +99,9 @@ export default function EducationSubsection({ data, index }: { data: Education, 
                 </GridItem>
 
             </Grid>
-            <EditableBulletedList bullets={data.bullets ?? []} onChange={(bullets) => { editField("EDIT_EDUCATION_BULLETS", bullets) }}></EditableBulletedList>
+
+
+            <EditableBulletedList bullets={data.bullets ?? []} callback={(bullets : string[]) => { editField("EDIT_EDUCATION_BULLETS", bullets) }}></EditableBulletedList>
 
         </Stack>
     )

@@ -229,9 +229,17 @@ h2 {
 
 
 .bulleted-list-item{
+    margin: 1rem;
+}
+
+.bulleted-list-input{
   border: none;
     border-bottom: black solid 1px;
     border-radius: 0;
-    margin: 1rem;
     width: -webkit-fill-available;
+}
+
+.bulleted-list-button{
+border-bottom: black solid 1px;
+    border-radius: 0;
 }

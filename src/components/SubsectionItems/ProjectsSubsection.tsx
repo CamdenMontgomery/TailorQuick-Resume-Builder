@@ -35,7 +35,7 @@ export default function ProjectsSubsection({data, index} : {data : Project,index
                 </GridItem>
 
             </Grid>
-            <EditableBulletedList bullets={data.bullets ?? []} onChange={(bullets) => { editField("EDIT_PROJECT_BULLETS", bullets) }}></EditableBulletedList>
+            <EditableBulletedList bullets={data.bullets ?? []} callback={(bullets : string[]) => { editField("EDIT_PROJECTS_BULLETS", bullets) }}></EditableBulletedList>
             <Button></Button>
         </Stack>
     )
