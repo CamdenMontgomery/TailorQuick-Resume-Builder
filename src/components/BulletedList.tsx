@@ -11,6 +11,7 @@ export default function BulletedList({list = [], onChange}: {list : string[], on
                 placeholder="add text here"
                 value={bulletText}
                 maxLength={50}
+                className="bulleted-list-item"
                 onChange={(e) => {list[index] = e.target.value; onChange(list)}}
             ></input>
         ))}
