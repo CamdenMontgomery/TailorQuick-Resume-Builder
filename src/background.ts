@@ -1,6 +1,16 @@
 import OpenAPIService from "./services/openAPIService";
 import StorageService from "./services/storageService";
 
+
+
+
+//Create context menu item to initiate resume generation
+chrome.contextMenus.create({
+  id: "GENERATE_TAILORED_RESUME", // A unique ID for the menu item
+  title: "TailorTo",    // The text that will appear in the context menu
+  contexts: ["selection"]        // Where the menu item should appear (e.g., "page", "selection", "image", "link")
+});
+
 // Listen for messages from popup or content scripts
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     if (message.type === "EXTRACT_JOB_TAGS") {
@@ -26,4 +36,9 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 });
 
 
-
+//Handle TailorTo context menu button to begin generating
+chrome.contextMenus.onClicked.addListener((info) => {
+  if (info.menuItemId === "GENERATE_TAILORED_RESUME") {
+    console.log("Generating")
+  }
+});
