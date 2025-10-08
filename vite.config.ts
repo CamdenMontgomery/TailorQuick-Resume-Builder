@@ -21,13 +21,16 @@ export default defineConfig({
       input: {
         popup: "src/popup/index.html",
         options: "src/webpage/index.html",
-        background: "src/background.ts"
+        background: "src/background.ts",
+        inject: "src/inject.tsx"
       },
       output: {
         entryFileNames: (chunk) => {
           // make sure background builds to background.js (must match manifest.json)
           if (chunk.name === "background") {
             return "background.js";
+          }if (chunk.name === "inject") {
+            return "inject.js";
           }
           return "assets/[name].js";
         },
