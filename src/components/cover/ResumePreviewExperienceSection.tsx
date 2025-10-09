@@ -8,7 +8,7 @@ export default function ResumePreviewExperienceSection({ experiences }: { experi
             <Separator />
                 {experiences.map((ex: Experience) => (
                     <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
-                        <GridItem> <Text className="resume-subsection-title">{ex.position == "" ? "Your Position Here" : ex.position}</Text> </GridItem> <GridItem> <Text className="resume-subsection-date">{ex.startDate?.toDateString() ?? "Start Date"} - {ex.endDate?.toDateString() ?? "End Date"}</Text> </GridItem>
+                        <GridItem> <Text className="resume-subsection-title">{ex.position == "" ? "Your Position Here" : ex.position}</Text> </GridItem> <GridItem> <Text className="resume-subsection-date">{new Date(ex.startDate ?? 0).toDateString() ?? "Start Date"} - {new Date(ex.endDate ?? 0).toDateString() ?? "End Date"}</Text> </GridItem>
                         <GridItem colSpan={2}> <Text className="resume-subsection-subtitle">{ex.company == "" ? "The company you worked at here" : ex.company}</Text> </GridItem>
                         <List.Root>
                             {

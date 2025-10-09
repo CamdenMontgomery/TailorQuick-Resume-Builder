@@ -9,7 +9,7 @@ export default function ResumePreviewProjectsSection({projects} : {projects : Pr
                         {
                             projects.map((pr: Project) => (
                                 <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
-                                    <GridItem> <Text className="resume-subsection-title">{pr.title}</Text> </GridItem> <GridItem> <Text className="resume-subsection-date">{pr.startDate?.toDateString()} - {pr.endDate?.toDateString()}</Text> </GridItem>
+                                    <GridItem> <Text className="resume-subsection-title">{pr.title}</Text> </GridItem> <GridItem> <Text className="resume-subsection-date">{new Date(pr.startDate ?? 0).toDateString()} - {new Date(pr.endDate ?? 0).toDateString()}</Text> </GridItem>
                                     <List.Root>
                                         {
                                             pr.bullets?.map((bullet: string) => (

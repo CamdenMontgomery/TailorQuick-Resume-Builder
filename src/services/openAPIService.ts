@@ -32,6 +32,7 @@ export default class OpenAPIService {
             Input:  
             - A detailed JSON object containing the user's full resume information.  
             - A job description.  
+            - Dates will be given as unix timestamps
 
             Task:  
             - Remove any portions of the JSON that are not relevant to the job description.  
@@ -42,9 +43,11 @@ export default class OpenAPIService {
             - Reorder the four section in the section array to highlight important information first
             - Return a valid JSON object as the final output.  
             - If there is any reason for error, set the error field to true and write the cause in the errorMessage field
+            - Include all relevant dates provided
 
             Output:  
-            - A valid JSON object containing the reduced resume which adheres to the following format.  
+            - A valid JSON object containing the reduced resume which adheres to the following format. 
+            - Dates should be as unix timestamps 
             
             Output Format:
 
@@ -64,23 +67,23 @@ export default class OpenAPIService {
                             school: string,
                             degree: string,
                             field: string,
-                            startDate?: Date,
-                            endDate?: Date,
+                            startDate?: number,
+                            endDate?: number,
                             bullets?: string[] 
                         }[]
                         },
                         {type: "EXPERIENCE", data: {
                             position: string,
                             company: string,
-                            startDate?: Date,
-                            endDate?: Date,
+                            startDate?: number,
+                            endDate?: number,
                             bullets?: string[] 
                         }[]
                         },
                         {type: "PROJECTS", data: {
                             title: string,
-                            startDate?: Date,
-                            endDate?: Date,
+                            startDate?: number,
+                            endDate?: number,
                             bullets?: string[] 
                         }[]
                         },

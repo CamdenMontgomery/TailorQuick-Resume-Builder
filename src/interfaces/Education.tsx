@@ -2,7 +2,7 @@ export default interface Education {
     school: string,
     degree: string,
     field: string,
-    startDate?: Date,
-    endDate?: Date,
+    startDate?: number,
+    endDate?: number,
     bullets?: string[] 
 }

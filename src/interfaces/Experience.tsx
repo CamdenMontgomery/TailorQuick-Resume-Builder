@@ -1,7 +1,7 @@
 export default interface Experience {
     position: string,
     company: string,
-    startDate?: Date,
-    endDate?: Date,
+    startDate?: number,
+    endDate?: number,
     bullets?: string[] 
 }

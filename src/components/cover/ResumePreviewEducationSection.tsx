@@ -17,7 +17,7 @@ export default function ResumePreviewEducationSection({ educations }: { educatio
                         <GridItem> 
                             {
                                 (ed.startDate && ed.endDate) && //If both start and end date exist, show date range 
-                                <Text className="resume-subsection-date">{ed.startDate?.toDateString()} - {ed.endDate?.toDateString()}</Text>
+                                <Text className="resume-subsection-date">{new Date(ed.startDate ?? 0).toDateString()} - {new Date(ed.endDate).toDateString()}</Text>
                             }
                         </GridItem>
 

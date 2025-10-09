@@ -1,6 +1,6 @@
 export default interface Project {
     title: string,
-    startDate?: Date,
-    endDate?: Date,
+    startDate?: number,
+    endDate?: number,
     bullets?: string[] 
 }

@@ -82,14 +82,14 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
 
         case "EDIT_EDUCATION_START_DATE": {
             const copy = { ...state }
-            copy.education[action.payload.index].startDate = action.payload.value as Date
+            copy.education[action.payload.index].startDate = action.payload.value
             state = copy
             break
         }
 
         case "EDIT_EDUCATION_END_DATE": {
             const copy = { ...state }
-            copy.education[action.payload.index].endDate = action.payload.value as Date
+            copy.education[action.payload.index].endDate = action.payload.value
             state = copy
             break
         }
