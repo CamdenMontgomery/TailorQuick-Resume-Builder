@@ -40,10 +40,16 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
 
 //Handle TailorTo context menu button to begin generating
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+chrome.contextMenus.onClicked.addListener( async (info, tab) => {
     if (info.menuItemId === "GENERATE_TAILORED_RESUME") {
 
         console.log("Generating")
+
+        //Handle 
+        if (!info.selectionText || info.selectionText?.length < 500) return
+        const transcript = await StorageService.load()
+        const resume = await OpenAPIService.GenerateResume(info.selectionText, JSON.stringify(transcript))
+        console.log(resume)
 
         chrome.scripting.executeScript({
             target: { tabId: tab?.id as number },

@@ -1,11 +1,14 @@
 import { AbsoluteCenter, Center, Heading, HStack, ProgressCircle, VStack, Text, Flex, Tag, Button } from "@chakra-ui/react";
 import "./Cover.css"
 
+
 export default function ResumePreviewCover() {
     return (
         <Center className="resume-preview-cover">
         <HStack className="resume-preview-modal">
-            <Center></Center>
+            <Center>
+                
+            </Center>
             <VStack className="resume-preview-sidepanel">
 
                 <Heading className="resume-preview-title">Resume Generation Successful</Heading>
@@ -35,7 +38,7 @@ export default function ResumePreviewCover() {
                     </Flex>
                 </VStack>
 
-                <Button className="resume-preview-update-button">Update Transcript</Button>
+                <Button className="resume-preview-update-button" variant='outline'>Update Transcript</Button>
 
             </VStack>
         </HStack>
