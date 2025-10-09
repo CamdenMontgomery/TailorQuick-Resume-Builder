@@ -50,9 +50,10 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
 
                 {resume.sections.map((section) => (
                     <>
-                    {section.type == "EDUCATION" && <ResumePreviewEducationSection educations={section.payload as Education[]}></ResumePreviewEducationSection>}
-                    {section.type == "EXPERIENCE" && <ResumePreviewExperienceSection experiences={section.payload as Experience[]}></ResumePreviewExperienceSection>}
-                    {section.type == "PROJECTS" && <ResumePreviewProjectsSection projects={section.payload as Project[]}></ResumePreviewProjectsSection>}
+                    {console.log(section)}
+                    {section.type == "EDUCATION" && <ResumePreviewEducationSection educations={section.data as Education[]}></ResumePreviewEducationSection>}
+                    {section.type == "EXPERIENCE" && <ResumePreviewExperienceSection experiences={section.data as Experience[]}></ResumePreviewExperienceSection>}
+                    {section.type == "PROJECTS" && <ResumePreviewProjectsSection projects={section.data as Project[]}></ResumePreviewProjectsSection>}
                     </>
                 ))}
 

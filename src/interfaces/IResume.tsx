@@ -6,10 +6,10 @@ import type Profile from "./Profile";
 export interface IResume{
     profile: Profile,
     sections: (
-        {type: "EDUCATION", payload: Education[]}  | 
-        {type: "EXPERIENCE", payload: Experience[]} | 
-        {type: "PROJECTS", payload: Project[]}    | 
-        {type: "SKILLS", payload: string[]}
+        {type: "EDUCATION", data: Education[]}  | 
+        {type: "EXPERIENCE", data: Experience[]} | 
+        {type: "PROJECTS", data: Project[]}    | 
+        {type: "SKILLS", data: string[]}
     )[]
 }
 
