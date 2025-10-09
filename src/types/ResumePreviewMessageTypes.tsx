@@ -1,1 +1,1 @@
-export type ResumePreviewMessageTypes = 'NOTIFY_STORAGE_LOAD_START' | 'NOTIFY_RESUME_GENERATE_START' | 'PASS_RESUME'
+export type ResumePreviewMessageTypes = 'NOTIFY_STORAGE_LOAD_START' | 'NOTIFY_RESUME_GENERATE_START' | 'PASS_RESUME' | 'ERROR'

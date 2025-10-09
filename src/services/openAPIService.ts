@@ -39,11 +39,66 @@ export default class OpenAPIService {
             - Limit each section (Experience, Education, Projects, Skills, etc.) to a maximum of 4 bullets each.  
             - Do not rewrite, reword, or generate new text. Only delete or rearrange existing JSON entries.  
             - Ensure the final JSON content is short enough to fit on a one-page resume.  
+            - Reorder the four section in the section array to highlight important information first
             - Return a valid JSON object as the final output.  
+            - If there is any reason for error, set the error field to true and write the cause in the errorMessage field
 
             Output:  
-            - A valid JSON object containing only the relevant, reduced resume.  
+            - A valid JSON object containing the reduced resume which adheres to the following format.  
+            
+            Output Format:
+
+            {
+                resume: {
+                    profile: {
+                        firstName: string,
+                        lastName: string,
+                        email: string,
+                        phone: string,
+                        github?: string,
+                        linkedin?: string,
+                        portfolio?: string
+                    },
+                    sections: [
+                        {type: "EDUCATION", data: {
+                            school: string,
+                            degree: string,
+                            field: string,
+                            startDate?: Date,
+                            endDate?: Date,
+                            bullets?: string[] 
+                        }[]
+                        },
+                        {type: "EXPERIENCE", data: {
+                            position: string,
+                            company: string,
+                            startDate?: Date,
+                            endDate?: Date,
+                            bullets?: string[] 
+                        }[]
+                        },
+                        {type: "PROJECTS", data: {
+                            title: string,
+                            startDate?: Date,
+                            endDate?: Date,
+                            bullets?: string[] 
+                        }[]
+                        },
+                        {type: "SKILLS", data: string[]},
+                    ]
+                },
+                info: {
+                    relevance: number,
+                    suggestions: string[]
+                }
+                metadata: {
+                    error: boolean,
+                    errorMessage?: string
+                }
+            }
+            
             `
+
 
 
 

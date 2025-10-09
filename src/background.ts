@@ -73,10 +73,10 @@ chrome.contextMenus.onClicked.addListener( async (info, tab) => {
         const transcript = await StorageService.load()
 
         await chrome.tabs.sendMessage(tab.id,{type: "NOTIFY_RESUME_GENERATE_START"});
-        const resume = await OpenAPIService.GenerateResume(info.selectionText, JSON.stringify(transcript))
+        const res = await OpenAPIService.GenerateResume(info.selectionText, JSON.stringify(transcript))
         
-
-        await chrome.tabs.sendMessage(tab.id,{type: "PASS_RESUME", payload: resume});
+        if (res.metadata.error) await chrome.tabs.sendMessage(tab.id,{type: "ERROR", payload: res.metadata.errorMessage});
+        else await chrome.tabs.sendMessage(tab.id,{type: "PASS_RESUME", payload: res.resume});
         
 
 

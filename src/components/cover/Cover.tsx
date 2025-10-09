@@ -20,7 +20,8 @@ export default function ResumePreviewCover() {
             switch (message.data.type){
                 case 'NOTIFY_STORAGE_LOAD_START': 
                 case 'NOTIFY_RESUME_GENERATE_START': setMode('LOADING'); break;
-                case 'PASS_RESUME': setResume(message.data.payload); console.log(message.data.payload)
+                case 'ERROR': alert(message.data.payload); break;
+                case 'PASS_RESUME':  console.log(message.data.payload); setResume(message.data.payload);
             }
             
             return false;

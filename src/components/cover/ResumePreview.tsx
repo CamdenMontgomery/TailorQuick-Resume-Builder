@@ -1,9 +1,12 @@
-import { Flex, Heading, Em, Separator, HStack } from "@chakra-ui/react";
+import { Flex, Heading, Em, HStack } from "@chakra-ui/react";
 import type { IResume } from "../../interfaces/IResume";
 import ResumePreviewEducationSection from "./ResumePreviewEducationSection";
 import ResumePreviewExperienceSection from "./ResumePreviewExperienceSection";
 import ResumePreviewProjectsSection from "./ResumePreviewProjectsSection";
 import { useEffect, useRef, useState } from "react";
+import type Education from "../../interfaces/Education";
+import type Experience from "../../interfaces/Experience";
+import type Project from "../../interfaces/Project";
 
 export default function ResumePreview({ resume }: { resume: IResume }) {
     const [scale, setScale] = useState(1)
@@ -45,14 +48,17 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
 
                 </Flex>
 
-                <ResumePreviewEducationSection educations={resume.education}></ResumePreviewEducationSection>
-                <ResumePreviewExperienceSection experiences={resume.experience}></ResumePreviewExperienceSection>
-                <ResumePreviewProjectsSection projects={resume.projects}></ResumePreviewProjectsSection>
+                {resume.sections.map((section) => (
+                    <>
+                    section.type == "EDUCATION" && <ResumePreviewEducationSection educations={section.payload as Education[]}></ResumePreviewEducationSection>
+                    section.type == "EXPERIENCE" && <ResumePreviewExperienceSection experiences={section.payload as Experience[]}></ResumePreviewExperienceSection>
+                    section.type == "PROJECTS" && <ResumePreviewProjectsSection projects={section.payload as Project[]}></ResumePreviewProjectsSection>
+                    </>
+                ))}
 
-                <Flex className="resume-section">
-                    <Heading className="resume-section-heading">Skills</Heading>
-                    <Separator />
-                </Flex>
+                
+
+
             </Flex>
         </Flex>
     )
