@@ -1,0 +1,1 @@
+export type ResumePreviewModes = 'HIDDEN' | 'LOADING' | 'PREVIEW'

@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Popup from "./popup";
+import ResumePreviewCover from "../components/cover/Cover";
+import { Provider } from "../components/ui/provider";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Popup />
+    <Provider>
+          <ResumePreviewCover></ResumePreviewCover>
+    </Provider>
+
   </React.StrictMode>
 );

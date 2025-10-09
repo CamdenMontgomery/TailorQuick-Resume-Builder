@@ -23,6 +23,7 @@ export default defineConfig({
         popup: "src/popup/index.html",
         options: "src/webpage/index.html",
         background: "src/background.ts",
+        bridge: "src/bridge.ts",
         inject: "src/inject.tsx"
       },
       output: {
@@ -32,6 +33,8 @@ export default defineConfig({
             return "background.js";
           }if (chunk.name === "inject") {
             return "inject.js";
+          }if (chunk.name === "bridge") {
+            return "bridge.js";
           }
           return "assets/[name].js";
         },

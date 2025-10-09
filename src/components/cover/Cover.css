@@ -22,24 +22,24 @@
     box-shadow: #00000036 0 0 20px 0;
 }
 
-.resume-preview-sidepanel{
+.resume-preview-modal-sidepanel{
 
     background: white;
     padding: 3rem;
     align-items: start;
 }
 
-.resume-preview-title{
+.resume-preview-modal-title{
     font-weight: 800;
     font-size: 2rem;
     text-wrap-style: balance;
 }
 
-.resume-preview-button{
+.resume-preview-modal-button{
         width: -webkit-fill-available;
     margin: 1rem;
 }
 
-.resume-preview-stats{
+.resume-preview-modal-stats{
         margin: auto;
 }
