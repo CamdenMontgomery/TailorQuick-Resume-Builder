@@ -63,7 +63,7 @@ export default function ResumePreviewCover() {
                         {resume && <ResumePreview resume={resume}></ResumePreview>}
                     </Center>
                     <VStack className="resume-preview-modal-sidepanel">
-                        <Flex width="100%" justifyContent="end"><Button variant="ghost"><RxCross2 /></Button></Flex>
+                        <Flex width="100%" justifyContent="end"><Button variant="ghost" onClick={() => {setMode('HIDDEN')}}><RxCross2 /></Button></Flex>
                         
                         
                         <Heading className="resume-preview-modal-title">Resume Generation Successful</Heading>
