@@ -65,11 +65,42 @@
     font-weight: 800;
     font-size: 2rem;
     text-wrap-style: balance;
+        font-size: medium;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
+.resume-preview-modal-subtext{
+    text-align: center;
+    color: gray;
+    font-size: smaller;
+}
+
+.resume-preview-stat-card{
+        gap: 1rem;
+    width: 100%;
+    box-shadow: #0000000f 0 0 11px 0;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: solid 1px #e3e3e3;
+}
+
+.resume-preview-modal-improvements{
+        border-top: solid 1px #d5d5d5;
+    padding-top: 2rem;
+}
+
+.resume-preview-modal-instruction{
+        text-align: center;
+    color: gray;
+}
 .resume-preview-modal-button{
-        width: -webkit-fill-available;
-    margin: 1rem;
+    color: black;
+    width: 100%;
+    border-color: gray;
+    margin-top: 2rem;
 }
 
 .resume-preview-modal-stats{
