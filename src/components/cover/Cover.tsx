@@ -82,7 +82,7 @@ export default function ResumePreviewCover() {
                     <Center className="resume-preview-container">
                         <VStack gap="2rem" height="100%">
                         {resume && <ResumePreview resume={resume}></ResumePreview>}
-                        <Button background="black" color="white" width="100%" height="2.5rem">Export</Button>
+                        <Button background="black" color="white" width="100%" height="2.5rem" onClick={() => window.postMessage({type:"REQUEST_EXPORT_RESUME"})}>Export</Button>
                         </VStack>
                     </Center>
                     <VStack className="resume-preview-modal-sidepanel">
