@@ -8,11 +8,12 @@ import type { SectionType } from "../types/SectionType"
 import EducationSubsection from "./SubsectionItems/EducationSubsection"
 import type Education from "../interfaces/Education"
 import ExperienceSubsection from "./SubsectionItems/ExperienceSubsection"
-import type { Experience } from "../resume-preview/types/experience"
+
 import ProjectsSubsection from "./SubsectionItems/ProjectsSubsection"
 import type Project from "../interfaces/Project"
 import ProfileSubsection from "./SubsectionItems/ProfileSubsection"
 import type Profile from "../interfaces/Profile"
+import type Experience from "../interfaces/Experience"
 
 
 

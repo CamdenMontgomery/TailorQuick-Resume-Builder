@@ -1,5 +1,4 @@
 import { Button, HStack, Input, List } from "@chakra-ui/react";
-import { useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
 
 
@@ -28,12 +27,11 @@ export default function EditableBulletedList({bullets,callback} : {bullets: stri
         callback(bullets)
     }
 
-    //Check on mount for empty bullet list, ensure at least one blank bullet exists for the user to write to
-    useEffect(() => {if (bullets.length == 0) bullets.push("")})
 
     return (
         <List.Root>
-            {bullets.map((bullet, index) => (
+            
+            {(bullets.length == 0 ? [""] : bullets).map((bullet, index) => (
                 <List.Item className="bulleted-list-item">
                     <HStack gap="0">
                     <Input className="bulleted-list-input" placeholder="Add bullet point..." value={bullet} onChange={(e) => handleChange(e.target.value, index)}></Input>
