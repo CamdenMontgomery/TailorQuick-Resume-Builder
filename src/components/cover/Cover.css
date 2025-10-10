@@ -148,3 +148,12 @@
 .resume-subsection-date{
         float: right;
 }
+
+.resume-subsection-bullet{
+    font-weight: 400;
+}
+
+.resume-subsection-title{
+    font-weight: 700;
+}
+

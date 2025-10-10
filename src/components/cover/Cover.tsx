@@ -10,14 +10,16 @@ import { RxCross2 } from "react-icons/rx";
 
 const RATINGS = {
     0: { badge: "Poor", text: "You are not qualified for this job", color: "red"},
-    70: { badge: "Good", text: "You are qualified for this job", color: "green"},
-    90: { badge: "Great", text: "You are an above average candidate for this job", color: "yellow"},
+    0.4: { badge: "Okay", text: "You are a below average candidate for this job", color: "orange"},
+    0.7: { badge: "Good", text: "You are qualified for this job", color: "green"},
+    0.9: { badge: "Great", text: "You are an above average candidate for this job", color: "yellow"},
 }
 
 function getRatingInformation(score: number){
     const stops = Object.keys(RATINGS).map((n) => Number(n))
+    console.log(stops)
     for (let i = 0; i < stops.length; i++){
-        if ( i + 1 >= stop.length || stops[i + 1] > score )
+        if ( i + 1 >= stops.length || stops[i + 1] > score )
             return RATINGS[stops[i] as keyof typeof RATINGS] 
     }
 }
