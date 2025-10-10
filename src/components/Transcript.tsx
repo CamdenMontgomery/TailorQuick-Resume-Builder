@@ -28,7 +28,7 @@ export default function Transcript({ information }: { information: TQTranscript 
                 <Separator />
                 {information.education.length == 0 ? (<Text className="transcript-section-placeholder">No Education</Text>) :
                     information.education.map((ed: Education) => (
-                        <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
+                        <Grid templateColumns="1fr 1fr" >
 
                             <GridItem> <Text className="transcript-subsection-title">{placehold(ed.degree == "" || ed.field == "", `${ed.degree} in ${ed.field}`, "[Your level of degree in your field of study]")} </Text> </GridItem> 
                            
@@ -36,11 +36,11 @@ export default function Transcript({ information }: { information: TQTranscript 
                             
                             <GridItem colSpan={2}> <Text className="transcript-subsection-subtitle">{placehold(ed.school == "", `${ed.school}`,"[Your school which you attended]")}</Text> </GridItem>
                             
-                            <List.Root>
+                            <List.Root paddingInlineStart="2rem">
                                 {
                                     ed.bullets?.length == 0 || !ed.bullets ? (<ListItem>[Bulleted information of note]</ListItem>) :
                                     ed.bullets?.map((bullet: string) => (
-                                        <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
+                                        bullet != "" && <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
                                     ))
                                 }
                             </List.Root>
@@ -55,13 +55,13 @@ export default function Transcript({ information }: { information: TQTranscript 
                     <Text className="transcript-section-placeholder">No Experience Provided</Text>
                 ) :
                     information.experience.map((ex: Experience) => (
-                        <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
+                        <Grid templateColumns="1fr 1fr" >
                             <GridItem> <Text className="transcript-subsection-title">{ex.position == "" ? "Your Position Here" : ex.position}</Text> </GridItem> <GridItem> <Text className="transcript-subsection-date">{new Date(ex.startDate ?? 0).toDateString() ?? "Start Date"} - {new Date(ex.endDate ?? 0).toDateString() ?? "End Date"}</Text> </GridItem>
                             <GridItem colSpan={2}> <Text className="transcript-subsection-subtitle">{ex.company == "" ? "The company you worked at here" : ex.company}</Text> </GridItem>
-                            <List.Root>
+                            <List.Root paddingInlineStart="2rem">
                                 {
                                     ex.bullets?.map((bullet: string) => (
-                                        <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
+                                        bullet != "" && <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
                                     ))
                                 }
                             </List.Root>
@@ -74,12 +74,12 @@ export default function Transcript({ information }: { information: TQTranscript 
                 <Separator />
                 {information.projects.length == 0 ? (<Text color="gray">No Projects</Text>) :
                     information.projects.map((pr: Project) => (
-                        <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
+                        <Grid templateColumns="1fr 1fr" >
                             <GridItem> <Text className="transcript-subsection-title">{pr.title}</Text> </GridItem> <GridItem> <Text className="transcript-subsection-date">{new Date(pr.startDate ?? -1).toDateString()} - {new Date(pr.endDate ?? 0).toDateString()}</Text> </GridItem>
-                            <List.Root>
+                            <List.Root paddingInlineStart="2rem">
                                 {
                                     pr.bullets?.map((bullet: string) => (
-                                        <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
+                                        bullet != "" && <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
                                     ))
                                 }
                             </List.Root>

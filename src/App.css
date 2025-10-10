@@ -172,6 +172,7 @@ h2 {
 
 #preview-generate-container{
   flex: 1;
+  overflow-y: scroll;
 }
 
 .transcript-subsection-subtitle{
