@@ -1,4 +1,4 @@
-import { Stack, Button, Heading, Grid, GridItem, createListCollection, Input, type MenuSelectionDetails, Flex } from "@chakra-ui/react"
+import { Stack, Button, Heading, Grid, GridItem, createListCollection, Input, Flex } from "@chakra-ui/react"
 import { Field } from "../ui/field"
 import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText } from "../ui/select"
 import DatePicker from "react-datepicker"
@@ -65,7 +65,7 @@ export default function EducationSubsection({ data, index }: { data: Education, 
 
                 <GridItem>
                     <Field label="Degree" background="white" color="gray" required>
-                        <SelectRoot collection={collection} onSelect={(selection: MenuSelectionDetails) => editField("EDIT_EDUCATION_DEGREE", selection.value)}>
+                        <SelectRoot value={[data.degree]} collection={collection} onValueChange={(e) => editField("EDIT_EDUCATION_DEGREE", e.value[0])}>
                             <SelectTrigger clearable>
                                 <SelectValueText placeholder="Select an option…" />
                             </SelectTrigger>

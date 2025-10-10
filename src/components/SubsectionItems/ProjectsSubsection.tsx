@@ -22,7 +22,7 @@ export default function ProjectsSubsection({data, index} : {data : Project,index
 
                 <GridItem colSpan={2}>
                     <Field label="Title" background="white" color="gray" required>
-                        <Input placeholder="TailorQuick - Resume Tailor" onChange={ (e) => editField("EDIT_PROJECT_TITLE", e.target.value)}/>
+                        <Input value={data.title} placeholder="TailorQuick - Resume Tailor" onChange={ (e) => editField("EDIT_PROJECT_TITLE", e.target.value)}/>
                     </Field>
                 </GridItem>
 
