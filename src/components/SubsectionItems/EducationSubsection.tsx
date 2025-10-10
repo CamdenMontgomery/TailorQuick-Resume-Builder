@@ -88,13 +88,13 @@ export default function EducationSubsection({ data, index }: { data: Education, 
 
                 <GridItem>
                     <Field label="Start Date" background="white" color="gray">
-                        <DatePicker value={new Date(data.startDate ?? 0).toLocaleDateString("en-US", {month: 'short', year: 'numeric'})} wrapperClassName="subsection-datepicker-wrapper" className="subsection-datepicker" showMonthYearPicker showIcon icon={<CgCalendarToday className="subsection-datepicker-icon" />} onChange={(date) => editField("EDIT_EDUCATION_START_DATE", date)} dateFormat="MMM yyyy" placeholderText="e.g Jan 1997" />
+                        <DatePicker value={new Date(data.startDate ?? 0).toLocaleDateString("en-US", {month: 'short', year: 'numeric'})} wrapperClassName="subsection-datepicker-wrapper" className="subsection-datepicker" showMonthYearPicker showIcon icon={<CgCalendarToday className="subsection-datepicker-icon" />} onChange={(date) => editField("EDIT_EDUCATION_START_DATE", date?.valueOf())} dateFormat="MMM yyyy" placeholderText="e.g Jan 1997" />
                     </Field>
                 </GridItem>
 
                 <GridItem>
                     <Field label="End Date" background="white" color="gray">
-                        <DatePicker value={new Date(data.endDate ?? 0).toLocaleDateString("en-US", {month: 'short', year: 'numeric'})} wrapperClassName="subsection-datepicker-wrapper" className="subsection-datepicker" showMonthYearPicker showIcon icon={<CgCalendarToday className="subsection-datepicker-icon" />} onChange={(date) => editField("EDIT_EDUCATION_END_DATE", date)} dateFormat="MMM yyyy" placeholderText="e.g Jan 1997" />
+                        <DatePicker value={new Date(data.endDate ?? 0).toLocaleDateString("en-US", {month: 'short', year: 'numeric'})} wrapperClassName="subsection-datepicker-wrapper" className="subsection-datepicker" showMonthYearPicker showIcon icon={<CgCalendarToday className="subsection-datepicker-icon" />} onChange={(date) => editField("EDIT_EDUCATION_END_DATE", date?.valueOf())} dateFormat="MMM yyyy" placeholderText="e.g Jan 1997" />
                     </Field>
                 </GridItem>
 
