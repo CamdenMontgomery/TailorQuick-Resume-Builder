@@ -76,7 +76,7 @@ chrome.contextMenus.onClicked.addListener( async (info, tab) => {
         const res = await OpenAPIService.GenerateResume(info.selectionText, JSON.stringify(transcript))
         
         if (res.metadata.error) await chrome.tabs.sendMessage(tab.id,{type: "ERROR", payload: res.metadata.errorMessage});
-        else await chrome.tabs.sendMessage(tab.id,{type: "PASS_RESUME", payload: res.resume});
+        else await chrome.tabs.sendMessage(tab.id,{type: "PASS_RESUME_DATA", payload: res});
         
 
 

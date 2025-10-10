@@ -30,7 +30,7 @@ export default class OpenAPIService {
             You are a resume assistant.  
 
             Input:  
-            - A detailed JSON object containing the user's full resume information.  
+            - A detailed JSON object containing a user transcript which is user's full resume information.  
             - A job description.  
             - Dates will be given as unix timestamps
 
@@ -44,6 +44,8 @@ export default class OpenAPIService {
             - Return a valid JSON object as the final output.  
             - If there is any reason for error, set the error field to true and write the cause in the errorMessage field
             - Include all relevant dates provided
+            - Provide a job relevance score between 0 and 1 which considers whether the resume contains all the same keywords as the job description, whether there is enough infomration provided on the resume or the lack there of, and your unbiased guess as to the chances of this resume making it to the interview phase
+            - provide three concise (15 words or less) suggestions on how the user can improve their resume generation by enhancing their transcript. Do not advise them to make improvements on the resume you provide but on how to make improvements by disclosing more infromation about themselves.
 
             Output:  
             - A valid JSON object containing the reduced resume which adheres to the following format. 

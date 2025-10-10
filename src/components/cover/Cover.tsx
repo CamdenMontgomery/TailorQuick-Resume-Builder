@@ -1,4 +1,4 @@
-import { Center, Heading, HStack, VStack, Text, Flex, Tag, Button, Spinner, FormatNumber, Progress, Stat, Badge } from "@chakra-ui/react";
+import { Center, Heading, HStack, VStack, Text, Flex, Button, Spinner, FormatNumber, Progress, Stat, Badge, ListItem, ListRoot } from "@chakra-ui/react";
 import "./Cover.css"
 import ResumePreview from "./ResumePreview";
 import { useEffect, useState } from "react";
@@ -7,8 +7,26 @@ import type { IResume } from "../../interfaces/IResume";
 import type { ResumePreviewModes } from "../../types/ResumePreviewModes";
 import { RxCross2 } from "react-icons/rx";
 
+
+const RATINGS = {
+    0: { badge: "Poor", text: "You are not qualified for this job", color: "red"},
+    70: { badge: "Good", text: "You are qualified for this job", color: "green"},
+    90: { badge: "Great", text: "You are an above average candidate for this job", color: "yellow"},
+}
+
+function getRatingInformation(score: number){
+    const stops = Object.keys(RATINGS).map((n) => Number(n))
+    for (let i = 0; i < stops.length; i++){
+        if ( i + 1 >= stop.length || stops[i + 1] > score )
+            return RATINGS[stops[i] as keyof typeof RATINGS] 
+    }
+}
+
+
 export default function ResumePreviewCover() {
     const [resume, setResume] = useState<IResume | undefined>(undefined)
+    const [score, setScore] = useState<number>(0)
+    const [suggestions, setSuggestions] = useState<string[]>([])
     const [mode, setMode] = useState<ResumePreviewModes>('HIDDEN')
     const [loadingMessage, setLoadingMessage] = useState<string>('')
 
@@ -30,9 +48,11 @@ export default function ResumePreviewCover() {
                     break;
                 }
                 case 'ERROR': { break; }
-                case 'PASS_RESUME': {
+                case 'PASS_RESUME_DATA': {
                     setMode('PREVIEW')
-                    setResume(message.data.payload);
+                    setResume(message.data.payload.resume);
+                    setScore(message.data.payload.info.relevance);
+                    setSuggestions(message.data.payload.info.suggestions);
                     break
                 }
             }
@@ -74,16 +94,16 @@ export default function ResumePreviewCover() {
                                 <Stat.Label>Relevance Score</Stat.Label>
                                 <HStack gap="1rem">
                                     <Stat.ValueText fontSize="xxx-large">
-                                        <FormatNumber value={0.7} style="percent" />
+                                        <FormatNumber value={score} style="percent" />
                                     </Stat.ValueText>
-                                    <Badge colorPalette="green" gap="0">
-                                        Good Candidate
+                                    <Badge colorPalette={getRatingInformation(score)?.color} gap="0">
+                                        {getRatingInformation(score)?.badge}
                                     </Badge>
                                 </HStack>
-                                <Stat.HelpText color="gray" mb="2">You have an above average change of hiring</Stat.HelpText>
-                                <Progress.Root value={70} striped animated>
+                                <Stat.HelpText color="gray" mb="2">{getRatingInformation(score)?.text}</Stat.HelpText>
+                                <Progress.Root colorPalette={getRatingInformation(score)?.color} value={score * 100} striped animated>
                                     <Progress.Track background="#f9f9f9">
-                                        <Progress.Range background="#a9e7c2"/>
+                                        <Progress.Range/>
                                     </Progress.Track>
                                 </Progress.Root>
                             </Stat.Root>
@@ -91,10 +111,12 @@ export default function ResumePreviewCover() {
 
                         <VStack className="resume-preview-modal-improvements">
                             <Heading className="resume-preview-modal-subtitle">Possible Improvements</Heading>
-                            <Text className="resume-preview-modal-instruction">Add the following to your transcript for a better score</Text>
+                            <Text className="resume-preview-modal-subtext">Add the following to your transcript for a better score</Text>
 
                             <Flex className="resume-preview-modal-keywords">
-                                <Tag.Root><Tag.Label>Placeholder</Tag.Label></Tag.Root>
+                                <ListRoot gap="0.2rem">
+                                    { suggestions.map((suggestion) => <ListItem fontSize="0.7rem">{suggestion}</ListItem> )}
+                                </ListRoot>
                             </Flex>
                         </VStack>
 
