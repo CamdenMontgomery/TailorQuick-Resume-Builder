@@ -1,9 +1,8 @@
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-  font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
-  font-style: normal;
-}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 
 
 .resume-preview-loading-container{
@@ -29,6 +28,8 @@
     text-transform: capitalize;
     font-size: smaller;
     padding-top: 1rem;
+            text-align: center;
+            font-family: "Inter", sans-serif;
 }
 
 .resume-preview-cover{
@@ -46,6 +47,7 @@
     background: #fdfdfd;
     box-shadow: #00000061 0 0 20px 0;
     border-radius: 0.5rem;
+    font-family: "Inter", sans-serif;
 }
 
 .resume-preview-modal-sidepanel{
