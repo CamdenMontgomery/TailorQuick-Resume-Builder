@@ -10,7 +10,7 @@ export default function ResumePreviewEducationSection({ educations }: { educatio
 
             {
                 educations.map((ed: Education) => (
-                    <Grid templateColumns="1fr 1fr" templateRows="1fr 1fr 1fr">
+                    <Grid templateColumns="1fr 1fr">
 
                         <GridItem> <Text className="resume-subsection-title">{ed.degree} {ed.field ? `in ${ed.field}` : ""} </Text> </GridItem>
 
@@ -23,13 +23,15 @@ export default function ResumePreviewEducationSection({ educations }: { educatio
 
                         <GridItem colSpan={2}> <Text className="resume-subsection-subtitle">{ed.school}</Text> </GridItem>
 
-                        <List.Root>
-                            {
-                                    ed.bullets?.map((bullet: string) => (
-                                        bullet != "" && <ListItem className="resume-subsection-bullet">{bullet}</ListItem>
-                                    ))
-                            }
-                        </List.Root>
+                        <GridItem colSpan={2}>
+                            <List.Root paddingInlineStart={"2rem"}>
+                                {
+                                        ed.bullets?.map((bullet: string) => (
+                                            bullet != "" && <ListItem className="resume-subsection-bullet">{bullet}</ListItem>
+                                        ))
+                                }
+                            </List.Root>
+                        </GridItem>
                     </Grid>
                 ))
             }

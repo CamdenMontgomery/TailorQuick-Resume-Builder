@@ -24,9 +24,11 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
         const observer = new ResizeObserver(entries => {
             for (let entry of entries) {
                 const { width, height } = entry.contentRect;
+                const naturalWidth = contentRef.current?.clientWidth
+                const naturalHeight = contentRef.current?.clientHeight
 
-                const scaleX = width / 612;
-                const scaleY = height / 791;
+                const scaleX = width / (naturalWidth ?? 671);
+                const scaleY = height / (naturalHeight ?? 700);
                 setScale(Math.min(scaleX, scaleY));
             }
         });
@@ -49,18 +51,18 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
 
     return (
         <Flex className="resume-page" ref={selfRef}>
-            <Container scale={scale}> {/*Scale the resume container without it appearing scaled in the print view because the print view doesnt know about this parent affecting its scale*/}
-            <Flex className="resume-container"  ref={contentRef}>
+            <Container scale={scale} transformOrigin={"top left"} padding={0}> {/*Scale the resume container without it appearing scaled in the print view because the print view doesnt know about this parent affecting its scale*/}
+            <Flex className="resume-container"  ref={contentRef} padding={"3rem"}>
 
 
                 <Flex className="resume-section">
                     <Heading>{resume.profile.firstName}</Heading>
                     <HStack>
                         <Em>{resume.profile.email}</Em> |
-                        <Em>{resume.profile.phone}</Em> |
-                        {!!resume.profile.linkedin && <a href={resume.profile.linkedin}></a>} |
-                        {!!resume.profile.github && <a href={resume.profile.github}></a>} |
-                        {!!resume.profile.portfolio && <a href={resume.profile.portfolio}></a>} |
+                        <Em>{resume.profile.phone}</Em>
+                        {!!resume.profile.linkedin && <> | <a href={resume.profile.linkedin}></a></>}
+                        {!!resume.profile.github && <> | <a href={resume.profile.github}></a></>}
+                        {!!resume.profile.portfolio && <> | <a href={resume.profile.portfolio}></a></>}
                     </HStack>
 
                 </Flex>
