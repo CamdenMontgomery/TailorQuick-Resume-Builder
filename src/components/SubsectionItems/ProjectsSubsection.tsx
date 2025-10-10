@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import EditableBulletedList from "../ui/EditableBullets";
 import type Project from "../../interfaces/Project";
 import { CgCalendarToday } from "react-icons/cg";
+import { useRef, useEffect } from "react";
 
 
 export default function ProjectsSubsection({data, index} : {data : Project,index : number}) {
@@ -13,8 +14,22 @@ export default function ProjectsSubsection({data, index} : {data : Project,index
     const editField = (type : string, value: any) => {
         dispatch({type: type, payload: { index: index, value: value }})
     }
+
+    const scrollRef = useRef<HTMLDivElement>(null)
+    useEffect(() => {
+
+        const ctrl = new AbortController(); //For easy removal of listener
+
+        window.addEventListener('scrollto', (e: CustomEventInit<{ index: number }>) => {
+            if (e.detail?.index == index) scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, ctrl)
+
+        return () => { ctrl.abort() } //Remove listener on unmount
+
+    }, [])
+
     return (
-        <Stack className="subsectionitem" >
+        <Stack className="subsectionitem" ref={scrollRef}>
 
             <Heading textAlign='justify' color='black'>Project {index}</Heading>
 

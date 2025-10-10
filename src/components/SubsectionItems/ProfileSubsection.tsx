@@ -11,6 +11,8 @@ export default function ProfileSubsection({ data }: { data: Profile }) {
         dispatch({ type: type, payload: { value: value } })
     }
 
+
+
     return (
         <Stack className="subsectionitem" margin="3rem">
 

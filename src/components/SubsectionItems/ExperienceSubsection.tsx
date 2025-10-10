@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import EditableBulletedList from "../ui/EditableBullets";
 import type Experience from "../../interfaces/Experience";
 import { CgCalendarToday } from "react-icons/cg";
+import { useRef, useEffect } from "react";
 
 
 export default function ExperienceSubsection({ data, index }: { data: Experience, index: number }) {
@@ -13,8 +14,24 @@ export default function ExperienceSubsection({ data, index }: { data: Experience
     const editField = (type: string, value: any) => {
         dispatch({ type: type, payload: { index: index, value: value } })
     }
+
+
+    const scrollRef = useRef<HTMLDivElement>(null)
+    useEffect(() => {
+
+        const ctrl = new AbortController(); //For easy removal of listener
+
+        window.addEventListener('scrollto', (e: CustomEventInit<{ index: number }>) => {
+            if (e.detail?.index == index) scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, ctrl)
+
+        return () => { ctrl.abort() } //Remove listener on unmount
+
+    }, [])
+
+
     return (
-        <Stack className="subsectionitem" >
+        <Stack className="subsectionitem" ref={scrollRef}>
 
             <Heading fontFamily='WorkSans' textAlign='justify' color='black'>Experience {index}</Heading>
 
