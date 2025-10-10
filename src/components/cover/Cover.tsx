@@ -80,7 +80,10 @@ export default function ResumePreviewCover() {
 
                 <HStack className="resume-preview-modal">
                     <Center className="resume-preview-container">
+                        <VStack gap="2rem" height="100%">
                         {resume && <ResumePreview resume={resume}></ResumePreview>}
+                        <Button background="black" color="white" width="100%" height="2.5rem">Export</Button>
+                        </VStack>
                     </Center>
                     <VStack className="resume-preview-modal-sidepanel">
                         <Flex width="100%" justifyContent="end"><Button variant="ghost" onClick={() => {setMode('HIDDEN')}}><RxCross2 /></Button></Flex>
