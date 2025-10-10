@@ -127,12 +127,22 @@
     flex-direction: column;
     box-shadow: #a3a3a357 0 0 15px 0;
     height: Calc(100% - 4rem);
+        max-width: fit-content;
+        padding: 2rem
 }
 
 .resume-container{
     flex-direction: column;
+    width: 8.5in;
+    height: 11in;
+    transform-origin: top left;
+    aspect-ratio: 0.772797527048;
+
+
 }
 
 .resume-section{
         flex-direction: column;
 }
+
+

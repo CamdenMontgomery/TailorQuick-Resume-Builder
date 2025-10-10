@@ -1,4 +1,4 @@
-import { Flex, Heading, Em, HStack } from "@chakra-ui/react";
+import { Flex, Heading, Em, HStack, Container } from "@chakra-ui/react";
 import type { IResume } from "../../interfaces/IResume";
 import ResumePreviewEducationSection from "./ResumePreviewEducationSection";
 import ResumePreviewExperienceSection from "./ResumePreviewExperienceSection";
@@ -11,8 +11,8 @@ import {useReactToPrint} from "react-to-print"
 
 export default function ResumePreview({ resume }: { resume: IResume }) {
     const [scale, setScale] = useState(1)
+    const selfRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
-    const previewRef = useRef<HTMLDivElement>(null)
     const reactToPrintFn  = useReactToPrint({contentRef})
 
 
@@ -32,7 +32,7 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
         });
 
 
-        if (contentRef.current) observer.observe(contentRef.current)
+        if (selfRef.current) observer.observe(selfRef.current)
 
 
         //Listen to any message to export
@@ -48,8 +48,9 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
 
 
     return (
-        <Flex className="resume-page" ref={contentRef}>
-            <Flex className="resume-container" scale={scale} ref={previewRef}>
+        <Flex className="resume-page" ref={selfRef}>
+            <Container scale={scale}> {/*Scale the resume container without it appearing scaled in the print view because the print view doesnt know about this parent affecting its scale*/}
+            <Flex className="resume-container"  ref={contentRef}>
 
 
                 <Flex className="resume-section">
@@ -77,6 +78,7 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
 
 
             </Flex>
+            </Container>
         </Flex>
     )
 }
