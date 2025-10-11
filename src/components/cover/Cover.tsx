@@ -11,8 +11,8 @@ import { RxCross2 } from "react-icons/rx";
 const RATINGS = {
     0: { badge: "Poor", text: "You are not qualified for this job", color: "red"},
     0.4: { badge: "Okay", text: "You are a below average candidate for this job", color: "orange"},
-    0.7: { badge: "Good", text: "You are qualified for this job", color: "green"},
-    0.9: { badge: "Great", text: "You are an above average candidate for this job", color: "yellow"},
+    0.6: { badge: "Good", text: "You are qualified for this job", color: "green"},
+    0.8: { badge: "Great", text: "You are an above average candidate for this job", color: "yellow"},
 }
 
 function getRatingInformation(score: number){

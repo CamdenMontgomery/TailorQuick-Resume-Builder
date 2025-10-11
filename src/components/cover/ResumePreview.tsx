@@ -55,8 +55,8 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
             <Flex className="resume-container"  ref={contentRef} padding={"3rem"}>
 
 
-                <Flex className="resume-section">
-                    <Heading>{resume.profile.firstName}</Heading>
+                <Flex className="resume-section" alignItems="center">
+                    <Heading>{resume.profile.firstName.trim()} {resume.profile.lastName.trim()}</Heading>
                     <HStack>
                         <Em>{resume.profile.email}</Em> |
                         <Em>{resume.profile.phone}</Em>

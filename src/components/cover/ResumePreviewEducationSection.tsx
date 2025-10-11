@@ -2,6 +2,13 @@ import { Flex, Heading, Separator, Grid, GridItem, List, ListItem, Text } from "
 import type Education from "../../interfaces/Education";
 
 export default function ResumePreviewEducationSection({ educations }: { educations: Education[] }) {
+
+    const DATE_FORMAT = {month: 'short' as const, year: 'numeric' as const}
+    const formatDate = (date: number | null /*Unix*/) => {
+        if (!date) return null
+        return new Date(date).toLocaleDateString('en-US',DATE_FORMAT)
+    }
+
     return (
         <Flex className="resume-section">
 
@@ -17,7 +24,13 @@ export default function ResumePreviewEducationSection({ educations }: { educatio
                         <GridItem> 
                             {
                                 (ed.startDate && ed.endDate) && //If both start and end date exist, show date range 
-                                <Text className="resume-subsection-date">{new Date(ed.startDate ?? 0).toDateString()} - {new Date(ed.endDate).toDateString()}</Text>
+                                <Text className="resume-subsection-date">
+                                    { 
+                                        ed.startDate == ed.endDate ? formatDate(ed.endDate) :   //If both end and start are the same just show one
+                                        `${formatDate(ed.startDate)} - ${formatDate(ed.endDate)}`
+                                        
+                                    }
+                                </Text>
                             }
                         </GridItem>
 

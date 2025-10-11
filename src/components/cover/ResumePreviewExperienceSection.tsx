@@ -2,25 +2,44 @@ import { Flex, Heading, Separator, Grid, GridItem, List, ListItem, Text } from "
 import type Experience from "../../interfaces/Experience";
 
 export default function ResumePreviewExperienceSection({ experiences }: { experiences: Experience[] }) {
+
+    const DATE_FORMAT = { month: 'short' as const, year: 'numeric' as const }
+    const formatDate = (date: number | null /*Unix*/) => {
+        if (!date) return null
+        return new Date(date).toLocaleDateString('en-US', DATE_FORMAT)
+    }
+
     return (
         <Flex className="resume-section">
             <Heading className="resume-section-heading">Experience</Heading>
             <Separator />
-                {experiences.map((ex: Experience) => (
-                    <Grid templateColumns="1fr 1fr">
-                        <GridItem> <Text className="resume-subsection-title">{ex.position == "" ? "Your Position Here" : ex.position}</Text> </GridItem> <GridItem> <Text className="resume-subsection-date">{new Date(ex.startDate ?? 0).toDateString() ?? "Start Date"} - {new Date(ex.endDate ?? 0).toDateString() ?? "End Date"}</Text> </GridItem>
-                        <GridItem colSpan={2}> <Text className="resume-subsection-subtitle">{ex.company == "" ? "The company you worked at here" : ex.company}</Text> </GridItem>
-                        <GridItem colSpan={2}>
-                            <List.Root paddingInlineStart={"2rem"}>
+            {experiences.map((ex: Experience) => (
+                <Grid templateColumns="1fr 1fr">
+                    <GridItem> <Text className="resume-subsection-title">{ex.position == "" ? "Your Position Here" : ex.position}</Text> </GridItem>
+                    <GridItem>
+                        {
+                            (ex.startDate && ex.endDate) && //If both start and end date exist, show date range 
+                            <Text className="resume-subsection-date">
                                 {
-                                    ex.bullets?.map((bullet: string) => (
-                                        <ListItem className="resume-subsection-bullet">{bullet}</ListItem>
-                                    ))
+                                    ex.startDate == ex.endDate ? formatDate(ex.endDate) :    //If both end and start are the same just show one
+                                    `${formatDate(ex.startDate)} - ${formatDate(ex.endDate)}`
+                                        
                                 }
-                            </List.Root>
-                        </GridItem>
-                    </Grid>
-                ))
+                            </Text>
+                        }
+                    </GridItem>
+                    <GridItem colSpan={2}> <Text className="resume-subsection-subtitle">{ex.company == "" ? "The company you worked at here" : ex.company}</Text> </GridItem>
+                    <GridItem colSpan={2}>
+                        <List.Root paddingInlineStart={"2rem"}>
+                            {
+                                ex.bullets?.map((bullet: string) => (
+                                    <ListItem className="resume-subsection-bullet">{bullet}</ListItem>
+                                ))
+                            }
+                        </List.Root>
+                    </GridItem>
+                </Grid>
+            ))
             }
         </Flex>
     )
