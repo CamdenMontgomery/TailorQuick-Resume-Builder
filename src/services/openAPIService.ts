@@ -47,6 +47,14 @@ export default class OpenAPIService {
             - Provide a job relevance score between 0 and 1 which considers whether the resume contains all the same keywords as the job description, whether there is enough infomration provided on the resume or the lack there of, and your unbiased guess as to the chances of this resume making it to the interview phase
             - provide three concise (15 words or less) suggestions on how the user can improve their resume generation by enhancing their transcript. Do not advise them to make improvements on the resume you provide but on how to make improvements by disclosing more infromation about themselves.
             - group skills into at most 4 different groups each with labels you must create 
+            - Manipulate the information with the goal to maximize the relevancy score and maximize the chance of hiring
+            - The education section should be the highest priority unless specified otherwise by the job description
+
+            Limitations:
+            - Maximum of 3000 characters including labels
+            - The page has an aproximate width of 100 characters per line
+            - Skill groups should take up at most 70 characters
+            - Bullet points should take up at most two lines (200 characters)
 
             Output:  
             - A valid JSON object containing the reduced resume which adheres to the following format. 
