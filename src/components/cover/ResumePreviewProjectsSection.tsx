@@ -9,8 +9,8 @@ export default function ResumePreviewProjectsSection({ projects }: { projects: P
         return new Date(date).toLocaleDateString('en-US', DATE_FORMAT)
     }
 
-    return (
-        <Flex className="resume-section">
+    return (<>
+        { projects.length != 0 && <Flex className="resume-section">
             <Heading className="resume-section-heading">Projects</Heading>
             <Separator />
             {
@@ -42,6 +42,7 @@ export default function ResumePreviewProjectsSection({ projects }: { projects: P
                 ))
             }
         </Flex>
+        }</>
     )
 
 }

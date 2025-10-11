@@ -10,7 +10,8 @@ export default function ResumePreviewExperienceSection({ experiences }: { experi
     }
 
     return (
-        <Flex className="resume-section">
+        <>{
+         experiences.length != 0 && <Flex className="resume-section">
             <Heading className="resume-section-heading">Experience</Heading>
             <Separator />
             {experiences.map((ex: Experience) => (
@@ -42,5 +43,6 @@ export default function ResumePreviewExperienceSection({ experiences }: { experi
             ))
             }
         </Flex>
+        }</>
     )
 }

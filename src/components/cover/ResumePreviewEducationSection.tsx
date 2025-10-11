@@ -10,7 +10,7 @@ export default function ResumePreviewEducationSection({ educations }: { educatio
     }
 
     return (
-        <Flex className="resume-section">
+        <>{ educations.length != 0 && <Flex className="resume-section">
 
             <Heading className="resume-section-heading">Education</Heading>
             <Separator />
@@ -49,5 +49,6 @@ export default function ResumePreviewEducationSection({ educations }: { educatio
                 ))
             }
         </Flex>
+        }</>
     )
 }
