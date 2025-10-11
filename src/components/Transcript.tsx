@@ -7,14 +7,14 @@ import type Project from "../interfaces/Project";
 
 export default function Transcript({ information }: { information: TQTranscript }) {
 
-    const placehold = (condition : boolean, content : string | null, placeholder : string) => {
+    const placehold = (condition: boolean, content: string | null, placeholder: string) => {
         return condition ? placeholder : content;
     }
 
     return (
         <Flex className="transcript-container">
             <Flex className="transcript-profile-container transcript-section">
-                { !information.profile.firstName ? <Heading color="gray">Your Name</Heading> : <Heading>{information.profile.firstName} {information.profile.lastName} Transcript</Heading>}
+                {!information.profile.firstName ? <Heading color="gray">Your Name</Heading> : <Heading>{information.profile.firstName} {information.profile.lastName} Transcript</Heading>}
                 <Em>{information.profile.email}</Em>
             </Flex>
             <Alert.Root colorPalette="gray" status="info">
@@ -30,19 +30,19 @@ export default function Transcript({ information }: { information: TQTranscript 
                     information.education.map((ed: Education) => (
                         <Grid templateColumns="1fr 1fr" >
 
-                            <GridItem> <Text className="transcript-subsection-title">{placehold(ed.degree == "" || ed.field == "", `${ed.degree} in ${ed.field}`, "[Your level of degree in your field of study]")} </Text> </GridItem> 
-                           
-                            <GridItem> <Text className="transcript-subsection-date">{placehold(!ed.startDate || !ed.endDate,`${new Date(ed.startDate ?? 0).toDateString()} - ${new Date(ed.endDate ?? 0).toDateString()}`, "[Your start date of study - Your end date of study]")}</Text> </GridItem>
-                            
-                            <GridItem colSpan={2}> <Text className="transcript-subsection-subtitle">{placehold(ed.school == "", `${ed.school}`,"[Your school which you attended]")}</Text> </GridItem>
-                            
+                            <GridItem> <Text className="transcript-subsection-title">{placehold(ed.degree == "" || ed.field == "", `${ed.degree} in ${ed.field}`, "[Your level of degree in your field of study]")} </Text> </GridItem>
+
+                            <GridItem> <Text className="transcript-subsection-date">{placehold(!ed.startDate || !ed.endDate, `${new Date(ed.startDate ?? 0).toDateString()} - ${new Date(ed.endDate ?? 0).toDateString()}`, "[Your start date of study - Your end date of study]")}</Text> </GridItem>
+
+                            <GridItem colSpan={2}> <Text className="transcript-subsection-subtitle">{placehold(ed.school == "", `${ed.school}`, "[Your school which you attended]")}</Text> </GridItem>
+
                             <GridItem colSpan={2}>
                                 <List.Root paddingInlineStart="2rem">
                                     {
                                         ed.bullets?.length == 0 || !ed.bullets ? (<ListItem>[Bulleted information of note]</ListItem>) :
-                                        ed.bullets?.map((bullet: string) => (
-                                            bullet != "" && <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
-                                        ))
+                                            ed.bullets?.map((bullet: string) => (
+                                                bullet != "" && <ListItem className="transcript-subsection-bullet">{bullet}</ListItem>
+                                            ))
                                     }
                                 </List.Root>
                             </GridItem>
@@ -60,7 +60,7 @@ export default function Transcript({ information }: { information: TQTranscript 
                         <Grid templateColumns="1fr 1fr" >
                             <GridItem> <Text className="transcript-subsection-title">{ex.position == "" ? "Your Position Here" : ex.position}</Text> </GridItem> <GridItem> <Text className="transcript-subsection-date">{new Date(ex.startDate ?? 0).toDateString() ?? "Start Date"} - {new Date(ex.endDate ?? 0).toDateString() ?? "End Date"}</Text> </GridItem>
                             <GridItem colSpan={2}> <Text className="transcript-subsection-subtitle">{ex.company == "" ? "The company you worked at here" : ex.company}</Text> </GridItem>
-                            <GridItem colSpan={2}> 
+                            <GridItem colSpan={2}>
                                 <List.Root paddingInlineStart="2rem">
                                     {
                                         ex.bullets?.map((bullet: string) => (
@@ -96,6 +96,13 @@ export default function Transcript({ information }: { information: TQTranscript 
             <Flex className="transcript-section">
                 <Heading className="transcript-section-heading">Skills</Heading>
                 <Separator />
+                <List.Root paddingInlineStart="2rem" display={"grid"} gridTemplateColumns={"1fr 1fr 1fr"} padding={"1rem"}>
+                    {
+                        information.skills.map((skill: string) => (
+                            skill != "" && <ListItem className="transcript-subsection-bullet" textTransform={"capitalize"}>{skill}</ListItem>
+                        ))
+                    }
+                </List.Root>
             </Flex>
         </Flex>
     )
