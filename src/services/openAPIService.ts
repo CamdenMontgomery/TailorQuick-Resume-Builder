@@ -46,6 +46,7 @@ export default class OpenAPIService {
             - Include all relevant dates provided
             - Provide a job relevance score between 0 and 1 which considers whether the resume contains all the same keywords as the job description, whether there is enough infomration provided on the resume or the lack there of, and your unbiased guess as to the chances of this resume making it to the interview phase
             - provide three concise (15 words or less) suggestions on how the user can improve their resume generation by enhancing their transcript. Do not advise them to make improvements on the resume you provide but on how to make improvements by disclosing more infromation about themselves.
+            - group skills into at most 4 different groups each with labels you must create 
 
             Output:  
             - A valid JSON object containing the reduced resume which adheres to the following format. 
@@ -89,7 +90,11 @@ export default class OpenAPIService {
                             bullets?: string[] 
                         }[]
                         },
-                        {type: "SKILLS", data: string[]},
+                        {type: "SKILLS", data: {
+                            label: string, 
+                            skills: string[] 
+                        }[]
+                        },
                     ]
                 },
                 info: {

@@ -1,5 +1,5 @@
 import { Flex, Heading, Em, HStack, Container } from "@chakra-ui/react";
-import type { IResume } from "../../interfaces/IResume";
+import type { IResume, SkillGroup } from "../../interfaces/IResume";
 import ResumePreviewEducationSection from "./ResumePreviewEducationSection";
 import ResumePreviewExperienceSection from "./ResumePreviewExperienceSection";
 import ResumePreviewProjectsSection from "./ResumePreviewProjectsSection";
@@ -8,6 +8,7 @@ import type Education from "../../interfaces/Education";
 import type Experience from "../../interfaces/Experience";
 import type Project from "../../interfaces/Project";
 import {useReactToPrint} from "react-to-print"
+import ResumePreviewSkillsSection from "./ResumePreviewSkillsSection";
 
 export default function ResumePreview({ resume }: { resume: IResume }) {
     const [scale, setScale] = useState(1)
@@ -73,10 +74,11 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
                         {section.type == "EDUCATION" && <ResumePreviewEducationSection educations={section.data as Education[]}></ResumePreviewEducationSection>}
                         {section.type == "EXPERIENCE" && <ResumePreviewExperienceSection experiences={section.data as Experience[]}></ResumePreviewExperienceSection>}
                         {section.type == "PROJECTS" && <ResumePreviewProjectsSection projects={section.data as Project[]}></ResumePreviewProjectsSection>}
+                        {section.type == "SKILLS" && <ResumePreviewSkillsSection skillgroups={section.data as SkillGroup[]}></ResumePreviewSkillsSection>}
                     </>
                 ))}
 
-                
+
 
 
 

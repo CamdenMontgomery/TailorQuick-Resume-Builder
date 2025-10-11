@@ -9,7 +9,11 @@ export interface IResume{
         {type: "EDUCATION", data: Education[]}  | 
         {type: "EXPERIENCE", data: Experience[]} | 
         {type: "PROJECTS", data: Project[]}    | 
-        {type: "SKILLS", data: string[]}
+        {type: "SKILLS", data: SkillGroup[] }
     )[]
 }
 
+export interface SkillGroup{
+    label: string, 
+    skills: string[]
+}
