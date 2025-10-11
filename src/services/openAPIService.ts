@@ -131,7 +131,7 @@ export default class OpenAPIService {
                 },
                 {
                     role: "user",
-                    content: `Job Description:\n\n${jobDescription}\n\nData:\n\n${data}`,
+                    content: `Data:\n\n${data}\n\nJob Description:\n\n${jobDescription}`,
                 },
             ],
             response_format: { type: "json_object" } // ensures valid JSON
