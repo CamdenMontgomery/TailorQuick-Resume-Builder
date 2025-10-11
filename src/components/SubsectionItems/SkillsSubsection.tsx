@@ -25,7 +25,7 @@ export default function SkillsSubsection({ data }: { data: string[] }) {
             </HStack>
             <Flex gap={0.5} className="skill-subsection-skill-container">
                 {(data.sort()).map((skill: string) =>
-                    <Tag.Root size="lg" colorPalette="orange" height={"fit-content"}>
+                    <Tag.Root size="lg" colorPalette="orange" height={"fit-content"} padding={"0.5rem"}>
                         <Tag.Label textTransform="capitalize">{skill}</Tag.Label>
                         <Tag.EndElement>
                             <Tag.CloseTrigger onClick={ () => removeSkill(skill) } />

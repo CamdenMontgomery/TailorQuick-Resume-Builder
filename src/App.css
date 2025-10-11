@@ -258,4 +258,6 @@ border-bottom: black solid 1px;
     border: solid 1px #f1f1f1;
     gap: 0.5rem;
     min-height: 10rem;
+    flex-wrap: wrap;
+        align-content: flex-start;
 }

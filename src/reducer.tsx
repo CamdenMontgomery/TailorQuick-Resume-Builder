@@ -238,15 +238,16 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
         //Skill Section Actions
 
         case "ADD_SKILL":{
+            if (state.skills.includes(action.payload.value.toLowerCase())) return state //If skill list already includes it, return immediately to avoid unneccesary rerender and storage update
             const copy = { ...state }
-            copy.skills.push(action.payload.value)
+            copy.skills.push(action.payload.value.toLowerCase())
             state = copy
             break
         }
 
         case "REMOVE_SKILL":{
             const copy = { ...state }
-            copy.skills.splice(copy.skills.indexOf(action.payload.value), 1)
+            copy.skills.splice(copy.skills.indexOf(action.payload.value.toLowerCase()), 1)
             state = copy
             break
         }
