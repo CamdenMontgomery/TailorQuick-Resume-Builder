@@ -61,9 +61,9 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
                     <HStack>
                         <Em>{resume.profile.email}</Em> |
                         <Em>{resume.profile.phone}</Em>
-                        {!!resume.profile.linkedin && <> | <a href={resume.profile.linkedin}></a></>}
-                        {!!resume.profile.github && <> | <a href={resume.profile.github}></a></>}
-                        {!!resume.profile.portfolio && <> | <a href={resume.profile.portfolio}></a></>}
+                        {!!resume.profile.linkedin && <> | <a href={resume.profile.linkedin}>Linkedin</a></>}
+                        {!!resume.profile.github && <> | <a href={resume.profile.github}>Github</a></>}
+                        {!!resume.profile.portfolio && <> | <a href={resume.profile.portfolio}>Portfolio</a></>}
                     </HStack>
 
                 </Flex>

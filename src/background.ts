@@ -39,20 +39,10 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 });
 
 
-//Handle TailorTo context menu button to begin generating
-chrome.contextMenus.onClicked.addListener( async (info, tab) => {
 
-    if (!tab?.id) return
-
-    if (info.menuItemId === "GENERATE_TAILORED_RESUME") {
-
-        console.log("Generating")
-
-
-        //Handle 
-        if (!info.selectionText || info.selectionText?.length < 500) return
-
-        await chrome.scripting.executeScript({
+chrome.tabs.onUpdated.addListener((_tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete' && tab.url &&  tab.url.startsWith('http')) {
+         chrome.scripting.executeScript({
             target: { tabId: tab?.id as number },
             func: () => {
                 const script = document.createElement("script");
@@ -67,6 +57,23 @@ chrome.contextMenus.onClicked.addListener( async (info, tab) => {
                 document.head.appendChild(link);
             },
         });
+  }
+});
+
+
+
+//Handle TailorTo context menu button to begin generating
+chrome.contextMenus.onClicked.addListener( async (info, tab) => {
+
+    if (!tab?.id) return
+
+    if (info.menuItemId === "GENERATE_TAILORED_RESUME") {
+
+        console.log("Generating")
+
+
+        //Handle 
+        if (!info.selectionText || info.selectionText?.length < 500) return
 
 
         await chrome.tabs.sendMessage(tab.id,{type: "NOTIFY_STORAGE_LOAD_START"});
@@ -74,6 +81,7 @@ chrome.contextMenus.onClicked.addListener( async (info, tab) => {
 
         await chrome.tabs.sendMessage(tab.id,{type: "NOTIFY_RESUME_GENERATE_START"});
         const res = await OpenAPIService.GenerateResume(info.selectionText, JSON.stringify(transcript))
+        console.log(res)
         
         if (res.metadata.error) await chrome.tabs.sendMessage(tab.id,{type: "ERROR", payload: res.metadata.errorMessage});
         else await chrome.tabs.sendMessage(tab.id,{type: "PASS_RESUME_DATA", payload: res});

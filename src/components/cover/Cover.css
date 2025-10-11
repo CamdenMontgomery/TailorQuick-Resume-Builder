@@ -128,6 +128,7 @@
     box-shadow: #a3a3a357 0 0 15px 0;
     height: Calc(100% - 4rem);
         max-width: fit-content;
+        overflow: hidden;
 }
 
 .resume-container{

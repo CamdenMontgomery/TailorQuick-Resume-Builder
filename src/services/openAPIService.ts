@@ -7,7 +7,7 @@ const client = new OpenAI({
 export default class OpenAPIService {
     static async extractJobTags(jobDescription: string) {
         const response = await client.chat.completions.create({
-            model: "gpt-5-nano-2025-08-07",
+            model: "gpt-5-mini-2025-08-07",
             messages: [
                 {
                     role: "system",
@@ -55,6 +55,8 @@ export default class OpenAPIService {
             - The page has an aproximate width of 100 characters per line
             - Skill groups should take up at most 70 characters
             - Bullet points should take up at most two lines (200 characters)
+            - The page has 31 lines, do not exceed 31 lines
+            - lines that overflow to the next (exceeeding 100 characters) will count as 2 lines.
 
             Output:  
             - A valid JSON object containing the reduced resume which adheres to the following format. 
@@ -121,7 +123,7 @@ export default class OpenAPIService {
 
 
         const response = await client.chat.completions.create({
-            model: "gpt-5-nano-2025-08-07",
+            model: "gpt-5-mini-2025-08-07",
             messages: [
                 {
                     role: "system",
