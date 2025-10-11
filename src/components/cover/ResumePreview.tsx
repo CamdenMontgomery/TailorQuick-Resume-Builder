@@ -76,6 +76,8 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
                     </>
                 ))}
 
+                
+
 
 
 

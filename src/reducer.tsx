@@ -229,6 +229,28 @@ export default function rootReducer(state: TQTranscript = initialState, action: 
             break
         }
 
+
+
+
+
+
+
+        //Skill Section Actions
+
+        case "ADD_SKILL":{
+            const copy = { ...state }
+            copy.skills.push(action.payload.value)
+            state = copy
+            break
+        }
+
+        case "REMOVE_SKILL":{
+            const copy = { ...state }
+            copy.skills.splice(copy.skills.indexOf(action.payload.value), 1)
+            state = copy
+            break
+        }
+
         default: break;
     }
     

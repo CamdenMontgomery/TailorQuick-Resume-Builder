@@ -14,6 +14,7 @@ import type Project from "../interfaces/Project"
 import ProfileSubsection from "./SubsectionItems/ProfileSubsection"
 import type Profile from "../interfaces/Profile"
 import type Experience from "../interfaces/Experience"
+import SkillsSubsection from "./SubsectionItems/SkillsSubsection"
 
 
 
@@ -37,6 +38,8 @@ export default function SubsectionView({section} : {section : SectionType}){
                 return state.projects
             case "PROFILE":
                 return state.profile 
+            case "SKILLS":
+                return state.skills 
             default:
                 return state.profile
         }
@@ -44,28 +47,28 @@ export default function SubsectionView({section} : {section : SectionType}){
     
     return (
         <Stack id="subsection-view" direction="column" height="100%" gap="0" background="#f9f9f9" >
-            { Array.isArray(data) && <SubsectionHeader section={section} data={data}></SubsectionHeader> /*Remove Header if not displaying multiple subsections*/}
+            { section == "EDUCATION" || section == "EXPERIENCE" || section == "PROJECTS" && <SubsectionHeader section={section} data={data as (Education[] | Experience[] | Project[])}></SubsectionHeader> /*Remove Header if not displaying multiple subsections*/}
             <FadeScroll flex="1">
 
             
-            {Array.isArray(data) && /*Conditional Render*/ <Stack id="subsection-list" direction="column">
+            {(section == "EDUCATION" || section == "EXPERIENCE" || section == "PROJECTS") && /*Conditional Render*/ <Stack id="subsection-list" direction="column">
                 {
-                    section == "EDUCATION" ? data!.map((d,idx) => <EducationSubsection data={d as Education} index={idx}></EducationSubsection>)  :
-                    section == "EXPERIENCE" ? data!.map((d,idx) => <ExperienceSubsection data={d as Experience} index={idx}></ExperienceSubsection>) :
-                    section == "PROJECTS" ? data!.map((d,idx) => <ProjectsSubsection data={d as Project} index={idx}></ProjectsSubsection>)  : 
+                    section == "EDUCATION" ? (data! as Education[]).map((d,idx) => <EducationSubsection data={d as Education} index={idx}></EducationSubsection>)  :
+                    section == "EXPERIENCE" ? (data! as Experience[]).map((d,idx) => <ExperienceSubsection data={d as Experience} index={idx}></ExperienceSubsection>) :
+                    section == "PROJECTS" ? (data! as Project[]).map((d,idx) => <ProjectsSubsection data={d as Project} index={idx}></ProjectsSubsection>)  : 
                     <></>
                 }
             </Stack>}
 
             {
                 section == "PROFILE" ? <ProfileSubsection data={data as Profile}></ProfileSubsection>  :
-                section == "SKILLS" ? <></> :
+                section == "SKILLS" ? <SkillsSubsection data={data as string[]}></SkillsSubsection> :
                 <></>
             }
         
 
             </FadeScroll>
-            { Array.isArray(data) && <SubsectionFooter section={section}></SubsectionFooter> /*Remove Footer if not displaying multiple subsections*/} 
+            { (section == "EDUCATION" || section == "EXPERIENCE" || section == "PROJECTS") && <SubsectionFooter section={section}></SubsectionFooter> /*Remove Footer if not displaying multiple subsections*/} 
         </Stack>
     )
 }

@@ -244,3 +244,18 @@ h2 {
 border-bottom: black solid 1px;
     border-radius: 0;
 }
+
+
+
+
+
+
+.skill-subsection-skill-container{
+  padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    border: solid 1px #f1f1f1;
+    gap: 0.5rem;
+    min-height: 10rem;
+}
