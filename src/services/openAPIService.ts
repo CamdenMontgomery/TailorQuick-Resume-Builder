@@ -49,6 +49,8 @@ export default class OpenAPIService {
             - group skills into at most 4 different groups each with labels you must create 
             - Manipulate the information with the goal to maximize the relevancy score and maximize the chance of hiring
             - The education section should be the highest priority unless specified otherwise by the job description
+            - Provide a list of highlights, keywords that should be emboldened
+            - Fill out the metadata.highlights section with a list of keywords from the projects section that should be highlighted on a resume, important keywords like languages and skills
 
             Limitations:
             - Maximum of 3000 characters including labels
@@ -90,7 +92,7 @@ export default class OpenAPIService {
                             company: string,
                             startDate?: number,
                             endDate?: number,
-                            bullets?: string[] 
+                            bullets?: string[]
                         }[]
                         },
                         {type: "PROJECTS", data: {
@@ -113,7 +115,8 @@ export default class OpenAPIService {
                 }
                 metadata: {
                     error: boolean,
-                    errorMessage?: string
+                    errorMessage?: string,
+                    highlights: string[]
                 }
             }
             

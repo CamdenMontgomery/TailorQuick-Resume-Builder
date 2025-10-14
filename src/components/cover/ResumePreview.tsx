@@ -12,7 +12,7 @@ import ResumePreviewSkillsSection from "./ResumePreviewSkillsSection";
 import pageStyle from "./print.css?inline"
 
 
-export default function ResumePreview({ resume }: { resume: IResume }) {
+export default function ResumePreview({ resume, highlights }: { resume: IResume, highlights?: string[] }) {
     const [scale, setScale] = useState(1)
     const selfRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
@@ -78,7 +78,7 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
                             {console.log(section)}
                             {section.type == "EDUCATION" && <ResumePreviewEducationSection educations={section.data as Education[]}></ResumePreviewEducationSection>}
                             {section.type == "EXPERIENCE" && <ResumePreviewExperienceSection experiences={section.data as Experience[]}></ResumePreviewExperienceSection>}
-                            {section.type == "PROJECTS" && <ResumePreviewProjectsSection projects={section.data as Project[]}></ResumePreviewProjectsSection>}
+                            {section.type == "PROJECTS" && <ResumePreviewProjectsSection projects={section.data as Project[]} highlights={highlights}></ResumePreviewProjectsSection>}
                             {section.type == "SKILLS" && <ResumePreviewSkillsSection skillgroups={section.data as SkillGroup[]}></ResumePreviewSkillsSection>}
                         </>
                     ))}

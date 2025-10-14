@@ -1,7 +1,7 @@
-import { Flex, Heading, Separator, Grid, GridItem, List, ListItem, Text } from "@chakra-ui/react";
+import { Flex, Heading, Separator, Grid, GridItem, List, ListItem, Text, Highlight } from "@chakra-ui/react";
 import type Project from "../../interfaces/Project";
 
-export default function ResumePreviewProjectsSection({ projects }: { projects: Project[] }) {
+export default function ResumePreviewProjectsSection({ projects, highlights }: { projects: Project[], highlights?: string[] }) {
 
     const DATE_FORMAT = { month: 'short' as const, year: 'numeric' as const }
     const formatDate = (date: number | null /*Unix*/) => {
@@ -33,7 +33,9 @@ export default function ResumePreviewProjectsSection({ projects }: { projects: P
                             <List.Root paddingInlineStart={"2rem"}>
                                 {
                                     pr.bullets?.map((bullet: string) => (
-                                        <ListItem className="resume-subsection-bullet">{bullet}</ListItem>
+                                        <ListItem className="resume-subsection-bullet">
+                                            <Highlight ignoreCase query={highlights ?? ""} styles={{ fontWeight: "semibold" }}>{bullet}</Highlight>
+                                        </ListItem>
                                     ))
                                 }
                             </List.Root>

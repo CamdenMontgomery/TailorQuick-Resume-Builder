@@ -27,6 +27,7 @@ function getRatingInformation(score: number){
 
 export default function ResumePreviewCover() {
     const [resume, setResume] = useState<IResume | undefined>(undefined)
+    const [highlights, setHighlights] = useState<string[] | undefined>(undefined)
     const [score, setScore] = useState<number>(0)
     const [suggestions, setSuggestions] = useState<string[]>([])
     const [mode, setMode] = useState<ResumePreviewModes>('HIDDEN')
@@ -55,6 +56,7 @@ export default function ResumePreviewCover() {
                     setResume(message.data.payload.resume);
                     setScore(message.data.payload.info.relevance);
                     setSuggestions(message.data.payload.info.suggestions);
+                    setHighlights(message.data.payload.metadata.highlights)
                     break
                 }
             }
@@ -83,7 +85,7 @@ export default function ResumePreviewCover() {
                 <HStack className="resume-preview-modal">
                     <Center className="resume-preview-container">
                         <VStack gap="2rem" height="100%">
-                        {resume && <ResumePreview resume={resume}></ResumePreview>}
+                        {resume && <ResumePreview resume={resume} highlights={highlights}></ResumePreview>}
                         <Button background="black" color="white" width="100%" height="2.5rem" onClick={() => window.postMessage({type:"REQUEST_EXPORT_RESUME"})}>Export</Button>
                         </VStack>
                     </Center>
