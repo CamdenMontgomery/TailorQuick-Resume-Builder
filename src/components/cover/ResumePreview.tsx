@@ -7,16 +7,19 @@ import { useEffect, useRef, useState } from "react";
 import type Education from "../../interfaces/Education";
 import type Experience from "../../interfaces/Experience";
 import type Project from "../../interfaces/Project";
-import {useReactToPrint} from "react-to-print"
+import { useReactToPrint } from "react-to-print"
 import ResumePreviewSkillsSection from "./ResumePreviewSkillsSection";
+import pageStyle from "./print.css?inline"
+
 
 export default function ResumePreview({ resume }: { resume: IResume }) {
     const [scale, setScale] = useState(1)
     const selfRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
-    const reactToPrintFn  = useReactToPrint({contentRef})
+    const reactToPrintFn = useReactToPrint({ contentRef, pageStyle})
 
 
+    //
 
 
     useEffect(() => {
@@ -41,11 +44,13 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
         //Listen to any message to export
         //const ctrl = new AbortController()
         window.onmessage = (message: MessageEvent) => {
-            if (message.data.type == "REQUEST_EXPORT_RESUME")
-                reactToPrintFn ()
+            if (message.data.type == "REQUEST_EXPORT_RESUME") {
+                reactToPrintFn()
+            }
+
         }
 
-        return () => {observer.disconnect()}
+        return () => { observer.disconnect() }
 
     }, [])
 
@@ -53,37 +58,37 @@ export default function ResumePreview({ resume }: { resume: IResume }) {
     return (
         <Flex className="resume-page" ref={selfRef}>
             <Container scale={scale} transformOrigin={"top left"} padding={0}> {/*Scale the resume container without it appearing scaled in the print view because the print view doesnt know about this parent affecting its scale*/}
-            <Flex className="resume-container"  ref={contentRef} padding={"3rem"}>
+                <Flex className="resume-container" ref={contentRef} padding={"3rem"}>
 
 
-                <Flex className="resume-section" alignItems="center">
-                    <Heading>{resume.profile.firstName.trim()} {resume.profile.lastName.trim()}</Heading>
-                    <HStack>
-                        <Em>{resume.profile.email}</Em> |
-                        <Em>{resume.profile.phone}</Em>
-                        {!!resume.profile.linkedin && <> | <a href={resume.profile.linkedin}>Linkedin</a></>}
-                        {!!resume.profile.github && <> | <a href={resume.profile.github}>Github</a></>}
-                        {!!resume.profile.portfolio && <> | <a href={resume.profile.portfolio}>Portfolio</a></>}
-                    </HStack>
+                    <Flex className="resume-section" alignItems="center">
+                        <Heading>{resume.profile.firstName.trim()} {resume.profile.lastName.trim()}</Heading>
+                        <HStack>
+                            <Em>{resume.profile.email}</Em> |
+                            <Em>{resume.profile.phone}</Em>
+                            {!!resume.profile.linkedin && <> | <a href={resume.profile.linkedin}>Linkedin</a></>}
+                            {!!resume.profile.github && <> | <a href={resume.profile.github}>Github</a></>}
+                            {!!resume.profile.portfolio && <> | <a href={resume.profile.portfolio}>Portfolio</a></>}
+                        </HStack>
+
+                    </Flex>
+
+                    {resume.sections.map((section) => (
+                        <>
+                            {console.log(section)}
+                            {section.type == "EDUCATION" && <ResumePreviewEducationSection educations={section.data as Education[]}></ResumePreviewEducationSection>}
+                            {section.type == "EXPERIENCE" && <ResumePreviewExperienceSection experiences={section.data as Experience[]}></ResumePreviewExperienceSection>}
+                            {section.type == "PROJECTS" && <ResumePreviewProjectsSection projects={section.data as Project[]}></ResumePreviewProjectsSection>}
+                            {section.type == "SKILLS" && <ResumePreviewSkillsSection skillgroups={section.data as SkillGroup[]}></ResumePreviewSkillsSection>}
+                        </>
+                    ))}
+
+
+
+
+
 
                 </Flex>
-
-                {resume.sections.map((section) => (
-                    <>
-                        {console.log(section)}
-                        {section.type == "EDUCATION" && <ResumePreviewEducationSection educations={section.data as Education[]}></ResumePreviewEducationSection>}
-                        {section.type == "EXPERIENCE" && <ResumePreviewExperienceSection experiences={section.data as Experience[]}></ResumePreviewExperienceSection>}
-                        {section.type == "PROJECTS" && <ResumePreviewProjectsSection projects={section.data as Project[]}></ResumePreviewProjectsSection>}
-                        {section.type == "SKILLS" && <ResumePreviewSkillsSection skillgroups={section.data as SkillGroup[]}></ResumePreviewSkillsSection>}
-                    </>
-                ))}
-
-
-
-
-
-
-            </Flex>
             </Container>
         </Flex>
     )

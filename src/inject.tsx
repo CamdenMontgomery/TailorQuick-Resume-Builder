@@ -1,21 +1,24 @@
-
-
 import ReactDOM from "react-dom/client";
-import { Provider as ChkrProvider } from "./components/ui/provider"
 import ResumePreviewCover from "./components/cover/Cover";
+import css from "./components/cover/Cover.css?inline";
+import { Provider } from "./components/cover/provider";
 
-//Has to be in this file and then properly compiled and bundled by vite, the resulting bundled file can then be referenced and injected by the background script
-//If this same code is written directly into the background script it does not get properly compiled
-/*Must share assets for injection to work because vite was shared imports stored there that need to be accessed by inject.js*/
-//Inject React Root Into Page
-const body = document.getElementsByTagName('body')[0]
-const injection = document.createElement('div')
-injection.id = "injected-root"
 
-body.prepend(injection)
+//Add font import to head of light DOM because the shadow DOM has difficulties loading fonts
+const style = document.createElement("style");
+style.textContent = "@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');"
+document.head.appendChild(style);
 
-ReactDOM.createRoot(document.getElementById("injected-root")!).render(
-    <ChkrProvider>
-        <ResumePreviewCover></ResumePreviewCover>
-    </ChkrProvider>
+//Create root for our react shadow DOM
+const appRoot = document.createElement("div");
+appRoot.id = "inject-root"
+document.body.prepend(appRoot)
+
+//Create a shadow toor using the Provider wrapper.
+//Add css as an inline style within the shadow DOM
+ReactDOM.createRoot(appRoot).render(
+  <Provider>
+    <style>{css}</style>
+    <ResumePreviewCover />
+</Provider>
 );

@@ -1,0 +1,18 @@
+//Sourced from Chakra-ui website | Part of the ShadowDOM process
+
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+const varRoot = ":host"
+
+const config = defineConfig({
+  cssVarsRoot: varRoot,
+  conditions: {
+    light: `${varRoot} &, .light &`,
+  },
+  preflight: { scope: varRoot },
+  globalCss: {
+    [varRoot]: defaultConfig.globalCss?.html ?? {},
+  },
+})
+
+export const system = createSystem(defaultConfig, config)
