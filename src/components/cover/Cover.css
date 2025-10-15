@@ -138,11 +138,12 @@
     transform-origin: top left;
     aspect-ratio: 0.772797527048;
     justify-content: space-around;
+    padding: 3rem
 
 }
 
 .resume-section{
-        flex-direction: column;
+    flex-direction: column;
 }
 
 
@@ -154,7 +155,25 @@
     font-weight: 400;
 }
 
+.resume-subsection-bullet-list {
+    padding-inline-start: 2rem;
+}
+
+.resume-subsection-span-2{
+    grid-column: span 2;
+}
 .resume-subsection-title{
     font-weight: 700;
 }
 
+.resume-profile-section{
+            align-items: center;
+}
+
+.resume-subsection-grid{
+    grid-template-columns: 1fr 1fr;
+}
+
+.resume-skills-label{
+    font-weight: 700;
+}

@@ -9,8 +9,8 @@ export default function ResumePreviewSkillsSection({ skillgroups }: { skillgroup
             <Heading className="resume-section-heading">Skills</Heading>
             <Separator />
             {skillgroups.map((sk) => (
-                <HStack>
-                    <Text fontWeight={700}>{sk.label}</Text><Text>{sk.skills.join(", ")}</Text>
+                <HStack className="chakra-hstack">
+                    <Text className="resume-skills-label">{sk.label}</Text><Text>{sk.skills.join(", ")}</Text>
                 </HStack>
             ))
             }

@@ -9,14 +9,14 @@ import type Experience from "../../interfaces/Experience";
 import type Project from "../../interfaces/Project";
 import { useReactToPrint } from "react-to-print"
 import ResumePreviewSkillsSection from "./ResumePreviewSkillsSection";
-import pageStyle from "./print.css?inline"
-
+import printStyles from "./print.css?inline"
+import pageStyle from "./Cover.css?inline"
 
 export default function ResumePreview({ resume, highlights }: { resume: IResume, highlights?: string[] }) {
     const [scale, setScale] = useState(1)
     const selfRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
-    const reactToPrintFn = useReactToPrint({ contentRef, pageStyle})
+    const reactToPrintFn = useReactToPrint({ contentRef, pageStyle: pageStyle + printStyles})
 
 
     //
@@ -58,12 +58,12 @@ export default function ResumePreview({ resume, highlights }: { resume: IResume,
     return (
         <Flex className="resume-page" ref={selfRef}>
             <Container scale={scale} transformOrigin={"top left"} padding={0}> {/*Scale the resume container without it appearing scaled in the print view because the print view doesnt know about this parent affecting its scale*/}
-                <Flex className="resume-container" ref={contentRef} padding={"3rem"}>
+                <Flex className="resume-container" ref={contentRef}>
 
 
-                    <Flex className="resume-section" alignItems="center">
+                    <Flex className="resume-section resume-profile-section"  >
                         <Heading>{resume.profile.firstName.trim()} {resume.profile.lastName.trim()}</Heading>
-                        <HStack>
+                        <HStack className="resume-profile-info">
                             <Em>{resume.profile.email}</Em> |
                             <Em>{resume.profile.phone}</Em>
                             {!!resume.profile.linkedin && <> | <a href={resume.profile.linkedin}>Linkedin</a></>}

@@ -15,7 +15,7 @@ export default function ResumePreviewExperienceSection({ experiences }: { experi
             <Heading className="resume-section-heading">Experience</Heading>
             <Separator />
             {experiences.map((ex: Experience) => (
-                <Grid templateColumns="1fr 1fr">
+                <Grid className="resume-subsection-grid">
                     <GridItem> <Text className="resume-subsection-title">{ex.position == "" ? "Your Position Here" : ex.position}</Text> </GridItem>
                     <GridItem>
                         {
@@ -29,9 +29,9 @@ export default function ResumePreviewExperienceSection({ experiences }: { experi
                             </Text>
                         }
                     </GridItem>
-                    <GridItem colSpan={2}> <Text className="resume-subsection-subtitle">{ex.company == "" ? "The company you worked at here" : ex.company}</Text> </GridItem>
-                    <GridItem colSpan={2}>
-                        <List.Root paddingInlineStart={"2rem"}>
+                    <GridItem className="resume-subsection-span-2"> <Text className="resume-subsection-subtitle">{ex.company == "" ? "The company you worked at here" : ex.company}</Text> </GridItem>
+                    <GridItem className="resume-subsection-span-2">
+                        <List.Root className="resume-subsection-bullet-list">
                             {
                                 ex.bullets?.map((bullet: string) => (
                                     <ListItem className="resume-subsection-bullet">{bullet}</ListItem>

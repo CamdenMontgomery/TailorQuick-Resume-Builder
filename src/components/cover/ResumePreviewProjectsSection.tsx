@@ -15,7 +15,7 @@ export default function ResumePreviewProjectsSection({ projects, highlights }: {
             <Separator />
             {
                 projects.map((pr: Project) => (
-                    <Grid templateColumns="1fr 1fr">
+                    <Grid className="resume-subsection-grid">
                         <GridItem> <Text className="resume-subsection-title">{pr.title}</Text> </GridItem>
                         <GridItem>
                             {
@@ -29,8 +29,8 @@ export default function ResumePreviewProjectsSection({ projects, highlights }: {
                                 </Text>
                             }
                         </GridItem>
-                        <GridItem colSpan={2}>
-                            <List.Root paddingInlineStart={"2rem"}>
+                        <GridItem className="resume-subsection-span-2">
+                            <List.Root className="resume-subsection-bullet-list">
                                 {
                                     pr.bullets?.map((bullet: string) => (
                                         <ListItem className="resume-subsection-bullet">
