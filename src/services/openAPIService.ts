@@ -55,6 +55,7 @@ export default class OpenAPIService {
         - Where information is incomplete, retain what exists but omit speculation.
         - Format bullet points into concise STAR-style (Situation, Task, Action, Result) achievements.
         - Limit each list to ≤4 bullets and each bullet to ≤200 characters.
+        - If the total resume content is sparse or underfilled (less than ~2000 characters of meaningful content), generate a short, human-sounding "summary" field under profile. This summary should sound semi-professional and semi-casual, written in natural language (e.g., “Motivated computer science graduate passionate about building efficient, user-focused applications.”). The summary must only use information present in the user data and may combine details creatively but never invent new facts.
 
         3. Section Ordering
         - Automatically arrange sections by relevance to the job (e.g., Education first for students, Experience first for professionals).
@@ -84,6 +85,7 @@ export default class OpenAPIService {
         - Dates must be UNIX timestamps
         - No section or field should include hallucinated or speculative data
         - The JSON must be valid, parseable, and strictly adhere to the following schema
+        - The summary, if generated, must be between 200–400 characters and written in a natural, conversational tone that fits on a professional resume.
 
         Output Schema:
         {
@@ -95,7 +97,8 @@ export default class OpenAPIService {
             "phone": "string",
             "github": "string?",
             "linkedin": "string?",
-            "portfolio": "string?"
+            "portfolio": "string?",
+            "summary": "string?"
             },
             "sections": [
             {

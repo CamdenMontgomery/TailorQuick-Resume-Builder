@@ -1,4 +1,4 @@
-import { Flex, Heading, Em, HStack, Container } from "@chakra-ui/react";
+import { Flex, Heading, Em, HStack, Container, Text } from "@chakra-ui/react";
 import type { IResume, SkillGroup } from "../../interfaces/IResume";
 import ResumePreviewEducationSection from "./ResumePreviewEducationSection";
 import ResumePreviewExperienceSection from "./ResumePreviewExperienceSection";
@@ -70,7 +70,9 @@ export default function ResumePreview({ resume, highlights }: { resume: IResume,
                             {!!resume.profile.github && <> | <a href={resume.profile.github}>Github</a></>}
                             {!!resume.profile.portfolio && <> | <a href={resume.profile.portfolio}>Portfolio</a></>}
                         </HStack>
-
+                        {!!resume.profile.summary &&<Text className="resume-profile-summary">
+                            {resume.profile.summary}
+                        </Text>}
                     </Flex>
 
                     {resume.sections.map((section) => (

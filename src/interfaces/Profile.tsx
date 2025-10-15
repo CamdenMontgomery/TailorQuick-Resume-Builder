@@ -7,4 +7,5 @@ export default interface Profile{
     github?: string,
     linkedin?: string,
     portfolio?: string
+    summary?: string
 }
