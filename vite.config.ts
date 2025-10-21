@@ -10,8 +10,7 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         { src: "manifest.json", dest: "." },      // copy manifest
-        { src: "src/assets", dest: "src" },      // copy icons, etc.
-        { src: "src/components/cover/Cover.css", dest: "." }
+        { src: "src/pages/web-page/modal.css", dest: "." }
       ],
     }),
   ],
@@ -20,23 +19,18 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        popup: "src/popup/index.html",
-        options: "src/webpage/index.html",
+        options: "src/pages/options-page/index.html",
         background: "src/background.ts",
-        bridge: "src/bridge.ts",
-        inject: "src/inject.tsx"
+        bridge: "src/pages/web-page/utils/bridge.ts",
+        inject: "src/pages/web-page/utils/inject.tsx"
       },
       output: {
         entryFileNames: (chunk) => {
-          // make sure background builds to background.js (must match manifest.json)
-          if (chunk.name === "background") {
-            return "background.js";
-          }if (chunk.name === "inject") {
-            return "inject.js";
-          }if (chunk.name === "bridge") {
-            return "bridge.js";
+          const root = ['background', 'inject', 'bridge'];
+          if (root.includes(chunk.name)) {
+            return "[name].js";
           }
-          return "assets/[name].js";
+          else return "assets/[name].js";
         },
       },
     },

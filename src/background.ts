@@ -1,9 +1,7 @@
 
-import OpenAPIService from "./services/openAPIService";
-import StorageService from "./services/storageService";
+import OpenAPIService from "./shared/services/openAPIService";
+import StorageService from "./shared/services/storageService";
 
-
-import "./App.css"
 
 
 
