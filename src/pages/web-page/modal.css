@@ -1,0 +1,182 @@
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+.resume-preview-loading-container{
+    overflow: hidden;
+    background: #fdfdfd;
+    box-shadow: #00000061 0 0 20px 0;
+    border-radius: 0.5rem;
+    height: fit-content;
+        width: 18rem;
+    padding: 4rem;
+    aspect-ratio: 0.9;
+}
+
+.resume-preview-loading-message{
+    padding-top: 1rem;
+    font-weight: 800;
+    font-size: large;
+        text-align: center;
+}
+
+.resume-preview-loading-subtext{
+        color: gray;
+    text-transform: capitalize;
+    font-size: smaller;
+    padding-top: 1rem;
+            text-align: center;
+            font-family: "Inter", sans-serif;
+}
+
+.resume-preview-cover{
+    position: fixed;
+    z-index: 100000000;
+    width: 100%;
+    height: 100dvh;
+    background: #0000003d;
+}
+
+.resume-preview-modal{
+        height: 80dvh;
+    overflow: hidden;
+        margin: 10rem;
+    background: #fdfdfd;
+    box-shadow: #00000061 0 0 20px 0;
+    border-radius: 0.5rem;
+    font-family: "Inter", sans-serif;
+}
+
+.resume-preview-modal-sidepanel{
+
+    background: white;
+    padding: 3rem;
+    align-items: start;
+        height: 100%;
+    border-left: #e7e7e7 1px solid;
+    color: black;
+    width: 25rem;
+}
+
+.resume-preview-modal-title{
+    font-weight: 800;
+    font-size: 2rem;
+    text-wrap-style: balance;
+        font-size: medium;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.resume-preview-modal-subtext{
+    text-align: center;
+    color: gray;
+    font-size: smaller;
+}
+
+.resume-preview-stat-card{
+        gap: 1rem;
+    width: 100%;
+    box-shadow: #0000000f 0 0 11px 0;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: solid 1px #e3e3e3;
+}
+
+.resume-preview-modal-improvements{
+        border-top: solid 1px #d5d5d5;
+    padding-top: 2rem;
+}
+
+.resume-preview-modal-instruction{
+        text-align: center;
+    color: gray;
+}
+.resume-preview-modal-button{
+    color: black;
+    width: 100%;
+    border-color: gray;
+    margin-top: 2rem;
+}
+
+.resume-preview-modal-stats{
+        margin: auto;
+            width: 100%;
+}
+
+
+
+.resume-preview-container{
+    height: 100%;
+    flex: 1;
+    padding: 4rem;
+}
+
+.resume-page{
+    background: white;
+    color: black;
+    aspect-ratio: 0.772797527048;
+    height: -webkit-fill-available;
+    display: flex
+;
+    width: auto;
+    flex-direction: column;
+    box-shadow: #a3a3a357 0 0 15px 0;
+    height: Calc(100% - 4rem);
+        max-width: fit-content;
+        overflow: hidden;
+}
+
+.resume-container{
+    flex-direction: column;
+    width: 8.5in;
+    height: 11in;
+    transform-origin: top left;
+    aspect-ratio: 0.772797527048;
+    justify-content: space-around;
+    padding: 3rem
+
+}
+
+.resume-section{
+    flex-direction: column;
+}
+
+
+.resume-subsection-date{
+        float: right;
+}
+
+.resume-subsection-bullet{
+    font-weight: 400;
+}
+
+.resume-subsection-bullet-list {
+    padding-inline-start: 2rem;
+}
+
+.resume-subsection-span-2{
+    grid-column: span 2;
+}
+.resume-subsection-title{
+    font-weight: 700;
+}
+
+.resume-profile-section{
+            align-items: center;
+}
+
+.resume-subsection-grid{
+    grid-template-columns: 1fr 1fr;
+}
+
+.resume-skills-label{
+    font-weight: 700;
+}
+
+.resume-profile-summary{
+    padding-top: 0.5rem;
+}

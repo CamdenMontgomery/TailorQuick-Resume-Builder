@@ -3,10 +3,7 @@
   "name": "Smart Resume Builder",
   "version": "1.0",
   "description": "Tailor your resume to job descriptions using AI.",
-  "action": {
-    "default_popup": "src/popup/index.html"
-  },
-  "options_page": "src/webpage/index.html",
+  "options_page": "src/pages/options-page/index.html",
   "permissions": ["storage","contextMenus","scripting","tabs","activeTab"], 
   "content_scripts": [
        {
@@ -20,7 +17,7 @@
     "type": "module"
   },  "web_accessible_resources": [
     {
-      "resources": [ "src/assets/*.png", "inject.js", "assets/*","Cover.css","src/assets/fonts/*"], 
+      "resources": [ "src/assets/*.png", "inject.js", "assets/*","modal.css"], 
       "matches": ["<all_urls>"]
     }
   ]
