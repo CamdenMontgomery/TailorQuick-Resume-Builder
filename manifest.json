@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Smart Resume Builder",
+  "name": "TailorSwift - Resume Builder",
   "version": "1.0",
   "description": "Tailor your resume to job descriptions using AI.",
   "options_page": "src/pages/options-page/index.html",
@@ -11,6 +11,9 @@
      "js": ["bridge.js"]
    }
   ],
+  "icons":{
+    "128": "./icons/icon.png"
+  },
   "host_permissions": ["*://*/*"],
   "background": {
     "service_worker": "background.js",

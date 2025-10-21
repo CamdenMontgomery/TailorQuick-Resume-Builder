@@ -17,7 +17,7 @@ export default function BuilderPage() {
         <Stack id="app-container" direction="row">
             <Stack id="sidebar" direction="column">
                 <Flex direction="column" id="logo-container">
-                    <Heading id="logo">TailorScript</Heading>
+                    <Heading id="logo">TailorSwift</Heading>
                     <Badge variant="solid" colorPalette="orange" color="white" width="fit-content">
                         <RiSettingsFill />
                         Configs
